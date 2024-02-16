@@ -1,0 +1,17 @@
+<IfModule mod_headers.c>
+    Allow from all
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "POST"
+</IfModule>
+<IfModule pagespeed_module>
+    ModPagespeed Off
+    ModPagespeedDisableFilters combine_javascript,inline_javascript,rewrite_javascript,combine_css,flatten_css_imports,inline_css,rewrite_css,convert_meta_tags,extend_cache,inline_import_to_link,rewrite_images
+    Header set Server "Beon-x-Fast"
+    Header set Cache-control "public, max-age=3650000"
+    Header unset X-LS-Pagespeed
+</IfModule> 
+RewriteEngine On
+RewriteCond $1 !^(index\.php|images|css|js|robots\.txt|favicon\.ico)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php?/$1 [L,QSA]
