@@ -1,5 +1,5 @@
 function call_ajax_page(page) {
-	document.title = page.replace(/\b\w/g, l => l.toUpperCase()) + " User | Aplikasi Administrasi Kalender";
+	document.title = page.replace(/\b\w/g, l => l.toUpperCase()) + " User | Aplikasi Administrasi Sekolah";
 	urloc = "/content" + "/" + page;
 	$.post(url + "/view" + urloc, {
 		csrf_token: getCookie("csrf_cookie"),

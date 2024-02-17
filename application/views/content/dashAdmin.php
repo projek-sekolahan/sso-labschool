@@ -10,7 +10,7 @@ $result =   $this->Master->get_custom_query($sqluser)->row();
                             <div class="col-12">
                                 <div class="text-primary p-3">
                                     <h5 class="text-primary">Selamat Datang Kembali <?=$result->name?></h5>
-                                    <p>Aplikasi Administrasi Kalender</p>
+                                    <p>Aplikasi Administrasi Sekolah</p>
                                 </div>
                             </div>
                             <!-- <div class="col-5 align-self-end">
