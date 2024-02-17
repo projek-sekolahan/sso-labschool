@@ -1,4 +1,5 @@
 <?php
+#[\AllowDynamicProperties]
 	class AuthCheck extends CI_model {
         private $_AuthKey;
         private $_ApiKey;
