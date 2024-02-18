@@ -130,7 +130,7 @@ class Ion_auth
 		$user = $this->where($this->ion_auth_model->identity_column, $identity)
 					 ->where('active', 1)
 					 ->users()->row();
-		var_dump($identity,$user);
+		
 		if ($user)
 		{
 			// Generate code
@@ -144,7 +144,7 @@ class Ion_auth
 					'email'      => $user->email,
 					'activation' => $code,
 				];
-				
+				var_dump($this->config->item('use_ci_email', 'ion_auth'));
 				if (!$this->config->item('use_ci_email', 'ion_auth'))
 				{
 					$this->set_message('forgot_password_successful');
