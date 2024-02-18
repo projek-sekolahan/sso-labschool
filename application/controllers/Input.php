@@ -16,7 +16,7 @@ class Input extends CI_Controller {
 	
 	public function recover() {
 		$identity_column = $this->config->item('identity', 'ion_auth');
-		var_dump($identity_column);return false;
+		// var_dump($identity_column);return false;
 		$identity = $this->ion_auth->where($identity_column, $this->input->post('username'))->users()->row();
 		var_dump($identity);return false;
 		if (empty($identity)) {
