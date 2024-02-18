@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="p-2">
-                                <div class="alert alert-success text-center mb-4" role="alert">
+                                <div class="alert alert-info text-center mb-4" role="alert">
                                     Cek Email Anda dan Ikuti Petunjuknya
                                 </div>
                                 <form class="form-horizontal custom-validation needs-validation" id="form-recover" novalidate action="/input/recover" method="post" accept-charset="utf-8">
