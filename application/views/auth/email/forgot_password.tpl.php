@@ -27,14 +27,14 @@
                                                 </tr>
                                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-                                                        <b>SIPESEK</b>
+                                                        <b>SmartApps</b>
                                                         <p>Support Team</p>
                                                     </td>
                                                 </tr>
 
                                                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                                     <td class="content-block" style="text-align: center;font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0;" valign="top">
-                                                        © <?=date('Y')?> SIPESEK
+                                                        © <?=date('Y')?> SmartApps
                                                     </td>
                                                 </tr>
                                             </table>
