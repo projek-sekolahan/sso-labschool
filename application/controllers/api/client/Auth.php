@@ -29,6 +29,7 @@ class Auth extends RestController {
                         $http   = RestController::HTTP_BAD_REQUEST;
                         $output = $dtAPI['data'];
                     } else {
+						var_dump($dtAPI['data']['token'],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
                         $decode = $this->_AuthToken->validateTimestamp($dtAPI['data']['token'],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
                         if (is_object($decode)) {
                             $token_data = array(
