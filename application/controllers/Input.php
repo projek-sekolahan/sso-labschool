@@ -29,6 +29,7 @@ class Input extends CI_Controller {
 				'csrfHash'  => $this->security->get_csrf_hash()
 			]);
 		} else {
+			var_dump($identity->{$this->config->item('identity', 'ion_auth')});
 			// run the forgotten password method to email an activation code to the user
 			if($this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')})) {
 				$output = array(
