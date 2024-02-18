@@ -45,7 +45,7 @@
                 'password'  => $data[1],
                 explode('.',$_SERVER['HTTP_HOST'])[0] => hash('sha1',$authKey),
                 'csrf_token'=> $csrf,
-            );
+            );var_dump($datalogin);
             try {
                 $response = $this->_client->post($url,
                     [
