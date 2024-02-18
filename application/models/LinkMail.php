@@ -2,7 +2,6 @@
 class LinkMail extends CI_Model
 {   
     function sendmail($keterangan,$subject,$email,$from,$message,$email_config,$user_id) {
-		var_dump($keterangan,$subject,$email,$from,$message,$email_config,$user_id);
         $this->load->library('email');
         $this->email->initialize($email_config);
 		$this->email->set_newline("\r\n");
@@ -12,7 +11,7 @@ class LinkMail extends CI_Model
 		$this->email->subject($subject);
 		$this->email->message($message);
         $send   = $this->email->send(TRUE);
-		var_dump($send);
+		
         if ($send==TRUE) {
             $saveMail  =   array(
                 'keterangan'    => $keterangan,

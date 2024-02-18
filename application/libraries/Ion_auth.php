@@ -160,7 +160,7 @@ class Ion_auth
 					$email_config	= $this->config->item('email_config', 'ion_auth');
 
 					$sendmail = $this->LinkMail->sendmail($keterangan,$subject,$email,$from,$message,$email_config,$user_id);
-					var_dump($sendmail);
+					
 					if ($sendmail === TRUE)
 					{
 						$this->set_message('forgot_password_successful');
