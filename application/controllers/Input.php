@@ -36,7 +36,7 @@ class Input extends CI_Controller {
 					'info'		=> 'success',
 					'message'   => $this->ion_auth->messages(),
 					'location'	=> 'verify',
-				);
+				); var_dump($output);
 				echo json_encode([
 					'success'	=> 'success',
 					'status'    => True,
