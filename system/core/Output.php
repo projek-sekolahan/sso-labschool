@@ -457,9 +457,8 @@ class CI_Output {
 			$memory	= round(memory_get_usage() / 1024 / 1024, 2).'MB';
 			var_dump(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory)); 
 			$output = $output === null ? '' :  $output;
+			$output = str_replace(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory), $output);
 			var_dump($output); return false;
-			// $output = str_replace(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory), $output);
-			
 		}
 
 		// --------------------------------------------------------------------
