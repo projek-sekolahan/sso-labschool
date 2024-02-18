@@ -455,9 +455,11 @@ class CI_Output {
 		if ($this->parse_exec_vars === TRUE)
 		{
 			$memory	= round(memory_get_usage() / 1024 / 1024, 2).'MB';
-			var_dump(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory)); return false;
+			var_dump(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory)); 
+			$output = $output === null ? '' :  $output;
+			var_dump($output); return false;
 			// $output = str_replace(array('{elapsed_time}', '{memory_usage}'), array($elapsed, $memory), $output);
-			// $output = $output === null ? '' :  $output;
+			
 		}
 
 		// --------------------------------------------------------------------
