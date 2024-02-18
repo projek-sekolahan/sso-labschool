@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Class Ion Auth Model
  * @property Ion_auth $ion_auth The Ion_auth library
  */
+#[\AllowDynamicProperties]
 class Ion_auth_model extends CI_Model
 {
 	/**
