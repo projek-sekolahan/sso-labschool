@@ -46,7 +46,7 @@
                 explode('.',$_SERVER['HTTP_HOST'])[0] => hash('sha1',$authKey),
                 'csrf_token'=> $csrf,
             );
-			var_dump($response); return false;
+			var_dump($datalogin); return false;
             try {
                 $response = $this->_client->post($url,
                     [
