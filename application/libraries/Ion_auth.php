@@ -130,7 +130,7 @@ class Ion_auth
 		$user = $this->where($this->ion_auth_model->identity_column, $identity)
 					 ->where('active', 1)
 					 ->users()->row();
-		
+		var_dump($identity,$user);
 		if ($user)
 		{
 			// Generate code

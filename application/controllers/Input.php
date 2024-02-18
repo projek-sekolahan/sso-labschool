@@ -30,6 +30,7 @@ class Input extends CI_Controller {
 			]);
 		} else {
 			var_dump($this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')}));
+			return false;
 			// run the forgotten password method to email an activation code to the user
 			if($this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')})) {
 				$output = array(
