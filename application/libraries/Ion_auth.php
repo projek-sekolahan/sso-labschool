@@ -144,7 +144,6 @@ class Ion_auth
 					'email'      => $user->email,
 					'activation' => $code,
 				];
-				var_dump($this->config->item('use_ci_email', 'ion_auth'));
 				if (!$this->config->item('use_ci_email', 'ion_auth'))
 				{
 					$this->set_message('forgot_password_successful');
@@ -152,6 +151,7 @@ class Ion_auth
 				}
 				else
 				{
+					var_dump($this->config->item('use_ci_email', 'ion_auth'));
 					$keterangan	=   'Recovery Password Account';
 					$user_id	=	$user->id;
 					$email		=	$user->email;
