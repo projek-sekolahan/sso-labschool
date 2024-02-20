@@ -34,6 +34,7 @@ class Auth extends RestController {
     public function index_post($keterangan) {
         if ($keterangan=='login') {
 			// check to see if the user is logging in
+			var_dump($this->ion_auth->login($this->input->post('email'), $this->input->post('password'))); return false;
 				if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password'))) {
 					//if the login is successful redirect them back to the home page
 					$rsGetKey	=   $this->_master->get_row('token',['user_id'=>$this->session->userdata('user_id')])->row();
