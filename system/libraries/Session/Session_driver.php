@@ -139,9 +139,10 @@ abstract class CI_Session_driver implements SessionHandlerInterface {
 	 */
 	protected function _cookie_destroy()
 	{
+		$value = $value ?? "";
 		return setcookie(
 			$this->_config['cookie_name'],
-			"",
+			$value,
 			1,
 			$this->_config['cookie_path'],
 			$this->_config['cookie_domain'],
