@@ -54,6 +54,7 @@ class Input extends CI_Controller {
 			$tokenkey	= hash('sha1',base64_encode($user->email.':'.$this->input->post('password')));
 			$user_group = $this->ion_auth_model->get_users_groups($user->id)->row();
 			$change		= $this->ion_auth->reset_password($user->email,$this->input->post('password'));
+			var_dump($change); return false;
 			if ($change) {
 				$data_token = array(
 					'user_id'		=> $user->id,
