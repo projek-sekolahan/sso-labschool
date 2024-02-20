@@ -732,7 +732,7 @@ class Ion_auth_model extends CI_Model
 		if($token) {
 			// Retrieve the user according to this selector
 			$user = $this->where('forgotten_password_selector', $token->selector)->users()->row();
-			
+			var_dump($user);
 			if ($user)
 			{
 				// Check the hash against the validator
