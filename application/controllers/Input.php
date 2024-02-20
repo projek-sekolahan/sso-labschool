@@ -50,12 +50,12 @@ class Input extends CI_Controller {
 	public function setpassword() {
 		$code	= $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
 		$user	= $this->ion_auth->forgotten_password_check($code);
-		var_dump($code,$user); return false;
+		// var_dump($code,$user); return false;
 		if ($user) {
 			$tokenkey	= hash('sha1',base64_encode($user->email.':'.$this->input->post('password')));
 			$user_group = $this->ion_auth_model->get_users_groups($user->id)->row();
-			$change		= $this->ion_auth->reset_password($user->email,$this->input->post('password'));
-			var_dump($change); return false;
+			$change		= $this->ion_auth_model->reset_password($user->email,$this->input->post('password'));
+			var_dump($tokenkey,$user_group,$change); return false;
 			if ($change) {
 				$data_token = array(
 					'user_id'		=> $user->id,
