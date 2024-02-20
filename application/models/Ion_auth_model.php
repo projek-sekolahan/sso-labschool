@@ -728,14 +728,14 @@ class Ion_auth_model extends CI_Model
 	{
 		// Retrieve the token object from the code
 		$token = $this->_retrieve_selector_validator_couple($user_code);
-		var_dump($token);
+		// var_dump($token);
 		if($token) {
 			// Retrieve the user according to this selector
 			$user = $this->where('forgotten_password_selector', $token->selector)->users()->row();
 			
 			if ($user)
 			{
-				var_dump($this->verify_password($token->validator, $user->forgotten_password_code));
+				// var_dump($this->verify_password($token->validator, $user->forgotten_password_code));
 				// Check the hash against the validator
 				if ($this->verify_password($token->validator, $user->forgotten_password_code))
 				{
