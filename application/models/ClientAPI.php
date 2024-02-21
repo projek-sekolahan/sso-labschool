@@ -62,6 +62,7 @@
                     $response = $e->getResponse();
                 }
             }
+            return $response;
     	}
 
         function postContent($url,$authKey,$param) {
