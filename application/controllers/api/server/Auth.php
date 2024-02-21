@@ -34,11 +34,10 @@ class Auth extends RestController {
     public function index_post($keterangan) {
         if ($keterangan=='login') {
 			// check to see if the user is logging in
-			// var_dump($this->input->post('email'), $this->input->post('password')); return false;
-			var_dump($this->ion_auth->login($this->input->post('email'), $this->input->post('password'))); return false;
 				if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password'))) {
 					//if the login is successful redirect them back to the home page
 					$rsGetKey	=   $this->_master->get_row('token',['user_id'=>$this->session->userdata('user_id')])->row();
+					var_dump($rsGetKey); return false;
 					if ($rsGetKey==null || $rsGetKey->key!=$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0])) { // Check hit by postman
 						$http   = RestController::HTTP_BAD_REQUEST;
                         $output = array(
