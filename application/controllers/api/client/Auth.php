@@ -29,8 +29,6 @@ class Auth extends RestController {
                         $http   = RestController::HTTP_BAD_REQUEST;
                         $output = $dtAPI['data'];
                     } else {
-						var_dump($dtAPI);
-						return false;
                         $decode = $this->_AuthToken->validateTimestamp($dtAPI['data']['token'],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
                         if (is_object($decode)) {
                             $token_data = array(
@@ -96,7 +94,6 @@ class Auth extends RestController {
                 ($timesesi == null) ? $sessiontime = 0:$sessiontime=$timesesi;
                     if($current_time > $sessiontime) {
                         $validtime = $this->_AuthToken->validateTimestamp($this->input->post('token'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
-                        // var_dump($validtime);die;
                         if (is_object($validtime)) {
                             $http   = RestController::HTTP_OK;
                             $output = array(
