@@ -46,7 +46,6 @@
                 explode('.',$_SERVER['HTTP_HOST'])[0] => hash('sha1',$authKey),
                 'csrf_token'=> $csrf,
             );
-			// var_dump($datalogin); return false;
             try {
                 $response = $this->_client->post($url,
                     [
@@ -63,8 +62,6 @@
                     $response = $e->getResponse();
                 }
             }
-			var_dump($response);
-            return $response;
     	}
 
         function postContent($url,$authKey,$param) {
