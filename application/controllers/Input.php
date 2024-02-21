@@ -63,7 +63,7 @@ class Input extends CI_Controller {
 					'level'			=> $user_group->id,
 					'ip_addresses'	=> $this->input->ip_address(),
 					'date_created'	=> time(),
-				);var_dump($data_token); return false;
+				);
 				if ($this->Master->get_row('token',['user_id'=>$user->id])->row()) {
 					$this->Master->update_data('token',['user_id'=>$user->id],$data_token);
 				} else {
