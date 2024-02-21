@@ -89,7 +89,7 @@ $(document).on("click", ".btn-action", function (e) {
         var authcode    = CryptoJS.enc.Hex.parse(CryptoJS.SHA1(param).toString());
         var hash		= CryptoJS.AES.encrypt(param,keycode,{iv:authcode}).toString().replace(/[^\w\s]/gi,'');
         dataParam = {
-            csrf_token: getCookie("csrf_cookie"),
+            csrf_token: getCookie("ci_sso_csrf_cookie"),
             AUTH_KEY: decodeToken.authkey,
             param:param,
             password:hash,

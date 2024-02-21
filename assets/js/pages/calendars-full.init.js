@@ -120,7 +120,7 @@ File: Calendar init js
                         // function
                         function ajaxCalendar(param,decodeToken) {
                             dataParam = {
-                                csrf_token: getCookie("csrf_cookie"),
+                                csrf_token: getCookie("ci_sso_csrf_cookie"),
                                 AUTH_KEY: decodeToken.authkey,
                                 param:param,
                             };
@@ -163,7 +163,7 @@ File: Calendar init js
                             }
                             var decodeToken = parseJwt(localStorage.getItem('token'));
                             dataParam = {
-                                csrf_token: getCookie("csrf_cookie"),
+                                csrf_token: getCookie("ci_sso_csrf_cookie"),
                                 AUTH_KEY: decodeToken.authkey,
                                 'event-date'    :newEventDate,
                                 'event-id'      :selectedEvent.id,

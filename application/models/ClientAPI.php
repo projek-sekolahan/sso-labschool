@@ -34,7 +34,7 @@
                 }
             }
             $cookieJar      = $this->_client->getConfig('cookies');
-            $cookieArray    = $cookieJar->getCookieByName('csrf_cookie')->getValue();
+            $cookieArray    = $cookieJar->getCookieByName('ci_sso_csrf_cookie')->getValue();
             return $cookieArray;
         }
 
