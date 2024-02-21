@@ -24,7 +24,6 @@ class Auth extends RestController {
                     $dtAuth = base64_encode($this->api_auth->login($this->input->post('username'),$this->input->post('password')));
                     // $rscr   = $this->_clientAPI->crToken($urlAPI,$dtAuth);
                     $result	= $this->_clientAPI->geToken($urlAPI,$dtAuth,$rscr);
-					var_dump($result); die();
                     $dtAPI	= json_decode($result->getBody()->getContents(),true);
                     if ($result->getStatusCode()==400 || $result->getStatusCode()==403) {
                         $http   = RestController::HTTP_BAD_REQUEST;
