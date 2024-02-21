@@ -566,10 +566,10 @@ class CI_Input {
 				$which = FILTER_FLAG_IPV6;
 				break;
 			default:
-				$which = "";
+				$which = [];
 				break;
 		}
-		var_dump((bool) filter_var($ip, FILTER_VALIDATE_IP, $which)); return false;
+		var_dump((bool) filter_var($ip, FILTER_VALIDATE_IP, $which ?? '')); return false;
 		return (bool) filter_var($ip, FILTER_VALIDATE_IP, $which ?? '');
 	}
 
