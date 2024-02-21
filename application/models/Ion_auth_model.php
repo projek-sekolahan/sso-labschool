@@ -862,6 +862,7 @@ class Ion_auth_model extends CI_Model
 	 */
 	public function login($identity, $password)
 	{
+		var_dump($identity, $password); return false;
 		$this->trigger_events('pre_login');
 
 		if (empty($identity) || empty($password))
