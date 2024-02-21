@@ -893,9 +893,10 @@ class Ion_auth_model extends CI_Model
 		if ($query->num_rows() === 1)
 		{
 			$user = $query->row();
-			var_dump($this->verify_password($password, $user->password)); return false;
+			
 			if ($this->verify_password($password, $user->password))
 			{
+				var_dump($user->active == 0); return false;
 				if ($user->active == 0)
 				{
 					$this->trigger_events('post_login_unsuccessful');
