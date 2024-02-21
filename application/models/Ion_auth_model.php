@@ -889,11 +889,11 @@ class Ion_auth_model extends CI_Model
 
 			return FALSE;
 		}
-		var_dump($query->num_rows()); return false;
+		
 		if ($query->num_rows() === 1)
 		{
 			$user = $query->row();
-			
+			var_dump($user); return false;
 			if ($this->verify_password($password, $user->password))
 			{
 				if ($user->active == 0)
