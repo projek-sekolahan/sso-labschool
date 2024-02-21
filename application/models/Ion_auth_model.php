@@ -878,7 +878,7 @@ class Ion_auth_model extends CI_Model
 						  ->limit(1)
 						  ->order_by($this->tables['users_login'].'.id', 'desc')
 						  ->get($this->tables['users_login']);
-						  var_dump($this->is_max_login_attempts_exceeded($identity)); return false;
+						  
 		if ($this->is_max_login_attempts_exceeded($identity))
 		{
 			// Hash something anyway, just to take up time
@@ -889,7 +889,7 @@ class Ion_auth_model extends CI_Model
 
 			return FALSE;
 		}
-		
+		var_dump($query->num_rows()); return false;
 		if ($query->num_rows() === 1)
 		{
 			$user = $query->row();
