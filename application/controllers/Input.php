@@ -148,14 +148,12 @@ class Input extends CI_Controller {
 	public function register() {
 			$email			= strtolower($this->input->post('username'));
 			$checkidentity	= $this->ion_auth->email_check($email);
-			var_dump($checkidentity, $email); return false;
 			if (!$checkidentity) {
 				// save new user
 				$identity_column	= $this->config->item('identity', 'ion_auth');
 				$identity			= ($identity_column === 'email') ? $email : strtolower($this->input->post('username'));
 				$additional_data	= ['phone'=>$this->input->post('phone'),'nama_lengkap'=>ucwords(strtolower($this->input->post('namaLengkap')))];
-				$additional_group	= ['id'=>$this->input->post('username')];
-				var_dump($identity, $email, $additional_data, $additional_group); return false;
+				$additional_group	= ['id'=>$this->input->post('sebagai')];
 				if ($this->ion_auth->register($identity, $email, $additional_data, $additional_group)) {
 					$output = array(
 						'title'		=> 'Register Success',
