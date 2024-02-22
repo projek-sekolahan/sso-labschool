@@ -49,12 +49,12 @@
                                         </div>
                                     </div>
                                     <div class="mt-4 row justify-content-between">
-                                        <!-- <div class="col-6 col-xl-8">
+                                        <div class="col-6 col-xl-8">
                                             <p>
                                                 Belum Punya Akun?
                                                 <a href="javascript:call_ajax_page('register')" class="fw-medium text-primary">Daftar</a> 
                                             </p>
-                                        </div> -->
+                                        </div>
                                         <div class="col-6 col-xl-4">
                                             <a href="javascript:call_ajax_page('recover')" class="text-muted">
                                                 <i class="mdi mdi-lock me-1"></i> Lupa Password?

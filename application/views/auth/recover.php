@@ -40,7 +40,7 @@
                                     <div class="mt-4 row justify-content-between">
                                         <div class="col-12">
                                             <p>
-                                                Sudah Punya Akun?
+                                                Sudah Ingat Akun?
                                                 <a href="javascript:call_ajax_page('login')" class="fw-medium text-primary">Masuk</a> 
                                             </p>
                                         </div>
