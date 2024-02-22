@@ -8,7 +8,7 @@
                                 <div class="col-7">
                                     <div class="text-primary p-4">
                                         <h5 class="text-primary">Selamat Datang</h5>
-                                        <p>Aplikasi Administrasi Kalender</p>
+                                        <p>Aplikasi Administrasi Sekolah</p>
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
@@ -36,6 +36,10 @@
                             <div class="p-2">
                                 <form class="form-horizontal custom-validation needs-validation" id="form-register" novalidate action="/input/register" method="post" accept-charset="utf-8">
 
+									<div class="mb-3">
+                                        <label for="namaLengkap" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" id="namaLengkap" name="namaLengkap" placeholder="Enter Nama Lengkap" required>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="username" name="username" placeholder="Enter Email" required>
@@ -43,6 +47,15 @@
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Phone</label>
                                         <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter Phone" required>
+                                    </div>
+									<div class="mb-3">
+                                        <label for="sebagai" class="form-label">Login AS</label>
+										<select class="form-control form-select" name="sebagai" id="sebagai" required="required">
+											<option value="">--Pilih Kategori--</option>
+											<option value="4">Guru</option>
+											<option value="5">Siswa</option>
+											<option value="6">Karyawan</option>
+										</select>
                                     </div>
                                     <div class="mt-4 row justify-content-between">
                                         <div class="col-6 col-xl-8">

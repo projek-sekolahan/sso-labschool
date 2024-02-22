@@ -144,7 +144,6 @@ class Ion_auth
 					'email'      => $user->email,
 					'activation' => $code,
 				];
-				
 				if (!$this->config->item('use_ci_email', 'ion_auth'))
 				{
 					$this->set_message('forgot_password_successful');
@@ -161,7 +160,7 @@ class Ion_auth
 					$email_config	= $this->config->item('email_config', 'ion_auth');
 
 					$sendmail = $this->LinkMail->sendmail($keterangan,$subject,$email,$from,$message,$email_config,$user_id);
-				
+					
 					if ($sendmail === TRUE)
 					{
 						$this->set_message('forgot_password_successful');
@@ -408,14 +407,14 @@ class Ion_auth
 	 * @return bool Whether the user is an pool
 	 * @author Ben Edmunds
 	 */
-	public function is_pool($id = FALSE)
+	/* public function is_pool($id = FALSE)
 	{
 		$this->ion_auth_model->trigger_events('is_pool');
 
 		$pool_group = $this->config->item('pool_group', 'ion_auth');
 
 		return $this->ion_auth_model->in_group($pool_group, $id);
-	}
+	} */
 
 	/**
 	 * Check the compatibility with the server

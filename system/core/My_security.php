@@ -1,4 +1,5 @@
 <?php
+#[\AllowDynamicProperties]
 class My_Security extends CI_Security {
     /**
      * Verify Cross Site Request Forgery Protection

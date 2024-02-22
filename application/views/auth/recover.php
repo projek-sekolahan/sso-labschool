@@ -8,7 +8,7 @@
                                 <div class="col-7">
                                     <div class="text-primary p-4">
                                         <h5 class="text-primary">Selamat Datang</h5>
-                                        <p>Aplikasi Administrasi Kalender</p>
+                                        <p>Aplikasi Administrasi Sekolah</p>
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="p-2">
-                                <div class="alert alert-success text-center mb-4" role="alert">
+                                <div class="alert alert-info text-center mb-4" role="alert">
                                     Cek Email Anda dan Ikuti Petunjuknya
                                 </div>
                                 <form class="form-horizontal custom-validation needs-validation" id="form-recover" novalidate action="/input/recover" method="post" accept-charset="utf-8">
@@ -40,7 +40,7 @@
                                     <div class="mt-4 row justify-content-between">
                                         <div class="col-12">
                                             <p>
-                                                Sudah Punya Akun?
+                                                Sudah Ingat Akun?
                                                 <a href="javascript:call_ajax_page('login')" class="fw-medium text-primary">Masuk</a> 
                                             </p>
                                         </div>

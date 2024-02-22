@@ -53,7 +53,7 @@ class Input extends CI_Controller {
 		if ($user) {
 			$tokenkey	= hash('sha1',base64_encode($user->email.':'.$this->input->post('password')));
 			$user_group = $this->ion_auth_model->get_users_groups($user->id)->row();
-			$change		= $this->ion_auth->reset_password($user->email,$this->input->post('password'));
+			$change		= $this->ion_auth_model->reset_password($user->email,$this->input->post('password'));
 			if ($change) {
 				$data_token = array(
 					'user_id'		=> $user->id,
@@ -148,12 +148,14 @@ class Input extends CI_Controller {
 	public function register() {
 			$email			= strtolower($this->input->post('username'));
 			$checkidentity	= $this->ion_auth->email_check($email);
+			var_dump($checkidentity, $email); return false;
 			if (!$checkidentity) {
 				// save new user
 				$identity_column	= $this->config->item('identity', 'ion_auth');
 				$identity			= ($identity_column === 'email') ? $email : strtolower($this->input->post('username'));
-				$additional_data	= ['phone'=>$this->input->post('phone')];
-				$additional_group	= ['id'=>2];
+				$additional_data	= ['phone'=>$this->input->post('phone'),'nama_lengkap'=>ucwords(strtolower($this->input->post('namaLengkap')))];
+				$additional_group	= ['id'=>$this->input->post('username')];
+				var_dump($identity, $email, $additional_data, $additional_group); return false;
 				if ($this->ion_auth->register($identity, $email, $additional_data, $additional_group)) {
 					$output = array(
 						'title'		=> 'Register Success',

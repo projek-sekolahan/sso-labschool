@@ -136,7 +136,7 @@ function save(a, e, i) {
 		}
 	}
 
-	dataParam.append("csrf_token", getCookie("csrf_cookie"));
+	dataParam.append("csrf_token", getCookie("ci_sso_csrf_cookie"));
 	dataParam.append(window.location.host.split(".")[0], tokenkey);
 	action = $("#" + a).attr("action");
 	$("#" + a +" input").prop("disabled", !0);

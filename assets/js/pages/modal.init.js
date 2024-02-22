@@ -9,7 +9,7 @@ File: Material design Init Js File
 function dataModal(action,param,form) {
     var decodeToken = parseJwt(localStorage.getItem('token'));
     dataParam = {
-		csrf_token: getCookie("csrf_cookie"),
+		csrf_token: getCookie("ci_sso_csrf_cookie"),
 		AUTH_KEY: decodeToken.authkey,
         param:param,
 	};
@@ -20,7 +20,7 @@ function dataModal(action,param,form) {
 function ajaxSwal(event) {
 	var decodeToken = parseJwt(localStorage.getItem('token'));
 	dataParam = {
-		csrf_token: getCookie("csrf_cookie"),
+		csrf_token: getCookie("ci_sso_csrf_cookie"),
 		AUTH_KEY: decodeToken.authkey,
 	};
 	($(event).data('id')) ? param = $(event).data('id'):param = $(event).data('param');
@@ -38,7 +38,7 @@ function ajaxSwal(event) {
 function checkSession(action) {
 	var decodeToken = parseJwt(localStorage.getItem('token'));
     dataParam = {
-		csrf_token: getCookie("csrf_cookie"),
+		csrf_token: getCookie("ci_sso_csrf_cookie"),
 		AUTH_KEY: decodeToken.authkey,
 	};
 	dataParam[keyname] = decodeToken.apikey;

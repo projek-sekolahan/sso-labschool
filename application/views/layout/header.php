@@ -9,7 +9,7 @@
                             </span>
                             <span class="logo-lg">
                                 <!-- <img src="assets/images/logo-dark.png" alt="" height="17"> -->
-                                <p class="text-dark h4 mt-4 mb-0">KalenderApps</p>
+                                <p class="text-dark h4 mt-4 mb-0">SmartApps</p>
                             </span>
                         </a>
 
@@ -19,7 +19,7 @@
                             </span>
                             <span class="logo-lg">
                                 <!-- <img src="assets/images/logo-light.png" alt="" height="19"> -->
-                                <p class="text-light h4 mt-4 mb-0">KalenderApps</p>
+                                <p class="text-light h4 mt-4 mb-0">SmartApps</p>
                             </span>
                         </a>
                     </div>

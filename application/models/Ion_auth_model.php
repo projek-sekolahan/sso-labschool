@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Class Ion Auth Model
  * @property Ion_auth $ion_auth The Ion_auth library
  */
+#[\AllowDynamicProperties]
 class Ion_auth_model extends CI_Model
 {
 	/**
@@ -727,7 +728,6 @@ class Ion_auth_model extends CI_Model
 	{
 		// Retrieve the token object from the code
 		$token = $this->_retrieve_selector_validator_couple($user_code);
-		
 		if($token) {
 			// Retrieve the user according to this selector
 			$user = $this->where('forgotten_password_selector', $token->selector)->users()->row();
@@ -876,7 +876,7 @@ class Ion_auth_model extends CI_Model
 						  ->limit(1)
 						  ->order_by($this->tables['users_login'].'.id', 'desc')
 						  ->get($this->tables['users_login']);
-		
+						  
 		if ($this->is_max_login_attempts_exceeded($identity))
 		{
 			// Hash something anyway, just to take up time
@@ -894,6 +894,7 @@ class Ion_auth_model extends CI_Model
 			
 			if ($this->verify_password($password, $user->password))
 			{
+				
 				if ($user->active == 0)
 				{
 					$this->trigger_events('post_login_unsuccessful');

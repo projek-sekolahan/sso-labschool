@@ -11,6 +11,7 @@ class LinkMail extends CI_Model
 		$this->email->subject($subject);
 		$this->email->message($message);
         $send   = $this->email->send(TRUE);
+		
         if ($send==TRUE) {
             $saveMail  =   array(
                 'keterangan'    => $keterangan,

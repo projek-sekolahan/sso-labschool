@@ -18,10 +18,6 @@ class View extends CI_Controller {
         var_dump($this->input->cookie());
 		// echo json_encode(
         //     [
-        //         // 'status'    => true,
-        //         // 'token'  => $this->security->get_csrf_hash(),
-        //         // 'info'      => 'csrf token created',
-        //         // 'token' => get_cookie('csrf_cookie')
         //         'name' => $this->security->get_csrf_token_name(),
         //         'hash' => $this->security->get_csrf_hash()
         //     ]

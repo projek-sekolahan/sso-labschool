@@ -26,7 +26,7 @@ if ($rsvehicle==null) {
                     <div class="col-12">
                         <div class="text-primary p-3">
                             <h5 class="text-primary">Selamat Datang Kembali <?=ucwords($result->name)?></h5>
-                            <p>Aplikasi Administrasi Kalender</p>
+                            <p>Aplikasi Administrasi Sekolah</p>
                         </div>
                     </div>
                 </div>

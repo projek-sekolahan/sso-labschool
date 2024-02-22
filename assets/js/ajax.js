@@ -1,8 +1,8 @@
 function call_ajax_page(page) {
-	document.title = page.replace(/\b\w/g, l => l.toUpperCase()) + " User | Aplikasi Administrasi Kalender";
+	document.title = page.replace(/\b\w/g, l => l.toUpperCase()) + " User | Aplikasi Administrasi Sekolah";
 	urloc = "/content" + "/" + page;
 	$.post(url + "/view" + urloc, {
-		csrf_token: getCookie("csrf_cookie"),
+		csrf_token: getCookie("ci_sso_csrf_cookie"),
 	}).done(function (e) {
 		localStorage.setItem("pages", page);
 		if (page=="dashboard") {

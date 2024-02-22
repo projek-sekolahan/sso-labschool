@@ -8,7 +8,7 @@ File: Datatables Js File
 
 function loadTable(e, a, b, t) {
 	var s,
-		o = { table: e, key: t, csrf_token: getCookie("csrf_cookie"), AUTH_KEY: b.authkey};
+		o = { table: e, key: t, csrf_token: getCookie("ci_sso_csrf_cookie"), AUTH_KEY: b.authkey};
 		o[keyname] = b.apikey;
 	var n = "#" + e,
 		l = $.ajax({ url: url+a, data: o, type: "post", dataType: "json", headers: {
