@@ -114,18 +114,14 @@ class Input extends CI_Controller {
 		$valid_code	=	$this->Master->get_row('users_login',['SUBSTR(mail_code,-4)'=>$code])->row();
 		if ($valid_code) {
 			if($valid_code->activation_selector) {
-				var_dump($this->ion_auth->activate($valid_code->id,$valid_code->mail_code));die;
-				$this->ion_auth->activate($valid_code->id,$valid_code->mail_code);
-			}
-			$user		= $this->Master->get_row('users_details',['user_id'=>$valid_code->id])->row();
-			$setpass	= $this->ion_auth_model->forgotten_password($user->email);
-			/* if ($this->ion_auth->activate($valid_code->id,$valid_code->mail_code)) {
-				// run the forgotten password method to email an activation code to the user
-				$user		= $this->Master->get_row('users_details',['user_id'=>$valid_code->id])->row();
-				$setpass	= $this->ion_auth_model->forgotten_password($user->email);
+				if ($this->ion_auth->activate($valid_code->id,$valid_code->mail_code)) {
+					// run the forgotten password method to email an activation code to the user
+					$user		= $this->Master->get_row('users_details',['user_id'=>$valid_code->id])->row();
+					$setpass	= $this->ion_auth_model->forgotten_password($user->email);
+				}
 			} else {
 				$setpass	= $valid_code->mail_code;
-			} */
+			}
 			$output = array(
 				'title'		=> 'Verify Success',
 				'info'		=> 'success',

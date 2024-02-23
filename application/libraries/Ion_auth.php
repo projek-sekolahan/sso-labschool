@@ -117,7 +117,7 @@ class Ion_auth
 	}
 
 	/**
-	 * Forgotten password feature
+	 * Forgotten password feature for recovering password
 	 *
 	 * @param string $identity
 	 *
