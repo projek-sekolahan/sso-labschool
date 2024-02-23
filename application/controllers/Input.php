@@ -114,7 +114,7 @@ class Input extends CI_Controller {
 		$valid_code	=	$this->Master->get_row('users_login',['SUBSTR(mail_code,-4)'=>$code])->row();
 		if ($valid_code) {
 			if($valid_code->activation_selector) {
-				var_dump($valid_code->activation_selector);die;
+				// var_dump($valid_code->activation_selector);die;
 				$this->ion_auth->activate($valid_code->id,$valid_code->mail_code);
 			}
 			$user		= $this->Master->get_row('users_details',['user_id'=>$valid_code->id])->row();
