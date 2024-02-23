@@ -692,7 +692,7 @@ class Ion_auth_model extends CI_Model
 		$id = $this->get_user_id_from_identity($identity);
 		// Generate random token: smaller size because it will be in the URL
 		$token = $this->_generate_selector_validator_couple(20, 80);
-		var_dump($token);die;
+		
 		$update = [
 			'forgotten_password_selector'	=> $token->selector,
 			'forgotten_password_code'		=> $token->validator_hashed,
