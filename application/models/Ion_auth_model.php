@@ -2333,9 +2333,11 @@ class Ion_auth_model extends CI_Model
 		// When setting a new password, invalidate any other token
 		$data = [
 			'password' => $hash,
+			'activation_code' => NULL,
 			'remember_code' => NULL,
 			'forgotten_password_code' => NULL,
-			'forgotten_password_time' => NULL
+			'forgotten_password_time' => NULL,
+			'ip_addresses' => $this->input->ip_address()
 		];
 
 		$this->trigger_events('extra_where');
