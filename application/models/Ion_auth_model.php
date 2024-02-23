@@ -426,7 +426,7 @@ class Ion_auth_model extends CI_Model
 		
 		// Activate if no code is given
 		// Or if a user was found with this code, and that it matches the id
-		if ($code === FALSE || ($user && $user->id === $id))
+		/* if ($code === FALSE || ($user && $user->id === $id))
 		{var_dump($user); die;
 			$data = [
 			    'activation_selector'	=> NULL,
@@ -444,7 +444,7 @@ class Ion_auth_model extends CI_Model
 				$this->set_message('activate_successful');
 				return TRUE;
 			}
-		}
+		} */
 
 		$this->trigger_events(['post_activate', 'post_activate_unsuccessful']);
 		$this->set_error('activate_unsuccessful');
