@@ -50,6 +50,7 @@ class Input extends CI_Controller {
 	public function setpassword() {
 		$code	= $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
 		$user	= $this->ion_auth->forgotten_password_check($code);
+		var_dump($user); die;
 		if ($user) {
 			$tokenkey	= hash('sha1',base64_encode($user->email.':'.$this->input->post('password')));
 			$user_group = $this->ion_auth_model->get_users_groups($user->id)->row();
@@ -150,9 +151,13 @@ class Input extends CI_Controller {
 			$checkidentity	= $this->ion_auth->email_check($email);
 			if (!$checkidentity) {
 				// save new user
+				// Users password default
+				$hash				= $this->ion_auth_model->hash_password('User@12345');
+				$tokenkey			= hash('sha1',base64_encode($email.':'.'User@12345'));
 				$identity_column	= $this->config->item('identity', 'ion_auth');
 				$identity			= ($identity_column === 'email') ? $email : strtolower($this->input->post('username'));
-				$additional_data	= ['phone'=>$this->input->post('phone'),'nama_lengkap'=>ucwords(strtolower($this->input->post('namaLengkap')))];
+				$ip_address			= $this->input->ip_address();
+				$additional_data	= ['key'=>$tokenkey,'ip_address'=>$ip_address,'password'=>$hash,'phone'=>$this->input->post('phone'),'nama_lengkap'=>ucwords(strtolower($this->input->post('namaLengkap')))];
 				$additional_group	= ['id'=>$this->input->post('sebagai')];
 				if ($this->ion_auth->register($identity, $email, $additional_data, $additional_group)) {
 					$output = array(

@@ -243,12 +243,7 @@ class Ion_auth
 			}
 		}
 		else
-		{
-			if (!$id)
-			{
-				return FALSE;
-			}
-
+		{	
 			// deactivate so the user must follow the activation flow
 			$deactivate = $this->deactivate($id);
 			
@@ -261,10 +256,10 @@ class Ion_auth
 				$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_unsuccessful']);
 				return FALSE;
 			}
-
+			
 			$identity	= $this->config->item('identity', 'ion_auth');
-			$user		= $this->ion_auth_model->user($id)->row();
 			$token		= $this->ion_auth_model->_generate_selector_validator_couple(20, 80);
+			$user		= $this->ion_auth_model->user($id)->row();
 			$user_id	= $user->id;
 			$email		= $user->email;
 
@@ -280,7 +275,7 @@ class Ion_auth
 				'email'      => $user->email,
 				'activation' => $token->mail_code,
 			];
-
+			
 			if(!$this->config->item('use_ci_email', 'ion_auth'))
 			{
 				$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_successful', 'activation_email_successful']);
