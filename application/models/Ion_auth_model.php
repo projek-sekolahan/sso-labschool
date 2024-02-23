@@ -419,11 +419,11 @@ class Ion_auth_model extends CI_Model
 	public function activate($id, $code = FALSE)
 	{
 		$this->trigger_events('pre_activate');
-
+		var_dump($code); die;
 		if ($code !== FALSE) {
 			$user = $this->get_user_by_activation_code($code);
 		}
-		
+		var_dump($user); die;
 		// Activate if no code is given
 		// Or if a user was found with this code, and that it matches the id
 		if ($code === FALSE || ($user && $user->id === $id))
