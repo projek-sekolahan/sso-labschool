@@ -258,8 +258,8 @@ class Ion_auth
 			}
 			
 			$identity	= $this->config->item('identity', 'ion_auth');
-			$token		= $this->ion_auth_model->_generate_selector_validator_couple(20, 80);
 			$user		= $this->ion_auth_model->user($id)->row();
+			$token		= $this->ion_auth_model->_generate_selector_validator_couple(20, 80);
 			$user_id	= $user->id;
 			$email		= $user->email;
 

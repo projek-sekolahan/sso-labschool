@@ -61,7 +61,7 @@ class User extends RestController {
                     $userlogin = array(
                         'username'		=> explode('@',$this->input->post('email'))[0],
                         'password'      => $hash,
-                        'ip_address'	=> $this->input->ip_address(),
+                        'ip_addresses'	=> $this->input->ip_address(),
                         'created_on'	=> time(),
                         'active'		=> 1
                     );
