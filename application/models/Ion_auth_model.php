@@ -706,7 +706,7 @@ class Ion_auth_model extends CI_Model
 		if ($this->db->affected_rows() === 1)
 		{
 			$this->trigger_events(['post_forgotten_password', 'post_forgotten_password_successful']);
-			return $token->mail_code;
+			return $update['mail_code'];
 		}
 		else
 		{
