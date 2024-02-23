@@ -2337,6 +2337,7 @@ class Ion_auth_model extends CI_Model
 			'remember_code' => NULL,
 			'forgotten_password_code' => NULL,
 			'forgotten_password_time' => NULL,
+			'last_login' => NULL,
 			'ip_addresses' => $this->input->ip_address()
 		];
 
