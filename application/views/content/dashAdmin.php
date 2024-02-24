@@ -5,7 +5,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="text-primary p-3">
-                                    <h5 class="text-primary">Selamat Datang Kembali <?=$name?></h5>
+                                    <h5 class="text-primary">Selamat Datang Kembali <?=ucwords($name)?></h5>
                                     <p>Aplikasi Administrasi Sekolah</p>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
 
                             <div class="position-relative">
                                 <div class="position-absolute bottom-0 end-0">
-                                    <button class="btn btn-primary waves-effect waves-light btn-sm btn-action" data-view="detail" data-action="/api/client/user/profile" type="button">
+                                    <button class="btn btn-primary waves-effect waves-light btn-sm btn-action" data-view="detail" data-action="/api/client/user/profile_pengguna" type="button">
                                         View Profile
                                         <i class="mdi mdi-account-arrow-right ms-1"></i>
                                     </button>
