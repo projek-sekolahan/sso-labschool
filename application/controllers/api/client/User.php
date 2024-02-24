@@ -55,7 +55,7 @@ class User extends RestController {
                 $dtAPI	= json_decode($result->getBody()->getContents(),true);
                 $this->responsejson($result,$dtAPI);
             }
-            if ($keterangan=='profile_pengguna_edit' || $keterangan=='detail_pengguna_edit') {
+            if ($keterangan=='profile_pengguna_edit' || $keterangan=='detail_pengguna_edit' || $keterangan=='profile_pengguna') {
                 $paramdata = array(
                     'param' => $this->input->post('param'),
                 );
