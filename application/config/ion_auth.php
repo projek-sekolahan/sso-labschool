@@ -130,16 +130,18 @@ $config['argon2_default_params']	= [
  | The library will fail for empty password or password size above 4096 bytes.
  | This is an arbitrary (long) value to protect against DOS attack.
  */
-$config['site_title']                 = "https://".$_SERVER['HTTP_HOST'];       // Site Title, example.com
-$config['admin_email']                = "cs_admin@".$_SERVER['HTTP_HOST']; // Admin Email, admin@example.com
-$config['default_group']              = 'pimpinan';          // Default group, use name
-$config['admin_group']                = 'admin';             // Default administrators group, use name
-$config['user_group']				  = 'pengguna';          // Default users group, use name
-// $config['pool_group']				  = 'pengelola';         // Default pool group, use name
-$config['identity']                   = 'email';             /* You can use any unique column in your table as identity column.
+$config['site_title']					= "https://".$_SERVER['HTTP_HOST'];       // Site Title, example.com
+$config['admin_email']					= "cs_admin@".$_SERVER['HTTP_HOST']; // Admin Email, admin@example.com
+$config['default_group']				= 'pengguna';			// Default group, use name
+$config['admin_group']					= 'admin';				// Default administrators group, use name
+$config['user_group']					= 'siswa';				// Default users group, use name
+$config['guru_group']					= 'guru';				// Default guru group, use name
+$config['karyawan_group']				= 'karyawan';			// Default karyawan group, use name
+$config['presensi_group']				= 'admin_presensi';		// Default admin presensi group, use name
+$config['identity']						= 'email';             /* You can use any unique column in your table as identity column.
 															    The values in this column, alongside password, will be used for login purposes
 															    IMPORTANT: If you are changing it from the default (email),
-															    		   update the UNIQUE constraint in your DB */
+															    update the UNIQUE constraint in your DB */
 $config['min_password_length']        = 6;                   // Minimum Required Length of Password (not enforced by lib - see note above)
 $config['email_activation']           = TRUE;               // Email Activation for registration
 $config['manual_activation']          = FALSE;               // Manual Activation for registration
