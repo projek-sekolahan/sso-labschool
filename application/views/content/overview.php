@@ -22,7 +22,7 @@
 		$result =   $this->Master->get_custom_query($sqluser)->row();
 		var_dump($result); return false;
             if ($this->ion_auth->is_admin()) {
-                $this->load->view('content/dashAdmin',$this->data['user'] = $result);
+                $this->load->view('content/dashAdmin',$result);
             }
             if ($this->ion_auth->is_user()) {
                 $this->load->view('content/dashUser',$this->data['user'] = $result);
