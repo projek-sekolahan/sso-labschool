@@ -1,8 +1,7 @@
-<?php
-$sqluser = "select a.name,c.nama_lengkap,c.jabatan,c.nip from groups a, users_groups b , users_details c where b.user_id=c.user_id and a.id=b.group_id and b.user_id=".$this->session->userdata('user_id');
-$result =   $this->Master->get_custom_query($sqluser)->row();
-?>        
-        <div class="row">
+    	<?php
+		var_dump($user); return false;
+		?>
+		<div class="row">
             <div class="col-xl-12">
                 <div class="card overflow-hidden">
                     <div class="bg-primary bg-soft">

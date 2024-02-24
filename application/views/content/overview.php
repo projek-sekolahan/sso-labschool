@@ -19,11 +19,13 @@
         </div>
         <!-- end page title -->
         <?php
+		$sqluser = "select a.name,c.nama_lengkap,c.jabatan,c.nip from groups a, users_groups b , users_details c where b.user_id=c.user_id and a.id=b.group_id and b.user_id=".$this->session->userdata('user_id');
+		$result =   $this->Master->get_custom_query($sqluser)->row();
             if ($this->ion_auth->is_admin()) {
-                $this->load->view('content/dashAdmin');
+                $this->load->view('content/dashAdmin',$this->data['user'] = $result);
             }
             if ($this->ion_auth->is_user()) {
-                $this->load->view('content/dashUser');
+                $this->load->view('content/dashUser',$this->data['user'] = $result);
             }
         ?>
     </div>
