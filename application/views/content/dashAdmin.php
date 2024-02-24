@@ -1,6 +1,3 @@
-    	<?php
-		var_dump($name); return false;
-		?>
 		<div class="row">
             <div class="col-xl-12">
                 <div class="card overflow-hidden">
@@ -8,7 +5,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="text-primary p-3">
-                                    <h5 class="text-primary">Selamat Datang Kembali <?//=$result->name?></h5>
+                                    <h5 class="text-primary">Selamat Datang Kembali <?=$name?></h5>
                                     <p>Aplikasi Administrasi Sekolah</p>
                                 </div>
                             </div>
@@ -23,8 +20,8 @@
                                 <div class="avatar-md profile-user-wid mb-4">
                                     <img src="<?=base_url()?>assets/images/user_icon.png" alt="" class="img-thumbnail rounded-circle">
                                 </div>
-                                <h5 class="font-size-15 text-truncate"><?//=ucwords($result->nama_lengkap)?></h5>
-                                <p class="text-muted mb-0 text-truncate"><?//=ucwords($result->jabatan)?></p>
+                                <h5 class="font-size-15 text-truncate"><?=ucwords($nama_lengkap)?></h5>
+                                <p class="text-muted mb-0 text-truncate"><?=ucwords($jabatan)?></p>
                             </div>
 
                             <div class="position-relative">
