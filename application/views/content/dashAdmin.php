@@ -1,5 +1,5 @@
     	<?php
-		var_dump($user); return false;
+		var_dump($name); return false;
 		?>
 		<div class="row">
             <div class="col-xl-12">
