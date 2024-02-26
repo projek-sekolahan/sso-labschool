@@ -154,7 +154,7 @@ class User extends RestController {
                     $this->eResponse();
                 }
             }
-            if ($keterangan=='profile_pengguna_edit' || $keterangan=='detail_pengguna_edit') {
+            if ($keterangan=='profile_pengguna') {
                 $sqluser    = "SELECT a.*,b.*,c.* from users_details a,users_sosmed b,users_img c WHERE a.user_id=b.user_id AND a.nip=c.nip AND a.nip='".$this->input->post('param')."'";
                 $result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {

@@ -48,21 +48,14 @@ class User extends RestController {
     public function index_post($keterangan) {
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),$this->input->post('AUTH_KEY'))) {
             $urlAPI	= 'user/'.$keterangan;
-			var_dump($urlAPI);
             if ($keterangan=='create' || $keterangan=='update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
-                $dtAPI	= json_decode($result->getBody()->getContents(),true);
-                $this->responsejson($result,$dtAPI);
             }
-            if ($keterangan=='profile_pengguna_edit' || $keterangan=='detail_pengguna_edit' || $keterangan=='profile_pengguna') {
+            if ($keterangan=='profile_pengguna') {
                 $paramdata = array(
                     'param' => $this->input->post('param'),
                 );
                 $dataparam = array_merge($paramdata,$this->_paramToken);
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
-                $dtAPI	= json_decode($result->getBody()->getContents(),true);
-                $this->responsejson($result,$dtAPI);
             }
             if ($keterangan=='table') {
                 $spolde = explode('-',$this->input->post('table'));
@@ -71,11 +64,11 @@ class User extends RestController {
                     'key'   => $this->input->post('key'),
                     'table' => $table,
                 );
-                $tabledata = array_merge($paramdata,$this->_paramToken);
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$tabledata);
-                $dtAPI	= json_decode($result->getBody()->getContents(),true);
-                $this->responsejson($result,$dtAPI);
+                $dataparam = array_merge($paramdata,$this->_paramToken);
             }
+			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
+            $dtAPI	= json_decode($result->getBody()->getContents(),true);
+            $this->responsejson($result,$dtAPI);
         } else {
             $this->eResponse();
         }
