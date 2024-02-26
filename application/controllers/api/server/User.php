@@ -44,15 +44,15 @@ class User extends RestController {
     public function index_post($keterangan) {
         if (is_object($this->_RsToken)) {
             if ($keterangan=='create') {
-                $users	= $this->_master->get_row('users_details',['nip'=>$this->input->post('nip')])->row();
+                $users	= $this->_master->get_row('users_details',['nomor_induk'=>$this->input->post('nip')])->row();
                 if (empty($users->email)) {
                     $jsonimg = json_decode($this->input->post('img'),true);
                     if (count($jsonimg)!=0) {
                         for ($i=0; $i < count($jsonimg); $i++) {
-                            $hasil_img = $this->UploadFile->photo('img','users',['nip'=>$this->input->post('nip'),'img'=>$jsonimg[$i],'table'=>'users_img']);
+                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nip'),'img'=>$jsonimg[$i],'table'=>'users_img']);
                         }
                         $userimg = array(
-                            'nip'           => $this->input->post('nip'),
+                            'nomor_induk'           => $this->input->post('nip'),
                             'img_location'  => $hasil_img,
                         );
                         $this->_master->save_data('users_img' , $userimg);
@@ -89,14 +89,14 @@ class User extends RestController {
                     );
                     $this->_master->save_data('users_sosmed' , $datasosmed);
                     $userdetail = array(
-                        'user_id'	=> $id,
-                        'email'		=> $this->input->post('email'),
-                        'nip'		=> $this->input->post('nip'),
-                        'phone'     => $this->input->post('phone'),
-                        'nama_lengkap'  => $this->input->post('nama_lengkap'),
-                        'jabatan'   => $this->input->post('jabatan'),
-                        'pangkat_golongan'  => $this->input->post('pangkat_golongan'),
-                        'bagian_divisi' => $this->input->post('bagian_divisi'),
+                        'user_id'		=> $id,
+                        'email'			=> $this->input->post('email'),
+                        'nomor_induk'	=> $this->input->post('nip'),
+                        'phone'			=> $this->input->post('phone'),
+                        'nama_lengkap'	=> $this->input->post('nama_lengkap'),
+                        'jabatan'		=> $this->input->post('jabatan'),
+                        'pangkat_golongan'	=> $this->input->post('pangkat_golongan'),
+                        'bagian_divisi'	=> $this->input->post('bagian_divisi'),
                     );
                     $this->_master->save_data('users_details' , $userdetail);
                     $output = array(
@@ -118,13 +118,13 @@ class User extends RestController {
                     $jsonimg = json_decode($this->input->post('img'),true);
                     if (count($jsonimg)!=0) {
                         for ($i=0; $i < count($jsonimg); $i++) {
-                            $hasil_img = $this->UploadFile->photo('img','users',['nip'=>$this->input->post('nip'),'img'=>$jsonimg[$i],'table'=>'users_img']);
+                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nip'),'img'=>$jsonimg[$i],'table'=>'users_img']);
                         }
                         $userimg = array(
-                            'nip'           => $this->input->post('nip'),
+                            'nomor_induk'	=> $this->input->post('nip'),
                             'img_location'  => $hasil_img,
                         );
-                        $this->_master->update_data('users_img',['nip'=>$users->nip],$userimg);
+                        $this->_master->update_data('users_img',['nomor_induk'=>$users->nomor_induk],$userimg);
                     }
                     $datasosmed = array(
                         'link_facebook' => $this->input->post('link_facebook'),
@@ -133,11 +133,11 @@ class User extends RestController {
                     );
                     $this->_master->update_data('users_sosmed',['user_id'=>$users->user_id],$datasosmed);
                     $userdetail = array(
-                        'email'		=> $this->input->post('email'),
-                        'nip'		=> $this->input->post('nip'),
-                        'phone'     => $this->input->post('phone'),
+                        'email'			=> $this->input->post('email'),
+                        'nomor_induk'	=> $this->input->post('nip'),
+                        'phone'     	=> $this->input->post('phone'),
                         'nama_lengkap'  => $this->input->post('nama_lengkap'),
-                        'jabatan'   => $this->input->post('jabatan'),
+                        'jabatan'   	=> $this->input->post('jabatan'),
                         'pangkat_golongan'  => $this->input->post('pangkat_golongan'),
                         'bagian_divisi' => $this->input->post('bagian_divisi'),
                     );
@@ -155,7 +155,7 @@ class User extends RestController {
                 }
             }
             if ($keterangan=='profile_pengguna') {
-                $sqluser    = "SELECT a.*,b.*,c.* from users_details a,users_sosmed b,users_img c WHERE a.user_id=b.user_id AND a.nip=c.nip AND a.nip='".$this->input->post('param')."'";
+                $sqluser    = "SELECT a.*,b.*,c.* from users_details a,users_sosmed b,users_img c WHERE a.user_id=b.user_id AND a.nomor_induk=c.nomor_induk AND a.email='".$this->input->post('param')."'";
                 $result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {
                     $http   = RestController::HTTP_BAD_REQUEST;
@@ -174,7 +174,7 @@ class User extends RestController {
                 $key	= $this->input->post('key');
                 $table	= $this->input->post('table');
                     $select = "a.*";
-                    $column = "a.nip,a.nama_lengkap";
+                    $column = "a.nomor_induk,a.nama_lengkap";
                     //WHERE
                     $where	= null;
                     //where2 

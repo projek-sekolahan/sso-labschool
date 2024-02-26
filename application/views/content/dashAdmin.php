@@ -26,7 +26,7 @@
 
                             <div class="position-relative">
                                 <div class="position-absolute bottom-0 end-0">
-                                    <button class="btn btn-primary waves-effect waves-light btn-sm btn-action" data-view="detail" data-action="/api/client/user/profile_pengguna" type="button">
+                                    <button class="btn btn-primary waves-effect waves-light btn-sm btn-action" data-view="detail" data-action="/api/client/user/profile_pengguna" data-param="<?=$email?>" type="button">
                                         View Profile
                                         <i class="mdi mdi-account-arrow-right ms-1"></i>
                                     </button>
