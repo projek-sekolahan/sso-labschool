@@ -1,6 +1,6 @@
         <div class="row">
             <div class="col-12">
-            <form class="form-horizontal custom-validation needs-validation" id="form-createUser" novalidate method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <form class="form-horizontal custom-validation needs-validation" action="/api/client/user/create_update" id="form-createUser" novalidate method="post" accept-charset="utf-8" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Informasi Pribadi</h4>

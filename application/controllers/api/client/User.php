@@ -48,7 +48,7 @@ class User extends RestController {
     public function index_post($keterangan) {
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),$this->input->post('AUTH_KEY'))) {
             $urlAPI	= 'user/'.$keterangan;
-            if ($keterangan=='create' || $keterangan=='update') {
+            if ($keterangan=='create_update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
 				var_dump($dataparam); return false;
             }
