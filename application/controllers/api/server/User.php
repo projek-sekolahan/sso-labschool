@@ -166,8 +166,12 @@ class User extends RestController {
                         'location'	=> 'dashboard',
                     );
                 } else {
+					$sqluserimg = "SELECT a.* from users_img a WHERE a.nomor_induk='".$result->nomor_induk."'";
+					$resultimg  = $this->_master->get_custom_query($sqluserimg)->row();
+					$sqlusersosmed = "SELECT a.* from users_sosmed a WHERE a.user_id=".$result->user_id;
+					$resultsosmed  = $this->_master->get_custom_query($sqlusersosmed)->row();
                     $http       = RestController::HTTP_CREATED;
-                    $output     = $result;
+                    $output     = array_merge($resultimg->toArray(),$resultsosmed->toArray(),$result->toArray());
                 }
             }
             if ($keterangan=='table') {
