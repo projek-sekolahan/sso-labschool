@@ -68,6 +68,7 @@ class User extends RestController {
             }
 			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
             $dtAPI	= json_decode($result->getBody()->getContents(),true);
+			var_dump($dtAPI); return false;
             $this->responsejson($result,$dtAPI);
         } else {
             $this->eResponse();
