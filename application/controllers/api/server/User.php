@@ -171,7 +171,7 @@ class User extends RestController {
 					$sqlusersosmed = "SELECT a.* from users_sosmed a WHERE a.user_id=".$result->user_id;
 					$resultsosmed  = $this->_master->get_custom_query($sqlusersosmed)->row();
                     $http       = RestController::HTTP_CREATED;
-                    $output     = array_merge($resultimg ? $resultimg->toArray() : [],$resultsosmed ? $resultsosmed->toArray() : [],$result->toArray());
+                    $output     = array_merge($resultimg ? get_object_vars($resultimg) : [],$resultsosmed ? get_object_vars($resultsosmed): [],get_object_vars($result));
                 }
             }
             if ($keterangan=='table') {
