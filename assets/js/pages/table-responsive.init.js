@@ -14,11 +14,11 @@ function dataLoad(t,s) {
             $(".jabatan").text((hasil.jabatan==null) ? 'Belum Punya Jabatan':hasil.jabatan);
             $("#foto-profile").attr('src',hasil.img_location);
             $("#btn-editProfile").data('action','/api/client/user/detail_pengguna');
-            $("#btn-editProfile").data('param',hasil.nip);
+            $("#btn-editProfile").data('param',hasil.email);
             $.each(hasil, function (a, b) {
                 c = (a.replace('_',' ')).replace(/\b\w/g, l => l.toUpperCase());
                 (b==null || b=='') ? d='Belum Ada Data':d=b;
-                if (a=='nip' || a=='email' || a=='phone') {
+                if (a=='nomor_induk' || a=='email' || a=='phone') {
                     detail = '<div class="row">'+
                     '<div class="col-sm-4"><h6 class="mb-0">'+c+'</h6></div>'+
                     '<div class="col-sm-8 text-secondary"><span class="valadjust">'+d+'</span></div></div><hr>';
