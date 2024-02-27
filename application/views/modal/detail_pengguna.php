@@ -7,10 +7,10 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <label for="NIP" class="control-label">NIP</label>
-                                        <input id="user_id" name="user_id" type="hidden" class="form-control" placeholder="NIP" readonly>
-                                        <input id="nip" name="nip" type="text" class="form-control" placeholder="NIP" required>
-                                        <div class="invalid-feedback">NIP Tidak Boleh Kosong.</div>
+                                        <label for="nomor_induk" class="control-label">Nomor Induk</label>
+                                        <input id="user_id" name="user_id" type="hidden" class="form-control" readonly>
+                                        <input id="nomor_induk" name="nomor_induk" type="text" class="form-control" placeholder="Nomor Induk" required>
+                                        <div class="invalid-feedback">Nomor Induk Tidak Boleh Kosong.</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
