@@ -156,7 +156,8 @@ class User extends RestController {
             }
             if ($keterangan=='profile_pengguna') {
                 $sqluser    = "SELECT a.*,b.*,c.* from users_details a,users_sosmed b,users_img c WHERE a.user_id=b.user_id AND a.nomor_induk=c.nomor_induk AND a.email='".$this->input->post('param')."'";
-                $result     = $this->_master->get_custom_query($sqluser)->row();
+                var_dump($sqluser); return false; die;
+				$result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {
                     $http   = RestController::HTTP_BAD_REQUEST;
                     $output = array(
