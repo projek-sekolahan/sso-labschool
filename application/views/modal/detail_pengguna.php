@@ -5,6 +5,20 @@
                     <div class="card-body">
                         <h4 class="card-title">Informasi Pribadi</h4>
                             <div class="row">
+								<div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="email" class="control-label">Email</label>
+                                        <input id="email" name="email" type="email" class="form-control" placeholder="Email" readonly required>
+                                        <div class="invalid-feedback">Email Tidak Boleh Kosong.</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="control-label">Telepon WA</label>
+                                        <input id="phone" name="phone" type="number" class="form-control" placeholder="Telepon WA" required>
+                                        <div class="invalid-feedback">Telepon Tidak Boleh Kosong.</div>
+                                    </div>
+                                </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         <label for="nomor_induk" class="control-label">Nomor Induk</label>
@@ -18,20 +32,6 @@
                                         <label for="Name" class="control-label">Nama Lengkap</label>
                                         <input id="nama_lengkap" name="nama_lengkap" type="text" class="form-control" placeholder="Name" required>
                                         <div class="invalid-feedback">Nama Lengkap Tidak Boleh Kosong.</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="mb-3">
-                                        <label for="email" class="control-label">Email</label>
-                                        <input id="email" name="email" type="email" class="form-control" placeholder="Email" required>
-                                        <div class="invalid-feedback">Email Tidak Boleh Kosong.</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="mb-3">
-                                        <label for="phone" class="control-label">Telepon WA</label>
-                                        <input id="phone" name="phone" type="number" class="form-control" placeholder="Telepon WA" required>
-                                        <div class="invalid-feedback">Telepon Tidak Boleh Kosong.</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
