@@ -156,7 +156,6 @@ class User extends RestController {
             }
             if ($keterangan=='profile_pengguna') {
                 $sqluser    = "SELECT a.* from users_details a WHERE a.email='".$this->input->post('param')."'";
-                var_dump($sqluser); return false; die;
 				$result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {
                     $http   = RestController::HTTP_BAD_REQUEST;
