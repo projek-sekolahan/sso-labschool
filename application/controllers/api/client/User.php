@@ -51,7 +51,7 @@ class User extends RestController {
             if ($keterangan=='create' || $keterangan=='update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
             }
-            if ($keterangan=='profile_pengguna') {
+            if ($keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
                 $paramdata = array(
                     'param' => $this->input->post('param'),
                 );
