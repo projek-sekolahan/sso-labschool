@@ -50,6 +50,7 @@ class User extends RestController {
             $urlAPI	= 'user/'.$keterangan;
             if ($keterangan=='create' || $keterangan=='update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
+				var_dump($dataparam); return false;
             }
             if ($keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
                 $paramdata = array(
@@ -66,7 +67,6 @@ class User extends RestController {
                 );
                 $dataparam = array_merge($paramdata,$this->_paramToken);
             }
-			var_dump($dataparam); return false;
 			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
             $dtAPI	= json_decode($result->getBody()->getContents(),true);
 			// var_dump($dtAPI); return false;
