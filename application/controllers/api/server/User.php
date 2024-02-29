@@ -43,7 +43,7 @@ class User extends RestController {
 
     public function index_post($keterangan) {
         if (is_object($this->_RsToken)) {
-            if ($keterangan=='create') {
+            if ($keterangan=='create_update') {
                 $users	= $this->_master->get_row('users_details',['nomor_induk'=>$this->input->post('nip')])->row();
                 if (empty($users->email)) {
                     $jsonimg = json_decode($this->input->post('img'),true);
@@ -154,7 +154,7 @@ class User extends RestController {
                     $this->eResponse();
                 }
             }
-            if ($keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
+            if ($keterangan=='profile' ||$keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
                 $sqluser    = "SELECT a.* from users_details a WHERE a.email='".$this->input->post('param')."'";
 				$result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {
