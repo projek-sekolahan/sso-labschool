@@ -54,7 +54,8 @@ class User extends RestController {
             }
             if ($keterangan=='profile' || $keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
 				$keterangan=='profile' ? $param = $this->_AuthToken->validateToken($this->input->post('param'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0])) : $param = $this->input->post('param');
-				var_dump(is_object($param)); return false;
+				is_object($param) ? $param = explode(":",base64_decode($authKey))[0] : $param = $param;
+				var_dump($param); return false;
                 $paramdata = array(
                     'param' => $this->input->post('param'),
                 );
