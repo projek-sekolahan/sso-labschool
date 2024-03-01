@@ -44,72 +44,73 @@ class User extends RestController {
     public function index_post($keterangan) {
         if (is_object($this->_RsToken)) {
             if ($keterangan=='create_update') {
-                $users	= $this->_master->get_row('users_details',['nomor_induk'=>$this->input->post('nip')])->row();
-                if (empty($users->email)) {
-                    $jsonimg = json_decode($this->input->post('img'),true);
+				$jsonimg = json_decode($this->input->post('img'),true);
                     if (count($jsonimg)!=0) {
                         for ($i=0; $i < count($jsonimg); $i++) {
-                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nip'),'img'=>$jsonimg[$i],'table'=>'users_img']);
+                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nomor_induk'),'img'=>$jsonimg[$i],'table'=>'users_img']);
                         }
                         $userimg = array(
-                            'nomor_induk'           => $this->input->post('nip'),
+                            'nomor_induk'           => $this->input->post('nomor_induk'),
                             'img_location'  => $hasil_img,
                         );
-                        $this->_master->save_data('users_img' , $userimg);
+                        // $this->_master->save_data('users_img' , $userimg);
+						// $hash = $this->ion_auth_model->hash_password($this->input->post('password'));
+						// $users	= $this->_master->get_row('users',['nomor_induk'=>$this->input->post('nomor_induk')])->row();
+						// $userlogin = array(
+						// 	'username'		=> $users->username,
+						// 	'password'      => $hash,
+						// 	'ip_addresses'	=> $this->input->ip_address(),
+						// 	'created_on'	=> time(),
+						// 	'active'		=> 1
+						// );
+						// $this->_master->save_data('users_login' , $userlogin);
+						// $id = $this->db->insert_id('users_login' . '_id_seq');
+						// $tokenkey	= hash('sha1',base64_encode($this->input->post('email').':'.$this->input->post('password')));
+						// $usergroup = array(
+						// 	'user_id'	=> $id,
+						// 	'group_id'	=> 2,
+						// );
+						// $this->_master->save_data('users_groups' ,
+						/* $datatoken = array(
+							'user_id'		=> $id,
+							'key'			=> $tokenkey,
+							'level'			=> 2,
+							'ip_addresses'	=> $this->input->ip_address(),
+							'date_created'	=> time(),
+						);
+						$this->_master->save_data('token' , $datatoken);
+						$datasosmed = array(
+							'user_id'       => $id,
+							'link_facebook' => $this->input->post('link_facebook'),
+							'link_instagram'=> $this->input->post('link_instagram'),
+							'link_twitter'	=> $this->input->post('link_twitter'),
+						);
+						$this->_master->save_data('users_sosmed' , $datasosmed);
+						$userdetail = array(
+							'user_id'		=> $id,
+							'email'			=> $this->input->post('email'),
+							'nomor_induk'	=> $this->input->post('nomor_induk'),
+							'phone'			=> $this->input->post('phone'),
+							'nama_lengkap'	=> $this->input->post('nama_lengkap'),
+							'jabatan'		=> $this->input->post('jabatan'),
+							'pangkat_golongan'	=> $this->input->post('pangkat_golongan'),
+							'bagian_divisi'	=> $this->input->post('bagian_divisi'),
+						);
+						$this->_master->save_data('users_details' , $userdetail);
+						$output = array(
+							'title'     => 'Data Activated',
+							'message'   => 'Login Activated',
+							'info'		=> 'success',
+							'location'	=> 'dashboard',
+						);
+						$http       = RestController::HTTP_CREATED;
+						$output     = $output; */
                     }
-                    $hash = $this->ion_auth_model->hash_password($this->input->post('password'));
-                    $userlogin = array(
-                        'username'		=> explode('@',$this->input->post('email'))[0],
-                        'password'      => $hash,
-                        'ip_addresses'	=> $this->input->ip_address(),
-                        'created_on'	=> time(),
-                        'active'		=> 1
-                    );
-                    $this->_master->save_data('users_login' , $userlogin);
-                    $id = $this->db->insert_id('users_login' . '_id_seq');
-                    $tokenkey	= hash('sha1',base64_encode($this->input->post('email').':'.$this->input->post('password')));
-                    $usergroup = array(
-                        'user_id'	=> $id,
-                        'group_id'	=> 2,
-                    );
-                    $this->_master->save_data('users_groups' , $usergroup);
-                    $datatoken = array(
-                        'user_id'		=> $id,
-                        'key'			=> $tokenkey,
-                        'level'			=> 2,
-                        'ip_addresses'	=> $this->input->ip_address(),
-                        'date_created'	=> time(),
-                    );
-                    $this->_master->save_data('token' , $datatoken);
-                    $datasosmed = array(
-                        'user_id'       => $id,
-                        'link_facebook' => $this->input->post('link_facebook'),
-                        'link_instagram'=> $this->input->post('link_instagram'),
-                        'link_twitter'	=> $this->input->post('link_twitter'),
-                    );
-                    $this->_master->save_data('users_sosmed' , $datasosmed);
-                    $userdetail = array(
-                        'user_id'		=> $id,
-                        'email'			=> $this->input->post('email'),
-                        'nomor_induk'	=> $this->input->post('nip'),
-                        'phone'			=> $this->input->post('phone'),
-                        'nama_lengkap'	=> $this->input->post('nama_lengkap'),
-                        'jabatan'		=> $this->input->post('jabatan'),
-                        'pangkat_golongan'	=> $this->input->post('pangkat_golongan'),
-                        'bagian_divisi'	=> $this->input->post('bagian_divisi'),
-                    );
-                    $this->_master->save_data('users_details' , $userdetail);
-                    $output = array(
-                        'title'     => 'Data Activated',
-                        'message'   => 'Login Activated',
-                        'info'		=> 'success',
-                        'location'	=> 'dashboard',
-                    );
-                    $http       = RestController::HTTP_CREATED;
-                    $output     = $output;
+                $users	= $this->_master->get_row('users_details',['nomor_induk'=>$this->input->post('nomor_induk')])->row();
+                if (empty($users->email)) {
 
                 } else {
-                    $this->eResponse();
+                    // $this->eResponse();
                 }
             }
             if ($keterangan=='update') {
@@ -118,10 +119,10 @@ class User extends RestController {
                     $jsonimg = json_decode($this->input->post('img'),true);
                     if (count($jsonimg)!=0) {
                         for ($i=0; $i < count($jsonimg); $i++) {
-                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nip'),'img'=>$jsonimg[$i],'table'=>'users_img']);
+                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nomor_induk'),'img'=>$jsonimg[$i],'table'=>'users_img']);
                         }
                         $userimg = array(
-                            'nomor_induk'	=> $this->input->post('nip'),
+                            'nomor_induk'	=> $this->input->post('nomor_induk'),
                             'img_location'  => $hasil_img,
                         );
                         $this->_master->update_data('users_img',['nomor_induk'=>$users->nomor_induk],$userimg);
@@ -134,7 +135,7 @@ class User extends RestController {
                     $this->_master->update_data('users_sosmed',['user_id'=>$users->user_id],$datasosmed);
                     $userdetail = array(
                         'email'			=> $this->input->post('email'),
-                        'nomor_induk'	=> $this->input->post('nip'),
+                        'nomor_induk'	=> $this->input->post('nomor_induk'),
                         'phone'     	=> $this->input->post('phone'),
                         'nama_lengkap'  => $this->input->post('nama_lengkap'),
                         'jabatan'   	=> $this->input->post('jabatan'),
