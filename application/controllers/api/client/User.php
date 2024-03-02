@@ -49,15 +49,7 @@ class User extends RestController {
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),$this->input->post('AUTH_KEY'))) {
             $urlAPI	= 'user/'.$keterangan;
             if ($keterangan=='create_update') {
-                // $dataparam = array_merge($this->input->post(),$this->_paramToken);
-				$hasil_img = NULL;
-				$jsonimg = json_decode($this->input->post('img'),true);
-                    if (count($jsonimg)!=0) {
-                        for ($i=0; $i < count($jsonimg); $i++) {
-                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nomor_induk'),'img'=>$jsonimg[$i],'table'=>'users_img']);
-                        }
-                    }
-					var_dump($hasil_img); return false;
+                $dataparam = array_merge($this->input->post(),$this->_paramToken);
             }
             if ($keterangan=='profile' || $keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
 				$keterangan=='profile' ? $param = $this->_AuthToken->validateToken($this->input->post('param'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0])) : $param = $this->input->post('param');

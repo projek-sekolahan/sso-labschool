@@ -44,12 +44,14 @@ class User extends RestController {
     public function index_post($keterangan) {
         if (is_object($this->_RsToken)) {
             if ($keterangan=='create_update') {
+				$hasil_img = NULL;
 				$jsonimg = json_decode($this->input->post('img'),true);
                     if (count($jsonimg)!=0) {
                         for ($i=0; $i < count($jsonimg); $i++) {
                             $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nomor_induk'),'img'=>$jsonimg[$i],'table'=>'users_img']);
                         }
                     }
+					$hasil_img == NULL ? $userimg = '' : 
 					$userimg = array(
 						'nomor_induk'	=> $this->input->post('nomor_induk'),
 						'img_location'  => $hasil_img,
@@ -71,12 +73,12 @@ class User extends RestController {
                 $users	= $this->_master->get_row('users_sosmed',['user_id'=>$this->input->post('user_id')])->row();
                 if ($users) {
 					// update data
-					$this->_master->update_data('users_img',['nomor_induk'=>$users->nomor_induk],$userimg);
+					$hasil_img==NULL ? '' : $this->_master->update_data('users_img',['nomor_induk'=>$users->nomor_induk],$userimg);
 					$this->_master->update_data('users_sosmed',['user_id'=>$users->user_id],$datasosmed);
 					$this->_master->update_data('users_details',['user_id'=>$users->user_id],$userdetail);
                 } else {
 					// create data
-					$this->_master->save_data('users_img' , $userimg);
+					$hasil_img==NULL ? '' : $this->_master->save_data('users_img' , $userimg);
 					$this->_master->save_data('users_sosmed' , $datasosmed);
 					$this->_master->update_data('users_details',['user_id'=>$users->user_id],$userdetail);
                 }
