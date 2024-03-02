@@ -57,7 +57,7 @@ class User extends RestController {
                             $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nomor_induk'),'img'=>$jsonimg[$i],'table'=>'users_img']);
                         }
                     }
-					$hasil_img == NULL ? $userimg = '' : 
+					$hasil_img == NULL ? $userimg = NULL: 
 					$userimg = array(
 						'nomor_induk'	=> $this->input->post('nomor_induk'),
 						'img_location'  => $hasil_img,
