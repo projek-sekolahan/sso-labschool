@@ -50,6 +50,7 @@ class User extends RestController {
             $urlAPI	= 'user/'.$keterangan;
             if ($keterangan=='create_update') {
                 // $dataparam = array_merge($this->input->post(),$this->_paramToken);
+				$hasil_img = NULL;
 				$jsonimg = json_decode($this->input->post('img'),true);
                     if (count($jsonimg)!=0) {
                         for ($i=0; $i < count($jsonimg); $i++) {
