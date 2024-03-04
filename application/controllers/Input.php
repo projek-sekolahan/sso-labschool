@@ -112,10 +112,12 @@ class Input extends CI_Controller {
 		}
 		$valid_code	=	$this->Master->get_row('users_login',['SUBSTR(mail_code,-4)'=>$code])->row();
 		if ($valid_code) {
-			if ($this->ion_auth->activate($valid_code->id,$valid_code->mail_code)) {
-				// run the forgotten password method to email an activation code to the user
-				$user		= $this->Master->get_row('users_details',['user_id'=>$valid_code->id])->row();
-				$setpass	= $this->ion_auth_model->forgotten_password($user->email);
+			if($valid_code->activation_selector) {
+				if ($this->ion_auth->activate($valid_code->id,$valid_code->mail_code)) {
+					// run the forgotten password method to email an activation code to the user
+					$user		= $this->Master->get_row('users_details',['user_id'=>$valid_code->id])->row();
+					$setpass	= $this->ion_auth_model->forgotten_password($user->email);
+				}
 			} else {
 				$setpass	= $valid_code->mail_code;
 			}
@@ -148,14 +150,16 @@ class Input extends CI_Controller {
 	public function register() {
 			$email			= strtolower($this->input->post('username'));
 			$checkidentity	= $this->ion_auth->email_check($email);
-			var_dump($checkidentity, $email); return false;
 			if (!$checkidentity) {
 				// save new user
+				// Users password default
+				$hash				= $this->ion_auth_model->hash_password('User@12345');
+				$tokenkey			= hash('sha1',base64_encode($email.':'.'User@12345'));
 				$identity_column	= $this->config->item('identity', 'ion_auth');
 				$identity			= ($identity_column === 'email') ? $email : strtolower($this->input->post('username'));
-				$additional_data	= ['phone'=>$this->input->post('phone'),'nama_lengkap'=>ucwords(strtolower($this->input->post('namaLengkap')))];
-				$additional_group	= ['id'=>$this->input->post('username')];
-				var_dump($identity, $email, $additional_data, $additional_group); return false;
+				$ip_address			= $this->input->ip_address();
+				$additional_data	= ['key'=>$tokenkey,'ip_addresses'=>$ip_address,'password'=>$hash,'phone'=>$this->input->post('phone'),'nama_lengkap'=>ucwords(strtolower($this->input->post('namaLengkap')))];
+				$additional_group	= ['id'=>$this->input->post('sebagai')];
 				if ($this->ion_auth->register($identity, $email, $additional_data, $additional_group)) {
 					$output = array(
 						'title'		=> 'Register Success',

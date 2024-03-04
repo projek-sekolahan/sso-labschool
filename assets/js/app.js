@@ -109,12 +109,15 @@ $(document).on("click", ".btn-action", function (e) {
                 if (path[4]=="bulan_kalender") {
                     pageUrl = '/api/client/calendar/updateMonth';
                 }
-                if (path[4]=="detail_pengguna") {
-                    pageUrl = '/api/client/user/update';
+                if (path[4]=="profile_pengguna") {
+                    pageUrl = '/api/client/user/profile_pengguna';
                 }
+				/* if (path[4]=="detail_pengguna") {
+                    pageUrl = '/api/client/user/detail_pengguna';
+                } */
                 action  = action+'_'+$(this).data("ket");
             }
-            detail  = "Detail "+path[4].replace('_',' ').replace('_',' ').replace(/\b\w/g, l => l.toUpperCase());
+            detail  = "Data "+path[4].replace('_',' ').replace('_',' ').replace(/\b\w/g, l => l.toUpperCase());
         }
         if($(this).data("view")=="form") {
             if (path[4]=="layar_kalender") {

@@ -11,7 +11,7 @@ class UploadFile extends CI_Model {
                 $name   = '-artikel-'.base64_encode($data['articleid'].':'.strtotime(date('d-m-Y H:m:s')));
             }
             if ($table=='users_img') {
-                $name   = str_replace(' ','',$data['nip']);
+                $name   = str_replace(' ','',$data['nomor_induk']);
             }
             $filePath   =   'assets/'.$folder.'/'.$subfolder.'/';
             list($type, $data['img'])   = explode(';', $data['img']);

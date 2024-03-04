@@ -419,7 +419,7 @@ class Ion_auth_model extends CI_Model
 	public function activate($id, $code = FALSE)
 	{
 		$this->trigger_events('pre_activate');
-
+		
 		if ($code !== FALSE) {
 			$user = $this->get_user_by_activation_code($code);
 		}
@@ -592,7 +592,7 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		return $this->db->where($data)
+		return $this->db->where('phone',$data['phone'])
 						->limit(1)
 						->count_all_results($this->tables['users_details']) > 0;
 	}	
@@ -692,7 +692,7 @@ class Ion_auth_model extends CI_Model
 		$id = $this->get_user_id_from_identity($identity);
 		// Generate random token: smaller size because it will be in the URL
 		$token = $this->_generate_selector_validator_couple(20, 80);
-
+		
 		$update = [
 			'forgotten_password_selector'	=> $token->selector,
 			'forgotten_password_code'		=> $token->validator_hashed,
@@ -706,7 +706,7 @@ class Ion_auth_model extends CI_Model
 		if ($this->db->affected_rows() === 1)
 		{
 			$this->trigger_events(['post_forgotten_password', 'post_forgotten_password_successful']);
-			return $token->mail_code;
+			return $update['mail_code'];
 		}
 		else
 		{
@@ -780,7 +780,7 @@ class Ion_auth_model extends CI_Model
 			$this->set_error('account_creation_missing_default_group');
 			return FALSE;
 		}
-
+		
 		// check if the default set in config exists in database
 		$query = $this->db->get_where($this->tables['groups'], ['name' => $this->config->item('default_group', 'ion_auth')], 1)->row();
 		if (!isset($query->id) && empty($groups))
@@ -792,20 +792,16 @@ class Ion_auth_model extends CI_Model
 		// capture default group details
 		$default_group = $query;
 
-		// IP Address
-		$ip_address = $this->input->ip_address();
-
 		// Users table.
 		$datalogin = [
 			'username'		=> explode('@',$email)[0],
-			'ip_address'	=> $ip_address,
 			'created_on'	=> time(),
 			'active'		=> 0
 		];
 
 		// filter out any data passed that doesnt have a matching column in the users table
 		// and merge the set user data and the additional data
-		$user_data = array_merge($this->_filter_data($this->tables['users_login'],null), $datalogin);
+		$user_data = array_merge($this->_filter_data($this->tables['users_login'],$additional_data), $datalogin);
 		
 		$this->trigger_events('extra_set');
 
@@ -822,18 +818,28 @@ class Ion_auth_model extends CI_Model
 			'user_id'	=> $id,
 		];
 
+		$datatoken = array(
+			'user_id'		=> $id,
+			'level'			=> $groups['id'],
+			'date_created'	=> time(),
+		);
+
 		$user_detail = array_merge($this->_filter_data($this->tables['users_details'],$additional_data), $datadetail);
 		
+		$user_token = array_merge($this->_filter_data($this->tables['token'],$additional_data), $datatoken);
+
 		$this->trigger_events('extra_set');
 
 		$insertdet=$this->db->insert($this->tables['users_details'], $user_detail);
+
+		$insertoken=$this->db->insert($this->tables['token'], $user_token);
 		
 		// add in groups array if it doesn't exists and stop adding into default group if default group ids are set
 		if (isset($default_group->id) && empty($groups))
 		{
 			$groups[] = $default_group->id;
 		}
-
+		
 		if (!empty($groups))
 		{
 			// add to groups
@@ -844,7 +850,7 @@ class Ion_auth_model extends CI_Model
 		}
 
 		$this->trigger_events('post_register');
-
+		
 		return (isset($id)) ? $id : FALSE;
 	}
 
@@ -1358,7 +1364,7 @@ class Ion_auth_model extends CI_Model
 			{
 				$groups = [$groups];
 			}
-
+			
 			// join and then run a where_in against the group ids
 			if (isset($groups) && !empty($groups))
 			{
@@ -1460,14 +1466,13 @@ class Ion_auth_model extends CI_Model
 	public function user($id = NULL)
 	{
 		$this->trigger_events('user');
-
+		
 		// if no id was passed use the current users id
 		$id = isset($id) ? $id : $this->session->userdata('user_id');
 
 		$this->limit(1);
 		$this->order_by($this->tables['users_details'].'.user_id', 'desc');
 		$this->where($this->tables['users_details'].'.user_id', $id);
-
 		$this->users();
 
 		return $this;
@@ -2328,9 +2333,12 @@ class Ion_auth_model extends CI_Model
 		// When setting a new password, invalidate any other token
 		$data = [
 			'password' => $hash,
+			'activation_code' => NULL,
 			'remember_code' => NULL,
 			'forgotten_password_code' => NULL,
-			'forgotten_password_time' => NULL
+			'forgotten_password_time' => NULL,
+			'last_login' => NULL,
+			'ip_addresses' => $this->input->ip_address()
 		];
 
 		$this->trigger_events('extra_where');

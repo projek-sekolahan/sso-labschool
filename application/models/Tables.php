@@ -25,12 +25,12 @@ class Tables extends CI_Model {
 		        if ($query_total->num_rows()>0) {
 					// data
 					if ($access=='pengguna') {
-						$btn	=	$this->buttonTables($val->nip,$access,null);
+						$btn	=	$this->buttonTables($val->email,$access,null);
         			    $response['data'][] = array(
                             '#'             =>  $no++,
-							'NIP'			=>  ucwords($val->nip),
-							'Nama'          =>  ucwords($val->nama_lengkap),
-							'Bidang'		=>  ucwords($val->bagian_divisi),
+							'Nomor Induk'	=>  ucwords($val->nomor_induk ?? '---'),
+							'Nama'          =>  ucwords($val->nama_lengkap ?? '---'),
+							'Bidang'		=>  ucwords($val->bagian_divisi ?? '---'),
 							'Action'		=>	$btn
         				);
 					}
@@ -99,7 +99,7 @@ class Tables extends CI_Model {
 	function buttonTables($paramID,$action,$status) {
 		if ($action=='pengguna') {
 			$btndet = '
-			<a type="button" tabindex="0" class="dropdown-item text-info btn-action" data-view="detail" data-action="/api/client/user/profile_'.$action.'" data-ket="edit" data-param="'.$paramID.'">
+			<a type="button" tabindex="0" class="dropdown-item text-info btn-action" data-view="detail" data-action="/api/client/user/profile_'.$action.'" data-param="'.$paramID.'">
 				<i class="align-middle mdi mdi-account-details font-size-18"></i> <span>Detail</span>
 			</a>';
 			$btn1	= $btndet;

@@ -94,7 +94,7 @@
 		        }
 		        if ($like) {
 		            for ($i=0; $i<sizeof($like['data']) ; $i++) { 
-		                $this->db->like('lower(CONCAT_WS(" ", '.$like['data'][$i]['column'].'))',strtolower($like['data'][$i]['param']));
+		                $this->db->like('lower(CONCAT_WS(" ", '.$like['data'][$i]['column'].'))',strtolower($like['data'][$i]['param'] ? $like['data'][$i]['param'] : ''));
 		            }
 		        }
 		        if ($limit) {

@@ -1,23 +1,3 @@
-<?php
-$sqluser    = "select a.name,c.nama_lengkap,c.jabatan,c.nip,lower(c.email) email from groups a, users_groups b , users_details c where b.user_id=c.user_id and a.id=b.group_id and b.user_id=".$this->session->userdata('user_id');
-$result     = $this->Master->get_custom_query($sqluser)->row();
-$sqlvehicle = "SELECT a.* from vehicle a, users_vehicle b WHERE b.nopol=a.no_polisi AND b.nip=".$result->nip;
-$rsvehicle  = $this->Master->get_custom_query($sqlvehicle)->row();
-if ($rsvehicle==null) {
-    $merk       = '';
-    $tipe       = '';
-    $kendraan   = '';
-    $thkendaraan= '-';
-    $nopol      = '-';
-} else {
-    $explode    = explode(' ',$rsvehicle->jenis_kendaraan);
-    $merk       = $explode[0];
-    $tipe       = $explode[1];
-    $kendraan   = $rsvehicle->jenis_kendaraan;
-    $thkendaraan= $rsvehicle->tahun;
-    $nopol      = $rsvehicle->no_polisi;
-}
-?>
 <div class="row">
     <div class="col-xl-5">
         <div class="card overflow-hidden">

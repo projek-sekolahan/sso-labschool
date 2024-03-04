@@ -117,7 +117,7 @@ class Ion_auth
 	}
 
 	/**
-	 * Forgotten password feature
+	 * Forgotten password feature for recovering password
 	 *
 	 * @param string $identity
 	 *
@@ -243,12 +243,7 @@ class Ion_auth
 			}
 		}
 		else
-		{
-			if (!$id)
-			{
-				return FALSE;
-			}
-
+		{	
 			// deactivate so the user must follow the activation flow
 			$deactivate = $this->deactivate($id);
 			
@@ -261,7 +256,7 @@ class Ion_auth
 				$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_unsuccessful']);
 				return FALSE;
 			}
-
+			
 			$identity	= $this->config->item('identity', 'ion_auth');
 			$user		= $this->ion_auth_model->user($id)->row();
 			$token		= $this->ion_auth_model->_generate_selector_validator_couple(20, 80);
@@ -280,7 +275,7 @@ class Ion_auth
 				'email'      => $user->email,
 				'activation' => $token->mail_code,
 			];
-
+			
 			if(!$this->config->item('use_ci_email', 'ion_auth'))
 			{
 				$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_successful', 'activation_email_successful']);
@@ -404,17 +399,47 @@ class Ion_auth
 	/**
 	 * @param int|string|bool $id
 	 *
-	 * @return bool Whether the user is an pool
+	 * @return bool Whether the user is an guru
 	 * @author Ben Edmunds
 	 */
-	/* public function is_pool($id = FALSE)
+	public function is_guru($id = FALSE)
 	{
-		$this->ion_auth_model->trigger_events('is_pool');
+		$this->ion_auth_model->trigger_events('is_guru');
 
-		$pool_group = $this->config->item('pool_group', 'ion_auth');
+		$guru_group = $this->config->item('guru_group', 'ion_auth');
 
-		return $this->ion_auth_model->in_group($pool_group, $id);
-	} */
+		return $this->ion_auth_model->in_group($guru_group, $id);
+	}
+
+	/**
+	 * @param int|string|bool $id
+	 *
+	 * @return bool Whether the user is an karyawan
+	 * @author Ben Edmunds
+	 */
+	public function is_karyawan($id = FALSE)
+	{
+		$this->ion_auth_model->trigger_events('is_karyawan');
+
+		$karyawan_group = $this->config->item('karyawan_group', 'ion_auth');
+
+		return $this->ion_auth_model->in_group($karyawan_group, $id);
+	}
+
+	/**
+	 * @param int|string|bool $id
+	 *
+	 * @return bool Whether the user is an presensi
+	 * @author Ben Edmunds
+	 */
+	public function is_presensi($id = FALSE)
+	{
+		$this->ion_auth_model->trigger_events('is_presensi');
+
+		$presensi_group = $this->config->item('presensi_group', 'ion_auth');
+
+		return $this->ion_auth_model->in_group($presensi_group, $id);
+	}
 
 	/**
 	 * Check the compatibility with the server

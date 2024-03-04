@@ -100,12 +100,13 @@
                         </div>
                     </div> -->
                     <?php
-                        $sqluser = "select a.username,lower(b.email) email from users_login a,users_details b where a.id=b.user_id and a.id=".$this->session->userdata('user_id');
-                        $result =   $this->Master->get_custom_query($sqluser)->row();
+                        $sqluser	=	"select a.username,lower(b.email) email,b.nomor_induk from users_login a,users_details b where a.id=b.user_id and a.id=".$this->session->userdata('user_id');
+                        $result		=	$this->Master->get_custom_query($sqluser)->row();
+						$usersimg	=	$this->Master->get_row('users_img',['nomor_induk'=>$result->nomor_induk])->row();
                     ?>
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="assets/images/user_icon.png" alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="<?=$usersimg ? base_url($usersimg->img_location) : base_url('assets/images/user_icon.png')?>" alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1" key="t-henry"><?=$result->username?></span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>

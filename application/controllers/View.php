@@ -14,16 +14,16 @@ class View extends CI_Controller {
 		$this->getURL = $_SERVER['REQUEST_URI'];
 	}
 
-    public function token() {
-        var_dump($this->input->cookie());
-		// echo json_encode(
-        //     [
-        //         'name' => $this->security->get_csrf_token_name(),
-        //         'hash' => $this->security->get_csrf_hash()
-        //     ]
-        // );
+	public function tokenGetCsrf() {
+        // var_dump($this->input->cookie());
+		echo json_encode(
+            [
+            'status'    => true,
+			'csrfHash'  => $this->security->get_csrf_hash(),
+			'info'      => 'csrf token created',
+            ]
+        );
 	}
-
 	public function index() {
         // $this->session->sess_destroy();
         if (!$this->ion_auth->logged_in()) {

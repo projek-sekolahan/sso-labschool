@@ -14,7 +14,7 @@ class User extends RestController {
         $this->_clientAPI   = new ClientAPI();
         $this->_AuthToken   = new AuthToken();
         $this->_AuthCheck   = new AuthCheck();
-        // $this->_csrfToken   = $this->_clientAPI->crToken('user',$this->input->post('AUTH_KEY'));
+        $this->_csrfToken   = $this->_clientAPI->crToken('user',$this->input->post('AUTH_KEY'));
         $this->_paramToken  = array(
             'token'     => (empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),
             explode('.',$_SERVER['HTTP_HOST'])[0] => $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),
@@ -48,26 +48,21 @@ class User extends RestController {
     public function index_post($keterangan) {
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),$this->input->post('AUTH_KEY'))) {
             $urlAPI	= 'user/'.$keterangan;
-            if ($keterangan=='create') {
+            if ($keterangan=='create_update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
-                $dtAPI	= json_decode($result->getBody()->getContents(),true);
-                $this->responsejson($result,$dtAPI);
             }
-            if ($keterangan=='update') {
-                $dataparam = array_merge($this->input->post(),$this->_paramToken);
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
-                $dtAPI	= json_decode($result->getBody()->getContents(),true);
-                $this->responsejson($result,$dtAPI);
-            }
-            if ($keterangan=='profile_pengguna_edit' || $keterangan=='detail_pengguna_edit') {
-                $paramdata = array(
-                    'param' => $this->input->post('param'),
-                );
-                $dataparam = array_merge($paramdata,$this->_paramToken);
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
-                $dtAPI	= json_decode($result->getBody()->getContents(),true);
-                $this->responsejson($result,$dtAPI);
+            if ($keterangan=='profile' || $keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
+				$keterangan=='profile' ? $param = $this->_AuthToken->validateToken($this->input->post('param'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0])) : $param = $this->input->post('param');
+				is_object($param) ? $param = explode(":",base64_decode($param->authkey))[0] : $param = $param;
+				if (filter_var($param, FILTER_VALIDATE_EMAIL)) {
+					$paramdata = array(
+						'param' => $param,
+					);
+					$dataparam = array_merge($paramdata,$this->_paramToken);
+				}
+				else {
+					$this->eResponse();
+				}
             }
             if ($keterangan=='table') {
                 $spolde = explode('-',$this->input->post('table'));
@@ -76,11 +71,11 @@ class User extends RestController {
                     'key'   => $this->input->post('key'),
                     'table' => $table,
                 );
-                $tabledata = array_merge($paramdata,$this->_paramToken);
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$tabledata);
-                $dtAPI	= json_decode($result->getBody()->getContents(),true);
-                $this->responsejson($result,$dtAPI);
+                $dataparam = array_merge($paramdata,$this->_paramToken);
             }
+			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
+            $dtAPI	= json_decode($result->getBody()->getContents(),true);
+            $this->responsejson($result,$dtAPI);
         } else {
             $this->eResponse();
         }
