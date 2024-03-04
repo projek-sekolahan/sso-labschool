@@ -25,10 +25,10 @@ class Tables extends CI_Model {
 		        if ($query_total->num_rows()>0) {
 					// data
 					if ($access=='pengguna') {
-						$btn	=	$this->buttonTables($val->nip,$access,null);
+						$btn	=	$this->buttonTables($val->nomor_induk,$access,null);
         			    $response['data'][] = array(
                             '#'             =>  $no++,
-							'NIP'			=>  ucwords($val->nip),
+							'Nomor Induk'	=>  ucwords($val->nomor_induk),
 							'Nama'          =>  ucwords($val->nama_lengkap),
 							'Bidang'		=>  ucwords($val->bagian_divisi),
 							'Action'		=>	$btn
