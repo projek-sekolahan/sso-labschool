@@ -19,7 +19,6 @@ class Tables extends CI_Model {
 		$query_total  = $this->Master->select($select,$table,$limit,$like,$order,$join,$where,$where2,$group_by);
 		$query_filter = $this->Master->select($select,$table,$limit,$like,$order,$join,$where,$where2,$group_by);
 		$query        = $this->Master->select($select,$table,$limit,$like,$order,$join,$where,$where2,$group_by);
-		var_dump($query); return false;
 		if ($query<>false) {
 			$no		= $limit['start']+1;
 		    foreach ($query->result() as $val) {
