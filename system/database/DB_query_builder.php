@@ -1200,7 +1200,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	 */
 	public function order_by($orderby, $direction = '', $escape = NULL)
 	{
-		$direction = strtoupper(trim($direction));
+		$direction = strtoupper(trim($direction ?? ''));
 
 		if ($direction === 'RANDOM')
 		{
