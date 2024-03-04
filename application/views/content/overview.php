@@ -20,7 +20,7 @@
         <?php
 		$sqluser	=	"select a.name,c.email,c.nama_lengkap,c.jabatan,c.nomor_induk from groups a, users_groups b , users_details c where b.user_id=c.user_id and a.id=b.group_id and b.user_id=".$this->session->userdata('user_id');
 		$result		=	$this->Master->get_custom_query($sqluser)->row();
-		$resultimg	=	$this->_master->get_row('users_img',['nomor_induk'=>$result->nomor_induk])->row();
+		$resultimg	=	$this->Master->get_row('users_img',['nomor_induk'=>$result->nomor_induk])->row();
             if ($this->ion_auth->is_admin()) {
                 $this->load->view('content/dashAdmin',array_merge($resultimg ? get_object_vars($resultimg) : [],get_object_vars($result)));
             }
