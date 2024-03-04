@@ -11,7 +11,7 @@ class User extends RestController {
     private $_paramToken;
     function __construct() {
         parent::__construct();
-		$this->load->model(['UploadFile']);
+		$this->load->model(['Tables','UploadFile']);
         $this->_clientAPI   = new ClientAPI();
         $this->_AuthToken   = new AuthToken();
         $this->_AuthCheck   = new AuthCheck();
