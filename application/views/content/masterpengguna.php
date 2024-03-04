@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2">
+                        <!-- <div class="row mb-2">
                             <div class="col-sm-12">
                                 <div class="text-sm-end">
                                     <a href="#" type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mb-2 me-2 btn-sm btn-action" data-view="form" data-action="/api/client/user/detail_pengguna">
@@ -27,7 +27,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="table-responsive">
                             <table class="table align-middle table-nowrap table-check" id="tab-pengguna" data-action="/api/client/user/table" style="width: 100%;" ><thead class="table-light"><tr></tr></thead></table>
                         </div>
