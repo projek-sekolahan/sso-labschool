@@ -73,7 +73,7 @@ class User extends RestController {
                 $users	= $this->_master->get_row('users_sosmed',['user_id'=>$this->input->post('user_id')])->row();
                 if ($users) {
 					// update data
-					$hasil_img==NULL ? '' : $this->_master->update_data('users_img',['nomor_induk'=>$users->nomor_induk],$userimg);
+					$hasil_img==NULL ? '' : $this->_master->update_data('users_img',['nomor_induk'=>$this->input->post('nomor_induk')],$userimg);
 					$this->_master->update_data('users_sosmed',['user_id'=>$users->user_id],$datasosmed);
 					$this->_master->update_data('users_details',['user_id'=>$users->user_id],$userdetail);
                 } else {
