@@ -100,7 +100,7 @@
                         </div>
                     </div> -->
                     <?php
-                        $sqluser	=	"select a.username,lower(b.email) email from users_login a,users_details b where a.id=b.user_id and a.id=".$this->session->userdata('user_id');
+                        $sqluser	=	"select a.username,lower(b.email) email,b.nomor_induk from users_login a,users_details b where a.id=b.user_id and a.id=".$this->session->userdata('user_id');
                         $result		=	$this->Master->get_custom_query($sqluser)->row();
 						$usersimg	=	$this->Master->get_row('users_img',['nomor_induk'=>$result->nomor_induk])->row();
                     ?>
