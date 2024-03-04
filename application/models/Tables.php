@@ -28,9 +28,9 @@ class Tables extends CI_Model {
 						$btn	=	$this->buttonTables($val->nomor_induk,$access,null);
         			    $response['data'][] = array(
                             '#'             =>  $no++,
-							'Nomor Induk'	=>  ucwords($val->nomor_induk),
-							'Nama'          =>  ucwords($val->nama_lengkap),
-							'Bidang'		=>  ucwords($val->bagian_divisi),
+							'Nomor Induk'	=>  ucwords($val->nomor_induk ?? ''),
+							'Nama'          =>  ucwords($val->nama_lengkap ?? ''),
+							'Bidang'		=>  ucwords($val->bagian_divisi ?? ''),
 							'Action'		=>	$btn
         				);
 					}
