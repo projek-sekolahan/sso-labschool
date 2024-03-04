@@ -48,7 +48,7 @@ if ($this->ion_auth->is_admin()) {
             </li>
 			<li>
                 <a href="#" data-action="masterpages" class="waves-effect">
-                    <i class="bx bx-key"></i>
+                    <i class="bx bx-window"></i>
                     <span key="t-pages">Pages</span>
                 </a>
             </li>
