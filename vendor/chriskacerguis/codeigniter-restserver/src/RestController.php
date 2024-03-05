@@ -2059,7 +2059,6 @@ class RestController extends \CI_Controller
 
         // If we want to allow any domain to access the API
         if ($this->config->item('allow_any_cors_domain') === true) {
-            // header('Access-Control-Allow-Origin: *');
             header('Access-Control-Allow-Headers: '.$allowed_headers);
             header('Access-Control-Allow-Methods: '.$allowed_methods);
         } else {
@@ -2072,7 +2071,7 @@ class RestController extends \CI_Controller
 
             // If the origin domain is in the allowed_cors_origins list, then add the Access Control headers
             if (in_array($origin, $this->config->item('allowed_cors_origins'))) {
-                // header('Access-Control-Allow-Origin: '.$origin);
+                header('Access-Control-Allow-Origin: '.$origin);
                 header('Access-Control-Allow-Headers: '.$allowed_headers);
                 header('Access-Control-Allow-Methods: '.$allowed_methods);
             }
