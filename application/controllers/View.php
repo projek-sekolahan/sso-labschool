@@ -20,10 +20,11 @@ class View extends CI_Controller {
             [
             'status'    => true,
 			'csrfHash'  => $this->security->get_csrf_hash(),
-			'info'      => 'csrf token created',
+			'info'      => 'csrf cookie '.$this->input->cookie(),
             ]
         );
 	}
+
 	public function index() {
         // $this->session->sess_destroy();
         if (!$this->ion_auth->logged_in()) {
