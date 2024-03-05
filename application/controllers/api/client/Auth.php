@@ -22,7 +22,7 @@ class Auth extends RestController {
                 if (filter_var($this->input->post('username'), FILTER_VALIDATE_EMAIL)) {
                     $urlAPI	= 'auth/login';
                     $dtAuth = base64_encode($this->api_auth->login($this->input->post('username'),$this->input->post('password')));
-                    $rscr   = $this->_clientAPI->crToken($urlAPI,$dtAuth);
+                    // $rscr   = $this->_clientAPI->crToken($urlAPI,$dtAuth);
                     $result	= $this->_clientAPI->geToken($urlAPI,$dtAuth,$rscr);
                     $dtAPI	= json_decode($result->getBody()->getContents(),true);
                     if ($result->getStatusCode()==400 || $result->getStatusCode()==403) {
