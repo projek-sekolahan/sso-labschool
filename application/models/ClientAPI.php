@@ -23,7 +23,7 @@
                         'headers'       => [
                             'Authorization'     => 'Basic '.$authKey,
                             'Cache-Control'     => 'no-cache',
-                            'Access-Control-Allow-Origin' => '*'
+                            // 'Access-Control-Allow-Origin' => '*'
                         ],
                         'query'         =>  [explode('.',$_SERVER['HTTP_HOST'])[0]=>hash('sha1',$authKey)]
                     ],
@@ -52,7 +52,7 @@
                         'headers'       => [
                             'Authorization'     => 'Basic '.$authKey,
                             'Cache-Control'     => 'no-cache',
-                            'Access-Control-Allow-Origin' => '*'
+                            // 'Access-Control-Allow-Origin' => '*'
                         ],
                         'form_params'   =>  $datalogin,
                     ],
@@ -72,7 +72,7 @@
                         'headers'       => [
                             'Authorization'     => 'Basic '.$authKey,
                             'Cache-Control'     => 'no-cache',
-                            'Access-Control-Allow-Origin' => '*'
+                            // 'Access-Control-Allow-Origin' => '*'
                         ],
                         'form_params'   =>  $param,
                     ],

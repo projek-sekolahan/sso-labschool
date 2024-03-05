@@ -1,6 +1,5 @@
 <IfModule mod_headers.c>
     Allow from all
-    Header set Access-Control-Allow-Origin "*"
     Header set Access-Control-Allow-Methods "POST"
 </IfModule>
 <IfModule pagespeed_module>
