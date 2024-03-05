@@ -15,7 +15,7 @@ class View extends CI_Controller {
 	}
 
 	public function tokenGetCsrf() {
-        // var_dump($this->input->cookie());
+        var_dump($this->input->cookie()); return false;
 		echo json_encode(
             [
             'status'    => true,
