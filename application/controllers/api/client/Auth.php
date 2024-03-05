@@ -8,22 +8,32 @@ class Auth extends RestController {
     private $_clientAPI;
     private $_AuthToken;
     private $_AuthCheck;
+	private $_csrfToken;
+	private $_paramToken;
+	private $_dtAuth;
+	private $_urlAPI;
     function __construct() {
         parent::__construct();
         $this->load->library(['api_auth']);
-        $this->_clientAPI = new ClientAPI();
-        $this->_AuthToken = new AuthToken();
-        $this->_AuthCheck = new AuthCheck();
+        $this->_clientAPI	= new ClientAPI();
+        $this->_AuthToken	= new AuthToken();
+        $this->_AuthCheck	= new AuthCheck();
+		$this->_urlAPI	= 'auth';
+		$this->_dtAuth	= ($this->input->post('username') && $this->input->post('password')) ? base64_encode($this->api_auth->login($this->input->post('username'),$this->input->post('password'))) : null;
+		$this->_csrfToken	= $this->_clientAPI->crToken($this->_urlAPI,$this->input->post('AUTH_KEY') ? $this->input->post('AUTH_KEY') : $this->_dtAuth);
+		$this->_paramToken	= array(
+            'token'     => (empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),
+            explode('.',$_SERVER['HTTP_HOST'])[0] => $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),
+            'AUTH_KEY'  => $this->input->post('AUTH_KEY') ? $this->input->post('AUTH_KEY') : $this->_dtAuth,
+            'csrf_token'=> $this->_csrfToken,
+        );
     }
     public function index_post($keterangan) {
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),$this->input->post('AUTH_KEY'))) {
             $rscr = null;
             if ($keterangan=='login') {
                 if (filter_var($this->input->post('username'), FILTER_VALIDATE_EMAIL)) {
-                    $urlAPI	= 'auth/login';
-                    $dtAuth = base64_encode($this->api_auth->login($this->input->post('username'),$this->input->post('password')));
-                    // $rscr   = $this->_clientAPI->crToken($urlAPI,$dtAuth);
-                    $result	= $this->_clientAPI->geToken($urlAPI,$dtAuth,$rscr);
+                    $result	= $this->_clientAPI->geToken($this->_urlAPI.'/login',$this->_dtAuth,$this->_csrfToken);
                     $dtAPI	= json_decode($result->getBody()->getContents(),true);
                     if ($result->getStatusCode()==400 || $result->getStatusCode()==403) {
                         $http   = RestController::HTTP_BAD_REQUEST;
@@ -75,14 +85,7 @@ class Auth extends RestController {
                 }
             }
             if ($keterangan=='logout') {
-                $urlAPI	= 'auth/logout';
-                $rscr   = $this->_clientAPI->crToken($urlAPI,$this->input->post('AUTH_KEY'));
-                $param  = array(
-                    'token'         => (empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),
-                    explode('.',$_SERVER['HTTP_HOST'])[0] => $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),
-                    'csrf_token'    => $rscr,
-                );
-                $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$param);
+                $result	= $this->_clientAPI->postContent($this->_urlAPI.'/logout',$this->input->post('AUTH_KEY'),$this->_paramToken);
                 $dtAPI	= json_decode($result->getBody()->getContents(),true);
                 $this->session->sess_destroy();
                 $http   = RestController::HTTP_CREATED;
