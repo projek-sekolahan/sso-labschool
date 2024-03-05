@@ -17,12 +17,12 @@ class View extends CI_Controller {
 	public function tokenGetCsrf() {
         // var_dump($this->input->cookie()); return false;
 		echo json_encode(
-			$this->input->cookie()
-            // [
-            // 'status'    => true,
-			// 'csrfHash'  => $this->security->get_csrf_hash(),
-			// 'info'      => 'csrf cookie '.$this->input->cookie(),
-            // ]
+			// $this->input->cookie()
+            [
+            'status'    => true,
+			'csrfHash'  => $this->security->get_csrf_hash(),
+			'info'      => 'csrf cookie '.$this->input->cookie('ci_sso_csrf_cookie'),
+            ]
         );
 	}
 
