@@ -25,7 +25,7 @@ class View extends CI_Controller {
 
 	public function tokenGetCsrf() {
 		try {
-			$response = $this->_client->post('tokenCsrf',['form_params'=>array('csrf_token'=> $this->security->get_csrf_hash())]);
+			$response = $this->_client->post('tokenCsrf',['form_params'=>array('csrf_token'=>$this->input->cookie('ci_sso_csrf_cookie'))]);
 		} catch (\GuzzleHttp\Exception\RequestException $e) {
 			if ($e->hasResponse()) {
 				$response = $e->getResponse();
