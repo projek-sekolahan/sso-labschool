@@ -1,7 +1,9 @@
 <IfModule mod_headers.c>
     Allow from all
-    Header set Access-Control-Allow-Origin "*"
-    Header set Access-Control-Allow-Methods "POST"
+	Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST"
+	Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    Header always set Access-Control-Allow-Credentials "true"
 </IfModule>
 <IfModule pagespeed_module>
     ModPagespeed Off
