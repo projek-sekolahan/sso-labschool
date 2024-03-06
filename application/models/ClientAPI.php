@@ -3,7 +3,6 @@
 
         private $_client;
         private $_CookieJar;
-        private $_response;
         public function __construct() {
             parent::__construct();
             $this->_CookieJar   =   new \GuzzleHttp\Cookie\CookieJar();

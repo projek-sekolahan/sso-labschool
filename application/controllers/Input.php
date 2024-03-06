@@ -13,7 +13,16 @@ class Input extends CI_Controller {
 			redirect('dashboard/404','location', 404);
 		}
 	}
-	
+	public function tokenCsrf() {
+		echo json_encode(
+            [
+            'status'    => true,
+			'csrfHash'  => $this->security->get_csrf_hash(),
+			'info'      => 'csrf cookie '.$this->input->cookie('ci_sso_csrf_cookie'),
+            ]
+        );
+	}
+
 	public function recover() {
 		$identity_column = $this->config->item('identity', 'ion_auth');
 		$identity = $this->ion_auth->where($identity_column, $this->input->post('username'))->users()->row();

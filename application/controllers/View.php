@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class View extends CI_Controller {
 
 	public $data = [];
-
+	private $_client;
+	private $_CookieJar;
 	public function __construct() {
 		parent::__construct();
 		$this->load->library(['ion_auth']);
@@ -12,16 +13,29 @@ class View extends CI_Controller {
 		$this->lang->load('auth');
 		$this->method = $_SERVER['REQUEST_METHOD'];
 		$this->getURL = $_SERVER['REQUEST_URI'];
+		$this->_CookieJar   =   new \GuzzleHttp\Cookie\CookieJar();
+		$this->_client      =   new \GuzzleHttp\Client([
+			'base_uri'          => base_url()."input/",
+			'cookie'            => true,
+			'cookies'           => $this->_CookieJar,
+			'verify'            => false,
+			'allow_redirects'   => true,
+		]);
 	}
 
 	public function tokenGetCsrf() {
-		echo json_encode(
-            [
-            'status'    => true,
-			'csrfHash'  => $this->security->get_csrf_hash(),
-			'info'      => 'csrf cookie '.$this->input->cookie('ci_sso_csrf_cookie'),
-            ]
-        );
+		try {
+			$response = $this->_client->get('tokenCsrf');
+		} catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->hasResponse()) {
+				$response = $e->getResponse();
+			}
+		}
+		$cookieJar      = $this->_client->getConfig('cookies');
+		$cookieArray    = $cookieJar->getCookieByName('ci_sso_csrf_cookie')->getValue();
+		var_dump($cookieArray);
+		// return $cookieArray;
+		
 	}
 
 	public function index() {
