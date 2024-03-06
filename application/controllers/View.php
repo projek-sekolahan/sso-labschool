@@ -43,7 +43,7 @@ class View extends CI_Controller {
 		}
 		$cookieJar      = $this->_client->getConfig('cookies');
 		$cookieArray    = $cookieJar->getCookieByName('ci_sso_csrf_cookie')->getValue();
-		var_dump($response);
+		var_dump(json_decode($response->getBody()->getContents(),true));
 		/* echo json_encode(
             [
             'status'    => true,
