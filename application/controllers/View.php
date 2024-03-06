@@ -44,15 +44,15 @@ class View extends CI_Controller {
 		$result			= json_decode($response->getBody()->getContents(),true);
 		$cookieJar      = $this->_client->getConfig('cookies');
 		$cookieArray    = $cookieJar->getCookieByName('ci_sso_csrf_cookie')->getValue();
-		var_dump($result['csrfHash'], $cookieArray, $this->security->get_csrf_hash(), $this->input->cookie('ci_sso_csrf_cookie'));
-		/* echo json_encode(
+		echo json_encode(
             [
             'status'    => true,
-			'csrfHash'  => $this->security->get_csrf_hash(),
+			'HashGet'	=> $result['csrfHash'],
+			'csrfHash'	=> $this->security->get_csrf_hash(),
 			'cookiesJar'=> $cookieArray,
 			'info'      => 'csrf cookie hash created '.$this->input->cookie('ci_sso_csrf_cookie'),
             ]
-        ); */
+        );
 	}
 
 	public function index() {
