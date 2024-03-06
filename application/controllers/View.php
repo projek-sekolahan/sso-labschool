@@ -27,7 +27,7 @@ class View extends CI_Controller {
 		echo json_encode(
             [
             'status'    => true,
-			'csrfHash'  => $this->security->get_csrf_hash(),
+			'csrfHash'  => $this->input->cookie('ci_sso_csrf_cookie'),
 			'info'      => 'csrf cookie created',
             ]
         );
