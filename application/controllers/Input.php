@@ -17,8 +17,8 @@ class Input extends CI_Controller {
 		echo json_encode(
             [
             'status'    => true,
-			'csrfHash'  => $this->security->get_csrf_hash(),
-			'info'      => 'csrf cookie created'.$this->input->cookie('ci_sso_csrf_cookie'),
+			// 'csrfHash'  => $this->security->get_csrf_hash(),
+			'info'      => 'csrf cookie created',
             ]
         );
 	}
