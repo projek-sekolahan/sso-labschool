@@ -15,7 +15,7 @@ class View extends CI_Controller {
 		$this->getURL = $_SERVER['REQUEST_URI'];
 		$this->_CookieJar   =   new \GuzzleHttp\Cookie\CookieJar();
 		$this->_client      =   new \GuzzleHttp\Client([
-			'base_uri'          => base_url()."input/",
+			'base_uri'          => base_url()."view/",
 			'cookie'            => true,
 			'cookies'           => $this->_CookieJar,
 			'verify'            => false,
@@ -23,9 +23,19 @@ class View extends CI_Controller {
 		]);
 	}
 
+	public function tokenCsrf() {
+		echo json_encode(
+            [
+            'status'    => true,
+			'csrfHash'  => $this->security->get_csrf_hash(),
+			'info'      => 'csrf cookie created',
+            ]
+        );
+	}
+
 	public function tokenGetCsrf() {
 		try {
-			$response = $this->_client->post('tokenCsrf',['form_params'=>array('csrf_token'=>$this->input->cookie('ci_sso_csrf_cookie'))]);
+			$response = $this->_client->get('tokenCsrf');
 		} catch (\GuzzleHttp\Exception\RequestException $e) {
 			if ($e->hasResponse()) {
 				$response = $e->getResponse();
