@@ -24,13 +24,13 @@ class View extends CI_Controller {
 	}
 
 	public function tokenGetCsrf() {
-		try {
+		/* try {
 			$response = $this->_client->get('tokenCsrf');
 		} catch (\GuzzleHttp\Exception\RequestException $e) {
 			if ($e->hasResponse()) {
 				$response = $e->getResponse();
 			}
-		}
+		} */
 		$cookieJar      = $this->_client->getConfig('cookies');
 		$cookieArray    = $cookieJar->getCookieByName('ci_sso_csrf_cookie')->getValue();
 		echo json_encode(
