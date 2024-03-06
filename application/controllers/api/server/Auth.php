@@ -98,5 +98,6 @@ class Auth extends RestController {
 		}
 		$this->response($this->_AuthCheck->response($output),$http);
     }
+	
 }
 ?>
