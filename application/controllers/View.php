@@ -37,7 +37,7 @@ class View extends CI_Controller {
             [
             'status'    => true,
 			'csrfHash'  => $cookieArray,
-			'info'      => 'csrf cookie '.$this->input->cookie('ci_sso_csrf_cookie'),
+			'info'      => 'csrf cookie hash created',
             ]
         );
 	}
