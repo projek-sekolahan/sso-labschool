@@ -33,9 +33,13 @@ class View extends CI_Controller {
 		}
 		$cookieJar      = $this->_client->getConfig('cookies');
 		$cookieArray    = $cookieJar->getCookieByName('ci_sso_csrf_cookie')->getValue();
-		var_dump($cookieArray);
-		// return $cookieArray;
-		
+		echo json_encode(
+            [
+            'status'    => true,
+			'csrfHash'  => $cookieArray,
+			'info'      => 'csrf cookie '.$this->input->cookie('ci_sso_csrf_cookie'),
+            ]
+        );
 	}
 
 	public function index() {
