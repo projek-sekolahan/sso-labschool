@@ -169,7 +169,7 @@ class CI_Session {
 					'domain'	=> $this->_config['cookie_domain'],
 					'secure'	=> $this->_config['cookie_secure'],
 					'httponly'	=> TRUE,
-					'samesite'	=> $this->_config['cookie_samesite']
+					'samesite'	=> 'None'
 				)
 				/* (empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
 				$this->_config['cookie_path'],
