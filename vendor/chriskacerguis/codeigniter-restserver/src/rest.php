@@ -594,7 +594,7 @@ $config['allow_any_cors_domain'] = true;
 | e.g. $config['allowed_origins'] = ['http://www.example.com', 'https://spa.example.com']
 |
 */
-$config['allowed_cors_origins'] = ['https://dev-labschool-unesa.vercel.app/'];
+$config['allowed_cors_origins'] = ['https://dev-labschool-unesa.vercel.app'];
 
 /*
 |--------------------------------------------------------------------------
