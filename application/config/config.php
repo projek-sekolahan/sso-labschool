@@ -406,7 +406,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 */
 $config['cookie_prefix']	= 'ci_sso_';
 $config['cookie_domain']	= $_SERVER['HTTP_HOST'];
-$config['cookie_path']		= '/;SameSite=None';
+$config['cookie_path']		= '/';
 $config['cookie_secure']	= TRUE;
 $config['cookie_httponly'] 	= FALSE;
 $config['cookie_SameSite'] = 'None';
