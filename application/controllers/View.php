@@ -48,10 +48,10 @@ class View extends CI_Controller {
             [
             'status'    => true,
 			// 'HashGet'	=> $result['csrfHash'],
-			// 'csrfHash'	=> $this->security->get_csrf_hash(),
+			'csrfHash'	=> $this->security->get_csrf_hash(),
 			// 'csrfHash'	=> $result['csrfHash'],
-			'csrfHash'	=> $cookieArray,
-			// 'cookiesJar'=> $cookieArray,
+			// 'csrfHash'	=> $cookieArray,
+			'cookiesJar'=> $cookieArray,
 			// 'info'      => 'csrf cookie hash created '.$this->input->cookie('ci_sso_csrf_cookie'),
             ]
         );
