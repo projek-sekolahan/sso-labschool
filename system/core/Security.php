@@ -282,13 +282,13 @@ class CI_Security {
 				'domain'	=>config_item('cookie_domain'),
 				'secure'	=>$secure_cookie,
 				'httponly'	=>config_item('cookie_httponly'),
-				'samesite'	=>config_item('cookie_samesite')
+				'SameSite'	=>config_item('cookie_SameSite')
 			) */
 			config_item('cookie_path'),
 			config_item('cookie_domain'),
 			$secure_cookie,
 			config_item('cookie_httponly')
-			// config_item('cookie_samesite')
+			// config_item('cookie_SameSite')
 		);
 		log_message('info', 'CSRF cookie sent');
 

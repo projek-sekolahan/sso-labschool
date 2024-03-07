@@ -406,9 +406,9 @@ class CI_Input {
 			$expire = ($expire > 0) ? time() + $expire : 0;
 		}
 
-		if ($samesite === '' && config_item('cookie_samesite') !== '')
+		if ($samesite === '' && config_item('cookie_SameSite') !== '')
         {
-            $samesite = config_item('cookie_samesite');
+            $samesite = config_item('cookie_SameSite');
         }
 
         $samesite = is_string($samesite) ? ucfirst($samesite) : $samesite;
@@ -418,7 +418,7 @@ class CI_Input {
             show_error("The SameSite cookie setting should be one of: 'Lax', 'Strict', 'None' or NULL.");
         }
 
-		setcookie($prefix.$name, $value, $expire, array('path'=>$path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly, 'samesite'=>$samesite));
+		setcookie($prefix.$name, $value, $expire, array('path'=>$path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly, 'SameSite'=>$samesite));
 	}
 
 	// --------------------------------------------------------------------
