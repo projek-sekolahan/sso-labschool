@@ -11,7 +11,14 @@ class My_Security extends CI_Security {
         // If it's not a POST request we will set the CSRF cookie
         if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST')
         {
-            return $this->csrf_set_cookie();
+			// polute the _POST array
+			unset($_POST[$this->_csrf_token_name]);
+
+			// Nothing should last forever
+			unset($_COOKIE[$this->_csrf_cookie_name]);
+			$this->_csrf_set_hash();
+			$this->csrf_set_cookie();
+            return $this;
         }
 
         // Do the tokens exist in both the _POST and _COOKIE arrays?
