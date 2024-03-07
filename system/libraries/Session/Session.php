@@ -163,11 +163,19 @@ class CI_Session {
 			setcookie(
 				$this->_config['cookie_name'],
 				session_id(),
-				(empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
+				array(
+					'expires' => (empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
+					'path' => config_item('cookie_path'),
+					'domain' => config_item('cookie_domain'),
+					'secure' => $secure_cookie,
+					'httponly' => TRUE,
+					'samesite' => config_item('cookie_samesite')
+				)
+				/* (empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
 				$this->_config['cookie_path'],
 				$this->_config['cookie_domain'],
 				$this->_config['cookie_secure'],
-				TRUE
+				TRUE */
 			);
 		}
 
