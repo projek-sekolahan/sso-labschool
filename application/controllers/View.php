@@ -27,8 +27,8 @@ class View extends CI_Controller {
 		echo json_encode(
             [
             'status'    => true,
-			'csrfHash'  => $this->security->get_csrf_hash(),
-			'info'      => 'csrf cookie created',
+			// 'csrfHash'  => $this->security->get_csrf_hash(),
+			// 'info'      => 'csrf cookie created',
             ]
         );
 	}
@@ -47,10 +47,12 @@ class View extends CI_Controller {
 		echo json_encode(
             [
             'status'    => true,
-			'HashGet'	=> $result['csrfHash'],
-			'csrfHash'	=> $this->security->get_csrf_hash(),
-			'cookiesJar'=> $cookieArray,
-			'info'      => 'csrf cookie hash created '.$this->input->cookie('ci_sso_csrf_cookie'),
+			// 'HashGet'	=> $result['csrfHash'],
+			// 'csrfHash'	=> $this->security->get_csrf_hash(),
+			// 'csrfHash'	=> $result['csrfHash'],
+			'csrfHash'	=> $cookieArray,
+			// 'cookiesJar'=> $cookieArray,
+			// 'info'      => 'csrf cookie hash created '.$this->input->cookie('ci_sso_csrf_cookie'),
             ]
         );
 	}
