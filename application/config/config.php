@@ -407,7 +407,7 @@ $config['cookie_domain']	= $_SERVER['HTTP_HOST'];
 $config['cookie_path']		= '/';
 $config['cookie_secure']	= TRUE;
 $config['cookie_httponly'] 	= TRUE;
-$config['cookie_samesite'] = 'None';
+// $config['cookie_samesite'] = 'None';
 
 /*
 |--------------------------------------------------------------------------
