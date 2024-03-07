@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
-ini_set('session.cookie_samesite', 'None');
+ini_set('session.cookie_SameSite', 'None');
 ini_set('session.cookie_secure', TRUE);
 /*
 |--------------------------------------------------------------------------

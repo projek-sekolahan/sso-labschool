@@ -171,11 +171,6 @@ class CI_Session {
 					'httponly'	=> TRUE,
 					'SameSite'	=> 'None'
 				)
-				/* (empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
-				$this->_config['cookie_path'],
-				$this->_config['cookie_domain'],
-				$this->_config['cookie_secure'],
-				TRUE */
 			);
 		}
 
