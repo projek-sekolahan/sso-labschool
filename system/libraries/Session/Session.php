@@ -164,12 +164,12 @@ class CI_Session {
 				$this->_config['cookie_name'],
 				session_id(),
 				array(
-					'expires' => (empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
-					'path' => config_item('cookie_path'),
-					'domain' => config_item('cookie_domain'),
-					'secure' => $secure_cookie,
-					'httponly' => TRUE,
-					'samesite' => config_item('cookie_samesite')
+					'expires'	=> (empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
+					'path'		=> $this->_config['cookie_path'],
+					'domain'	=> $this->_config['cookie_domain'],
+					'secure'	=> $this->_config['cookie_secure'],
+					'httponly'	=> TRUE,
+					'samesite'	=> $this->_config['cookie_samesite']
 				)
 				/* (empty($this->_config['cookie_lifetime']) ? 0 : time() + $this->_config['cookie_lifetime']),
 				$this->_config['cookie_path'],
