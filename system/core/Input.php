@@ -360,7 +360,7 @@ class CI_Input {
 	 * @param	bool		$httponly	Whether to only makes the cookie accessible via HTTP (no javascript)
 	 * @return	void
 	 */
-	public function set_cookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL)
+	public function set_cookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL, $samesite = NULL)
 	{
 		if (is_array($name))
 		{
@@ -406,7 +406,19 @@ class CI_Input {
 			$expire = ($expire > 0) ? time() + $expire : 0;
 		}
 
-		setcookie($prefix.$name, $value, $expire, $path, $domain, $secure, $httponly);
+		if ($samesite === '' && config_item('cookie_samesite') !== '')
+        {
+            $samesite = config_item('cookie_samesite');
+        }
+
+        $samesite = is_string($samesite) ? ucfirst($samesite) : $samesite;
+
+        if ( ! in_array($samesite, array('Lax', 'Strict', 'None', NULL), true))
+        {
+            show_error("The SameSite cookie setting should be one of: 'Lax', 'Strict', 'None' or NULL.");
+        }
+
+		setcookie($prefix.$name, $value, $expire, array('path'=>$path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly, 'samesite'=>$samesite));
 	}
 
 	// --------------------------------------------------------------------
