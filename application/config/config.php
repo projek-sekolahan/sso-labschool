@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
+ini_set('session.cookie_samesite', 'None');
+ini_set('session.cookie_secure', TRUE);
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -404,7 +406,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 */
 $config['cookie_prefix']	= 'ci_sso_';
 $config['cookie_domain']	= $_SERVER['HTTP_HOST'];
-$config['cookie_path']		= '/';
+$config['cookie_path']		= '/;SameSite=None';
 $config['cookie_secure']	= TRUE;
 $config['cookie_httponly'] 	= FALSE;
 $config['cookie_SameSite'] = 'None';

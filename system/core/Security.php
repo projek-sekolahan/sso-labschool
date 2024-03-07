@@ -276,7 +276,15 @@ class CI_Security {
 		setcookie(
 			$this->_csrf_cookie_name,
 			$this->_csrf_hash,
-			$expire,
+			[
+				'SameSite'	=> 'None',
+				'secure'	=> $secure_cookie,
+				'expires'	=> $expire,
+				'path'		=> config_item('cookie_path'),
+				'domain'	=> config_item('cookie_domain'),
+				'httponly'	=> config_item('cookie_httponly')
+			]
+			// $expire,
 			/* array(
 				'path'		=>config_item('cookie_path'),
 				'domain'	=>config_item('cookie_domain'),
@@ -284,10 +292,10 @@ class CI_Security {
 				'httponly'	=>config_item('cookie_httponly'),
 				'SameSite'	=>config_item('cookie_SameSite')
 			) */
-			config_item('cookie_path'),
-			config_item('cookie_domain'),
-			$secure_cookie,
-			config_item('cookie_httponly')
+			// config_item('cookie_path'),
+			// config_item('cookie_domain'),
+			// $secure_cookie,
+			// config_item('cookie_httponly')
 			// config_item('cookie_SameSite')
 		);
 		log_message('info', 'CSRF cookie sent');
