@@ -4,6 +4,7 @@
     Header set Access-Control-Allow-Methods "GET, POST"
 	Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
     Header set Access-Control-Allow-Credentials "true"
+	Header always edit Set-Cookie (.*) "$1; SameSite=None"
 </IfModule>
 <IfModule pagespeed_module>
     ModPagespeed Off
