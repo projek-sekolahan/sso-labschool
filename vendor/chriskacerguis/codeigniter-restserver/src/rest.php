@@ -558,6 +558,7 @@ $config['check_cors'] = true;
 */
 $config['allowed_cors_headers'] = [
         "Authorization",
+		"withcredentials",
 ];
 
 /*
@@ -569,7 +570,7 @@ $config['allowed_cors_headers'] = [
 |
 */
 $config['allowed_cors_methods'] = [
-    'POST',
+    'POST','GET'
 ];
 
 /*
