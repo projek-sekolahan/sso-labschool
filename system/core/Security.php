@@ -277,7 +277,7 @@ class CI_Security {
 			$this->_csrf_cookie_name,
 			$this->_csrf_hash,
 			[
-				'SameSite'	=> 'None',
+				'SameSite'	=> config_item('cookie_SameSite'),
 				'secure'	=> $secure_cookie,
 				'expires'	=> $expire,
 				'path'		=> config_item('cookie_path'),

@@ -169,7 +169,7 @@ class CI_Session {
 					'domain'	=> $this->_config['cookie_domain'],
 					'secure'	=> $this->_config['cookie_secure'],
 					'httponly'	=> TRUE,
-					'SameSite'	=> 'None'
+					'SameSite'	=> $this->_config['cookie_SameSite']
 				)
 			);
 		}
