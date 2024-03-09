@@ -8,7 +8,6 @@ class My_Security extends CI_Security {
      */
     public function csrf_verify()
     {
-		var_dump($_POST[$this->_csrf_token_name], $_COOKIE[$this->_csrf_cookie_name]); return false;
         // If it's not a POST request we will set the CSRF cookie
         if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST')
         {
