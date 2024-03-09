@@ -27,8 +27,6 @@ class View extends CI_Controller {
 		echo json_encode(
             [
             'status'    => true,
-			// 'csrfHash'  => $this->security->get_csrf_hash(),
-			// 'info'      => 'csrf cookie created',
             ]
         );
 	}
@@ -47,18 +45,13 @@ class View extends CI_Controller {
 		echo json_encode(
             [
             'status'    => true,
-			// 'HashGet'	=> $result['csrfHash'],
 			'csrfHash'	=> $this->security->get_csrf_hash(),
-			// 'csrfHash'	=> $result['csrfHash'],
-			// 'csrfHash'	=> $cookieArray,
 			'cookiesJar'=> $cookieArray,
-			// 'info'      => 'csrf cookie hash created '.$this->input->cookie('ci_sso_csrf_cookie'),
             ]
         );
 	}
 
 	public function index() {
-        // $this->session->sess_destroy();
         if (!$this->ion_auth->logged_in()) {
             $pages  = 'login';
         } else {
