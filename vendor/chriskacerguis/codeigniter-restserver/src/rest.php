@@ -559,6 +559,7 @@ $config['check_cors'] = true;
 $config['allowed_cors_headers'] = [
         "Authorization",
 		"withcredentials",
+		"Cookie",
 ];
 
 /*
