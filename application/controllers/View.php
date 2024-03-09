@@ -46,7 +46,7 @@ class View extends CI_Controller {
             [
             'status'    => true,
 			'csrfHash'	=> $this->security->get_csrf_hash(),
-			'cookiesJar'=> $cookieArray,
+			'cookieHash'=> $cookieArray,
             ]
         );
 	}
