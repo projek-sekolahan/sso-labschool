@@ -76,8 +76,9 @@ class Auth extends RestController {
         }
 		if ($keterangan=='logout') {
 			// log the user out
-			var_dump($this->_TokenKey,$this->_ApiKey); return false;
+			// var_dump($this->_TokenKey,$this->_ApiKey); return false;
 			$this->_RsToken		= $this->_AuthToken->validateTimestamp($this->_TokenKey,$this->_ApiKey);
+			var_dump($this->_RsToken); return false;
 			if (is_object($this->_RsToken)) {
 				$this->ion_auth->logout($this->_RsToken->apikey);
 				$http   = RestController::HTTP_CREATED;
