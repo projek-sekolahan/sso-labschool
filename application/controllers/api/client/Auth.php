@@ -91,7 +91,6 @@ class Auth extends RestController {
                 $output = $dtAPI['data'];
             }
             if ($keterangan=='sessTime') {
-				var_dump($this->session->userdata()); return false;
                 $timesesi       = $this->session->userdata('expired');
                 $current_time   = time();
                 ($timesesi == null) ? $sessiontime = 0:$sessiontime=$timesesi;
