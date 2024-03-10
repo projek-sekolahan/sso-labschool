@@ -91,7 +91,7 @@ class Auth extends RestController {
 			} else {
 				$http   = RestController::HTTP_BAD_REQUEST;
                 $output = array(
-                	'title'     => 'Login Error',
+                	'title'     => 'Logout Error',
                     'message'   => $this->_RsToken,
                     'info'		=> 'error',
                     'location'	=> 'login',
