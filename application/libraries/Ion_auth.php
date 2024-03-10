@@ -318,7 +318,7 @@ class Ion_auth
 		$user = $this->where('key', $identity)
 					 ->where('active', 1)
 					 ->users()->row();
-		
+		var_dump($user); return false;
 		// delete the remember me cookies if they exist
 		delete_cookie($this->config->item('remember_cookie_name', 'ion_auth'));
 
