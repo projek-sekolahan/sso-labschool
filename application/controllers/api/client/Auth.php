@@ -84,6 +84,7 @@ class Auth extends RestController {
                 }
             }
             if ($keterangan=='logout') {
+				var_dump($this->_paramToken); return false;
                 $result	= $this->_clientAPI->postContent($this->_urlAPI.'/logout',$this->input->post('AUTH_KEY'),$this->_paramToken);
                 $dtAPI	= json_decode($result->getBody()->getContents(),true);
                 $this->session->sess_destroy();
