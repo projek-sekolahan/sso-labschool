@@ -418,7 +418,7 @@ class CI_Input {
             show_error("The SameSite cookie setting should be one of: 'Lax', 'Strict', 'None' or NULL.");
         }
 
-		setcookie($prefix.$name, $value, $expire, array('path'=>$path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly, 'SameSite'=>$samesite));
+		setcookie($prefix.$name, $value, ['expires'=>$expire, 'path'=>$path, 'domain'=>$domain, 'secure'=>$secure, 'httponly'=>$httponly, 'SameSite'=>$samesite]);
 	}
 
 	// --------------------------------------------------------------------
