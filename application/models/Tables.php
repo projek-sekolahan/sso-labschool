@@ -8,14 +8,18 @@ class Tables extends CI_Model {
 			$access = 'pengguna';
 			$table	= 'users_details a';
 		}
-		if ($tabID=='splash_screen') {
+		if ($tabID=='pengguna') {
+			$access = 'pengguna';
+			$table	= 'users_details a';
+		}
+		/* if ($tabID=='splash_screen') {
 			$access = 'splash_screen';
 			$table	= 'splash_screen a';
 		}
 		if ($tabID=='calendars_month') {
 			$access = 'calendars_month';
 			$table	= 'calendars_month a';
-		}
+		} */
 		$query_total  = $this->Master->select($select,$table,$limit,$like,$order,$join,$where,$where2,$group_by);
 		$query_filter = $this->Master->select($select,$table,$limit,$like,$order,$join,$where,$where2,$group_by);
 		$query        = $this->Master->select($select,$table,$limit,$like,$order,$join,$where,$where2,$group_by);
@@ -26,15 +30,33 @@ class Tables extends CI_Model {
 					// data
 					if ($access=='pengguna') {
 						$btn	=	$this->buttonTables($val->email,$access,null);
-        			    $response['data'][] = array(
+        			    /* $response['data'][] = array(
                             '#'             =>  $no++,
 							'Nomor Induk'	=>  ucwords($val->nomor_induk ?? '---'),
 							'Nama'          =>  ucwords($val->nama_lengkap ?? '---'),
 							'Bidang'		=>  ucwords($val->bagian_divisi ?? '---'),
 							'Action'		=>	$btn
-        				);
+        				); */
 					}
-					if ($access=='calendars_month') {
+					// Dapatkan array dari objek
+					$valArray = (array) $val;
+					// Buat array baru untuk menyimpan data yang sudah dimodifikasi
+					$response['data'][]= array();
+					// Iterasi melalui setiap elemen array
+					foreach ($valArray as $key => $value) {
+						// Ubah kunci menjadi capitalize
+						$modifiedKey = ucwords(str_replace('_', ' ', $key));
+
+						// Ubah nilai menjadi capitalize
+						$modifiedValue = ucwords($value);
+
+						// Tambahkan ke array baru
+						$response['data'][$modifiedKey] = $modifiedValue;
+					}
+
+					// Menambahkan kunci dan nilai baru
+					$response['data']['Action'] = $btn;
+					/* if ($access=='calendars_month') {
 						$btn	=	$this->buttonTables($val->idtab,$access,null);
         			    $response['data'][] = array(
                             '#'				=>  $no++,
@@ -60,7 +82,7 @@ class Tables extends CI_Model {
 							'Aktif'			=>	'<h5 class="'.$txt.'">'.$ket.'</h5>',
 							'Action'		=>	$btn
         				);
-					}
+					} */
 					if ($response['data']!="" || $response['data']!=null) {
 					// coloumn
 						foreach($response['data'][0] as $column=>$relativeValue) {
