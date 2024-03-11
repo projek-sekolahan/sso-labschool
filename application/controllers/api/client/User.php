@@ -28,6 +28,8 @@ class User extends RestController {
             $http   = RestController::HTTP_BAD_REQUEST;
             $output = $dtAPI['data'];
         } else {
+			var_dump($this->_paramToken['token']); return false;
+			$encrypted	= $this->_AuthToken->encrypt($tokenJWT,$decode->apikey,$this->input->post('AUTH_KEY'));
             $http       = RestController::HTTP_CREATED;
             $output = $this->_AuthToken->generateToken($dtAPI['data'],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
         }
