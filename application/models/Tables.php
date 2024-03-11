@@ -8,9 +8,9 @@ class Tables extends CI_Model {
 			$access = 'pengguna';
 			$table	= 'users_details a';
 		}
-		if ($tabID=='pengguna') {
-			$access = 'pengguna';
-			$table	= 'users_details a';
+		if ($tabID=='pages') {
+			$access = 'pages';
+			$table	= 'pages a';
 		}
 		/* if ($tabID=='splash_screen') {
 			$access = 'splash_screen';
