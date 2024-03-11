@@ -11,6 +11,7 @@ class User extends RestController {
     private $_paramToken;
     function __construct() {
         parent::__construct();
+		$this->load->model(['Tables','UploadFile']);
         $this->_clientAPI   = new ClientAPI();
         $this->_AuthToken   = new AuthToken();
         $this->_AuthCheck   = new AuthCheck();
@@ -67,11 +68,43 @@ class User extends RestController {
             if ($keterangan=='table') {
                 $spolde = explode('-',$this->input->post('table'));
                 $table	= strtolower($spolde[1]);
-                $paramdata = array(
+                /* $paramdata = array(
                     'key'   => $this->input->post('key'),
                     'table' => $table,
                 );
-                $dataparam = array_merge($paramdata,$this->_paramToken);
+                $dataparam = array_merge($paramdata,$this->_paramToken); */
+				$key	= $this->input->post('key');
+                // $table	= $this->input->post('table');
+                    $select = "a.*";
+                    $column = "a.nomor_induk,a.nama_lengkap";
+                    //WHERE
+                    $where	= null;
+                    //where2 
+                    $where2	= null;
+                    //join
+                    $join	= null;
+                    // group by
+                    $group_by   =   NULL;
+                    //ORDER
+                    $index_order = $this->input->get('order[0][column]');
+                    $order['data'][] = array(
+                        'column' => $this->input->get('columns['.$index_order.'][name]'),
+                        'type'	 => $this->input->get('order[0][dir]')
+                    );
+                    //LIMIT
+                    $limit = array(
+                        'start'  => $this->input->get('start'),
+                        'finish' => $this->input->get('length')
+                    );
+                //WHERE LIKE
+                $where_like['data'][] = array(
+                    'column' => $column,
+                    'param'	 => $this->input->get('search[value]')
+                );
+                $createTables   =   $this->Tables->detailTables($select,$table,$limit,$where_like,$order,$join,$where,$where2,$group_by,$key);
+                var_dump($createTables); return false;
+				$http   = RestController::HTTP_CREATED;
+                $output = $createTables;
             }
 			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
             $dtAPI	= json_decode($result->getBody()->getContents(),true);
