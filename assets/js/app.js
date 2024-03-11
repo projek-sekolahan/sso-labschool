@@ -204,6 +204,10 @@ function parseJwt(token) {
     return JSON.parse(jsonPayload);
 };
 
+function decrypt(param) {
+	console.log(param);
+}
+
 function hashPass() {
     var pass		= $('#password').val();
     var keycode     = CryptoJS.enc.Hex.parse(CryptoJS.SHA1(btoa(pass)).toString());
