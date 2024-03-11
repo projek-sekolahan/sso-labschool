@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use chriskacerguis\RestServer\RestController;
 
-class User extends RestController {
+class Pages extends RestController {
 	private $_master;
 	private $_AuthToken;
     private $_TokenKey;
