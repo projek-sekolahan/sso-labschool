@@ -51,18 +51,8 @@ class Pages extends RestController {
             if ($keterangan=='create_update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
             }
-            if ($keterangan=='profile' || $keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
-				$keterangan=='profile' ? $param = $this->_AuthToken->validateToken($this->input->post('param'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0])) : $param = $this->input->post('param');
-				is_object($param) ? $param = explode(":",base64_decode($param->authkey))[0] : $param = $param;
-				if (filter_var($param, FILTER_VALIDATE_EMAIL)) {
-					$paramdata = array(
-						'param' => $param,
-					);
-					$dataparam = array_merge($paramdata,$this->_paramToken);
-				}
-				else {
-					$this->eResponse();
-				}
+            if ($keterangan=='menu_akses') {
+				$dataparam = array_merge($this->input->post(),$this->_paramToken);
             }
             if ($keterangan=='table') {
                 $spolde = explode('-',$this->input->post('table'));

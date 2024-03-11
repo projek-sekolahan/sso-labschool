@@ -91,24 +91,20 @@ class Pages extends RestController {
 				$http       = RestController::HTTP_CREATED;
 				$output     = $output;
             }
-            if ($keterangan=='profile' ||$keterangan=='profile_pengguna' || $keterangan=='detail_pengguna') {
-                $sqluser    = "SELECT a.* from users_details a WHERE a.email='".$this->input->post('param')."'";
+            if ($keterangan=='menu_akses') {
+                $sqluser    = "SELECT a.* from pages a WHERE a.pages_id='".$this->input->post('param')."'";
 				$result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {
                     $http   = RestController::HTTP_BAD_REQUEST;
                     $output = array(
                         'title'     => 'Data Not Found',
-                        'message'   => 'Profile Not Found',
+                        'message'   => 'Pages Not Found',
                         'info'		=> 'error',
                         'location'	=> 'dashboard',
                     );
                 } else {
-					$sqluserimg = "SELECT a.* from users_img a WHERE a.nomor_induk='".$result->nomor_induk."'";
-					$resultimg  = $this->_master->get_custom_query($sqluserimg)->row();
-					$sqlusersosmed = "SELECT a.* from users_sosmed a WHERE a.user_id=".$result->user_id;
-					$resultsosmed  = $this->_master->get_custom_query($sqlusersosmed)->row();
                     $http       = RestController::HTTP_CREATED;
-                    $output     = array_merge($resultimg ? get_object_vars($resultimg) : [],$resultsosmed ? get_object_vars($resultsosmed): [],get_object_vars($result));
+                    $output     = get_object_vars($result);
                 }
             }
             if ($keterangan=='table') {
