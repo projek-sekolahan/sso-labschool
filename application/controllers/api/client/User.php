@@ -66,15 +66,15 @@ class User extends RestController {
 				}
             }
             if ($keterangan=='table') {
-                /* $spolde = explode('-',$this->input->post('table'));
+                $spolde = explode('-',$this->input->post('table'));
                 $table	= strtolower($spolde[1]);
-                $paramdata = array(
+                /* $paramdata = array(
                     'key'   => $this->input->post('key'),
                     'table' => $table,
                 );
                 $dataparam = array_merge($paramdata,$this->_paramToken); */
 				$key	= $this->input->post('key');
-                $table	= $this->input->post('table');
+                // $table	= $this->input->post('table');
                     $select = "a.*";
                     $column = "a.nomor_induk,a.nama_lengkap";
                     //WHERE
