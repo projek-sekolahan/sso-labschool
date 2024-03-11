@@ -103,24 +103,24 @@ $(document).on("click", ".btn-action", function (e) {
     else {
         if($(this).data("view")=="detail") {
             if ($(this).data("ket")=="edit") {
-                if (path[4]=="layar_kalender") {
+                /* if (path[4]=="layar_kalender") {
                     pageUrl = '/api/client/calendar/updateScreen';
                 }
                 if (path[4]=="bulan_kalender") {
                     pageUrl = '/api/client/calendar/updateMonth';
-                }
-                if (path[4]=="profile_pengguna") {
+                } */
+                /* if (path[4]=="profile_pengguna") {
                     pageUrl = '/api/client/user/profile_pengguna';
-                }
+                } */
 				/* if (path[4]=="detail_pengguna") {
                     pageUrl = '/api/client/user/detail_pengguna';
                 } */
-                action  = action+'_'+$(this).data("ket");
+                // action  = action+'_'+$(this).data("ket");
             }
             detail  = "Data "+path[4].replace('_',' ').replace('_',' ').replace(/\b\w/g, l => l.toUpperCase());
         }
         if($(this).data("view")=="form") {
-            if (path[4]=="layar_kalender") {
+            /* if (path[4]=="layar_kalender") {
                 pageUrl = '/api/client/calendar/createScreen';
             }
             if (path[4]=="bulan_kalender") {
@@ -128,7 +128,8 @@ $(document).on("click", ".btn-action", function (e) {
             }
             if (path[4]=="detail_pengguna") {
                 pageUrl = '/api/client/user/create';
-            }
+            } */
+
             detail  = "Form "+path[4].replace('_',' ').replace('_',' ').replace(/\b\w/g, l => l.toUpperCase());
         }
         $(".staticmodal").find(".modal-body").load(url + urloc, function (e) {
@@ -138,7 +139,7 @@ $(document).on("click", ".btn-action", function (e) {
             editorArea();
             dropFile();
             var form = $(".modal-body").find("form").attr("id");
-            $("#" + form).attr('action',pageUrl);
+            $("#" + form).attr('action',action);
             hari();
             jam();
             tanggal();
