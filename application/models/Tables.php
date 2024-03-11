@@ -28,7 +28,7 @@ class Tables extends CI_Model {
 		    foreach ($query->result() as $val) {
 		        if ($query_total->num_rows()>0) {
 					// data
-					if ($access=='pengguna') {
+					if ($tabID=='pengguna') {
 						$btn	=	$this->buttonTables($val->email,$access,null);
 					}
 					// Dapatkan array dari objek
