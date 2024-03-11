@@ -220,7 +220,8 @@ function decrypt(param) {
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
-	console.log('cipher '+cipher);
+	// return cipher.toString(CryptoJS.enc.Utf8);
+	console.log('cipher '+cipher.toString(CryptoJS.enc.Utf8));
 }
 
 function hashPass() {
