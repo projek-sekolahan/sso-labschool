@@ -95,11 +95,11 @@ class Pages extends RestController {
                 $sqluser    = "SELECT a.* from pages a WHERE a.pages_id='".$this->input->post('param')."'";
 				$result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {
-                    $http   = RestController::HTTP_BAD_REQUEST;
+                    $http   = RestController::HTTP_CREATED;
                     $output = array(
-                        'title'     => 'Data Not Found',
-                        'message'   => 'Pages Not Found',
-                        'info'		=> 'error',
+                        'title'     => 'New Pages Menu',
+                        'message'   => 'Pages Menu Created',
+                        'info'		=> 'success',
                         'location'	=> 'dashboard',
                     );
                 } else {
