@@ -11,7 +11,7 @@ class User extends RestController {
     private $_paramToken;
     function __construct() {
         parent::__construct();
-		$this->load->model(['Tables','UploadFile']);
+		// $this->load->model(['Tables','UploadFile']);
         $this->_clientAPI   = new ClientAPI();
         $this->_AuthToken   = new AuthToken();
         $this->_AuthCheck   = new AuthCheck();
@@ -68,12 +68,13 @@ class User extends RestController {
             if ($keterangan=='table') {
                 $spolde = explode('-',$this->input->post('table'));
                 $table	= strtolower($spolde[1]);
-                /* $paramdata = array(
+                $paramdata = array(
                     'key'   => $this->input->post('key'),
                     'table' => $table,
                 );
-                $dataparam = array_merge($paramdata,$this->_paramToken); */
-				$key	= $this->input->post('key');
+                $dataparam = array_merge($paramdata,$this->_paramToken);
+
+				/* $key	= $this->input->post('key');
                 // $table	= $this->input->post('table');
                     $select = "a.*";
                     $column = "a.nomor_induk,a.nama_lengkap";
@@ -104,7 +105,7 @@ class User extends RestController {
                 $createTables   =   $this->Tables->detailTables($select,$table,$limit,$where_like,$order,$join,$where,$where2,$group_by,$key);
                 var_dump($createTables); return false;
 				$http   = RestController::HTTP_CREATED;
-                $output = $createTables;
+                $output = $createTables; */
             }
 			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
             $dtAPI	= json_decode($result->getBody()->getContents(),true);
