@@ -51,7 +51,7 @@ class User extends RestController {
             if ($keterangan=='create_update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
             }
-            if ($keterangan=='profile' || $keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
+            if ($keterangan=='profile' || $keterangan=='profile_pengguna' || $keterangan=='detail_pengguna') {
 				$keterangan=='profile' ? $param = $this->_AuthToken->validateToken($this->input->post('param'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0])) : $param = $this->input->post('param');
 				is_object($param) ? $param = explode(":",base64_decode($param->authkey))[0] : $param = $param;
 				if (filter_var($param, FILTER_VALIDATE_EMAIL)) {

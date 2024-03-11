@@ -91,7 +91,7 @@ class User extends RestController {
 				$http       = RestController::HTTP_CREATED;
 				$output     = $output;
             }
-            if ($keterangan=='profile' ||$keterangan=='profile_pengguna' || $keterangan=='detail_pengguna_edit') {
+            if ($keterangan=='profile' ||$keterangan=='profile_pengguna' || $keterangan=='detail_pengguna') {
                 $sqluser    = "SELECT a.* from users_details a WHERE a.email='".$this->input->post('param')."'";
 				$result     = $this->_master->get_custom_query($sqluser)->row();
                 if ($result==null) {
