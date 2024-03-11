@@ -114,7 +114,7 @@ class User extends RestController {
             if ($keterangan=='table') {
                 $key	= $this->input->post('key');
                 $table	= $this->input->post('table');
-                    $select = "a.nomor_induk,a.nama_lengkap,a.email,a.phone";
+                    $select = "a.nama_lengkap,a.email,a.phone";
                     $column = "a.nomor_induk,a.nama_lengkap";
                     //WHERE
                     $where	= null;
