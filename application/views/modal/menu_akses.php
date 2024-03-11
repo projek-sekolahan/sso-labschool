@@ -58,15 +58,15 @@
 								<input
 									class="form-check-input"
 									type="checkbox"
-									id="isChild"
-									name="isChild">
+									id="is_child"
+									name="is_child">
 									<label class="form-check-label" for="isChild">isChildMenu</label>
 							</div>
 						</div>
 						<div class="col-6">
 							<select
-								name="is_parent"
-								id="is_parent"
+								name="menu_groupid"
+								id="menu_groupid"
 								class="form-control"
 								required="required">
 								<option value="">Pilih Pages Parent</option>
