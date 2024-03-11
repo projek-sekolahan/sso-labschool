@@ -51,8 +51,8 @@ class AuthToken extends CI_Model {
 
 	public static function decrypt($value, $key, $iv)
 	{
-		$value = base64_decode($value);
-		$data = openssl_decrypt($value, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+		$value	= base64_decode($value);
+		$data	= openssl_decrypt($value, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, hex2bin($iv));
 		return $data;
 	}
 
