@@ -222,7 +222,7 @@ function decrypt(param) {
     });
 	var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
 	// return cipher.toString(CryptoJS.enc.Utf8);
-	console.log('decryptedText '+JSON.parse(decryptedText));
+	console.log('decryptedText ',JSON.parse(decryptedText));
 }
 
 function hashPass() {
