@@ -15,21 +15,21 @@
 						<div class="col-4">
 							<div class="mb-3">
 								<label for="nama_menu" class="control-label">Name Pages</label>
-								<input id="nama_menu" name="nama_menu" type="text" class="form-control" placeholder="Nama Menu" readonly required>
+								<input id="nama_menu" name="nama_menu" type="text" class="form-control" placeholder="Nama Menu" required>
 								<div class="invalid-feedback">Name Pages Tidak Boleh Kosong.</div>
 							</div>
 						</div>
 						<div class="col-4">
 							<div class="mb-3">
 								<label for="title" class="control-label">Sub Pages</label>
-								<input id="title" name="title" type="text" class="form-control" placeholder="Sub Menu" readonly required>
+								<input id="title" name="title" type="text" class="form-control" placeholder="Sub Menu" required>
 								<div class="invalid-feedback">Sub Pages Tidak Boleh Kosong.</div>
 							</div>
 						</div>
 						<div class="col-4">
 							<div class="mb-3">
 								<label for="url" class="control-label">Url Input</label>
-								<input id="url" name="url" type="text" class="form-control" placeholder="URL Input" readonly required>
+								<input id="url" name="url" type="text" class="form-control" placeholder="URL Input" required>
 								<div class="invalid-feedback">URL Input Tidak Boleh Kosong.</div>
 							</div>
 						</div>
@@ -86,7 +86,7 @@
 						<div class="col-6">
 							<div class="mb-3">
 								<label for="icon" class="control-label">Icon Pages</label>
-								<input id="icon" name="icon" type="text" class="form-control" placeholder="icon Input" readonly required>
+								<input id="icon" name="icon" type="text" class="form-control" placeholder="icon Input" required>
 								<div class="invalid-feedback">icon Input Tidak Boleh Kosong.</div>
 							</div>
 						</div>
