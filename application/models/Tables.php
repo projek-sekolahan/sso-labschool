@@ -110,14 +110,12 @@ class Tables extends CI_Model {
 	}
 
 	function buttonTables($paramID,$action,$status) {
-		if ($action=='pengguna') {
-			$btndet = '
+		$btndet = '
 			<a type="button" tabindex="0" class="dropdown-item text-info btn-action" data-view="detail" data-action="'.$action.'" data-param="'.$paramID.'">
 				<i class="align-middle mdi mdi-account-details font-size-18"></i> <span>Detail</span>
 			</a>';
 			$btn1	= $btndet;
 			$btn2 = '';
-		}
 		$button = 
 		'<div class="btn-group" role="group">
 			<button type="button" class="btn btn-primary text-center">Pilih</button>
