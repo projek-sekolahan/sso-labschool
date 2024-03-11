@@ -29,10 +29,19 @@ class User extends RestController {
             $output = $dtAPI['data'];
         } else {
 			$decode = $this->_AuthToken->validateTimestamp($this->_paramToken['token'],$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]]);
-			var_dump($decode); return false;
-			$encrypted	= $this->_AuthToken->encrypt($tokenJWT,$decode->apikey,$this->input->post('AUTH_KEY'));
-            $http       = RestController::HTTP_CREATED;
-            $output = $this->_AuthToken->generateToken($dtAPI['data'],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
+			if (is_object($decode)) {
+				if ($decode != false && (now() < $decode->expired)) {
+					$encrypted	= $this->_AuthToken->encrypt($dtAPI['data'],$decode->apikey,$decode->session_hash);
+					$http       = RestController::HTTP_CREATED;
+					$output = $this->_AuthToken->generateToken($encrypted,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
+				}
+				else {
+					return $this->eResponse();
+				}
+			}
+			else {
+				return $this->eResponse();
+			}
         }
         return $this->response($this->_AuthCheck->response($output),$http);
     }
