@@ -61,6 +61,7 @@ function dataLoad(t,s) {
             swalMsg(t.data.title, t.data.message, t.data.info, t.data.location);
         } else {
             var hasil = parseJwt(t.data);
+			hasil = decrypt(hasil);
             swalMsg(hasil.title, hasil.message, hasil.info, hasil.location);
         }
     }
