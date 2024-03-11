@@ -9,7 +9,7 @@ class Tables extends CI_Model {
 			$table	= 'users_details a';
 		}
 		if ($tabID=='pages') {
-			$access = '/api/client/pages/';
+			$access = '/api/client/pages/menu_akses';
 			$table	= 'pages a';
 		}
 		/* if ($tabID=='splash_screen') {
