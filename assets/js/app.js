@@ -214,9 +214,9 @@ function decrypt(param) {
 	console.log('byteArray '+byteArray);
 	var DataVector	= CryptoJS.lib.WordArray.create(byteArray.words.slice(0, 16/4));
 	console.log('DataVector '+DataVector);
-	var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
-	console.log('DataEncrypt '+DataEncrypt);
-	var decrypted	= CryptoJS.AES.decrypt(DataEncrypt, DataKey, { iv: DataVector });        
+	// var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
+	// console.log('DataEncrypt '+DataEncrypt);
+	var decrypted	= CryptoJS.AES.decrypt(param.data, DataKey, { iv: DataVector });        
 	var decrypted	= CryptoJS.enc.Utf8.stringify(decrypted);
 	console.log('decrypted '+decrypted);
 }
