@@ -114,8 +114,8 @@ class Pages extends RestController {
             if ($keterangan=='table') {
                 $key	= $this->input->post('key');
                 $table	= $this->input->post('table');
-                    $select = "a.*";
-                    $column = "a.name,a.title";
+				$select = "a.nama_menu,a.title,a.url,a.tipe_site,a.id";
+				$column = "a.nama_menu,a.title";
                     //WHERE
                     $where	= null;
                     //where2 
