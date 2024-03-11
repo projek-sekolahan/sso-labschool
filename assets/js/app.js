@@ -205,7 +205,16 @@ function parseJwt(token) {
 };
 
 function decrypt(param) {
-	console.log(param);
+	console.log(param.data);
+	var decodeToken	= parseJwt(localStorage.getItem('token'));
+	var DataKey		= CryptoJS.enc.Hex.parse(decodeToken.key);
+	var byteArray	= CryptoJS.enc.Hex.parse(decodeToken.session_hash);
+	var DataVector	= CryptoJS.lib.WordArray.create(byteArray.words.slice(0, 16/4));
+	console.log('DataVector '+DataVector);
+	var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
+	var decrypted	= CryptoJS.AES.decrypt(DataEncrypt, DataKey, { iv: DataVector });        
+	var decrypted	= CryptoJS.enc.Utf8.stringify(decrypted);
+	console.log('decrypted '+decrypted);
 }
 
 function hashPass() {
