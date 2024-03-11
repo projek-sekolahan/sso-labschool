@@ -212,15 +212,17 @@ function decrypt(param) {
 	console.log('DataKey '+DataKey);
 	var byteArray	= CryptoJS.enc.Hex.parse(decodeToken.session_hash);
 	// var DataVector	= CryptoJS.enc.Hex.parse(decodeToken.session_hash.substr(0, 32));
-	// console.log('byteArray '+byteArray);
+	console.log('byteArray '+byteArray);
 	var DataVector	= CryptoJS.lib.WordArray.create(byteArray.words.slice(0, 16/4));
 	console.log('DataVector '+DataVector);
-	// var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
-	// console.log('DataEncrypt '+DataEncrypt);
-	var decryptedData	= CryptoJS.AES.decrypt(param.data, DataKey, { iv: DataVector,  mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });        
-	// var decrypted	= CryptoJS.enc.Utf8.stringify(decrypted);
-	var decryptedText	= decryptedData.toString(CryptoJS.enc.Utf8);
-	console.log('decrypted '+decryptedText);
+	var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
+	console.log('DataEncrypt '+DataEncrypt);
+	var decrypted	= CryptoJS.enc.Utf8.stringify(DataEncrypt);
+	console.log('decrypted '+decrypted);
+	var decryptedData	= CryptoJS.AES.decrypt(decrypted, DataKey, { iv: DataVector,  mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });        
+	console.log('decryptedData '+decryptedData);
+	// var decryptedText	= decryptedData.toString(CryptoJS.enc.Utf8);
+	// console.log('decrypted '+decryptedText);
 }
 
 function hashPass() {
