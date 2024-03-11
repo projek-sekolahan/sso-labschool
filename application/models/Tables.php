@@ -9,7 +9,7 @@ class Tables extends CI_Model {
 			$table	= 'users_details a';
 		}
 		if ($tabID=='pages') {
-			$access = 'pages';
+			$access = '/api/client/pages/';
 			$table	= 'pages a';
 		}
 		/* if ($tabID=='splash_screen') {
@@ -31,6 +31,9 @@ class Tables extends CI_Model {
 					// data
 					if ($tabID=='pengguna') {
 						$btn	=	$this->buttonTables($val->email,$access,null);
+					}
+					if ($tabID=='pages') {
+						$btn	=	$this->buttonTables($val->id,$access,null);
 					}
 					// Dapatkan array dari objek
 					$valArray = (array) $val;
