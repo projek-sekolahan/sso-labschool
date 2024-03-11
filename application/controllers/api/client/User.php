@@ -31,8 +31,8 @@ class User extends RestController {
 			$decode = $this->_AuthToken->validateTimestamp($this->_paramToken['token'],$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]]);
 			if (is_object($decode)) {
 				if ($decode != false && (now() > $decode->expired)) {
-					// var_dump(); return false;
 					$encrypted	= $this->_AuthToken->encrypt(json_encode($dtAPI['data']),$decode->apikey,hex2bin(substr($decode->session_hash,0,32)));
+					var_dump($encrypted); return false;
 					$http       = RestController::HTTP_CREATED;
 					$output = $this->_AuthToken->generateToken($encrypted,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
 				}
