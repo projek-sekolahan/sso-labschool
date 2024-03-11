@@ -210,10 +210,10 @@ function decrypt(param) {
 	console.log('decodeToken',decodeToken);
 	var DataKey		= CryptoJS.enc.Hex.parse(decodeToken.apikey);
 	console.log('DataKey '+DataKey);
-	// var byteArray	= CryptoJS.enc.Hex.parse(decodeToken.session_hash);
-	var DataVector	= CryptoJS.enc.Hex.parse(decodeToken.session_hash.substr(0, 32));
+	var byteArray	= CryptoJS.enc.Hex.parse(decodeToken.session_hash);
+	// var DataVector	= CryptoJS.enc.Hex.parse(decodeToken.session_hash.substr(0, 32));
 	// console.log('byteArray '+byteArray);
-	// var DataVector	= CryptoJS.lib.WordArray.create(byteArray.words.slice(0, 16/4));
+	var DataVector	= CryptoJS.lib.WordArray.create(byteArray.words.slice(0, 16/4));
 	console.log('DataVector '+DataVector);
 	// var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
 	// console.log('DataEncrypt '+DataEncrypt);
