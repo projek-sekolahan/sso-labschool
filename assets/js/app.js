@@ -205,7 +205,6 @@ function parseJwt(token) {
 };
 
 function decrypt(param) {
-	
 	var decodeToken	= parseJwt(localStorage.getItem('token'));
 	console.log('decodeToken',decodeToken);
 	const keyHex	= CryptoJS.SHA256(decodeToken.apikey).toString().substring(0,32);
@@ -216,6 +215,12 @@ function decrypt(param) {
 	console.log('ivHex '+ivHex);
 	console.log('key '+key);
 	console.log('iv '+iv);
+	let cipher = CryptoJS.AES.decrypt(atob(param.data), key, {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
+	console.log('cipher '+cipher);
 }
 
 function hashPass() {
