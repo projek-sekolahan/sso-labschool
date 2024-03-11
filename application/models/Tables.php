@@ -48,7 +48,7 @@ class Tables extends CI_Model {
 						$modifiedKey = ucwords(str_replace('_',' ',$key)?? '---');
 
 						// Ubah nilai menjadi capitalize
-						$modifiedValue = ucwords($value);
+						$modifiedValue = ucwords($value?? '---');
 
 						// Tambahkan ke array baru
 						$response['data'][$modifiedKey] = $modifiedValue;
