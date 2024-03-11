@@ -218,9 +218,9 @@ function decrypt(param) {
 	// var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
 	var DataEncrypt	= atob(param.data);
 	console.log('DataEncrypt '+DataEncrypt);
-	var decrypted	= CryptoJS.enc.Utf8.stringify(DataEncrypt);
-	console.log('decrypted '+decrypted);
-	var decryptedData	= CryptoJS.AES.decrypt(decrypted, DataKey, { iv: DataVector,  mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });        
+	// var decrypted	= CryptoJS.enc.Utf8.stringify(DataEncrypt);
+	// console.log('decrypted '+decrypted);
+	var decryptedData	= CryptoJS.AES.decrypt(DataEncrypt, DataKey, { iv: DataVector,  mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });        
 	console.log('decryptedData '+decryptedData);
 	// var decryptedText	= decryptedData.toString(CryptoJS.enc.Utf8);
 	// console.log('decrypted '+decryptedText);
