@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-outline-warning waves-effect waves-light mb-2 me-2 btn-sm btn-action" id="btn-editProfile" data-view="detail" data-ket="edit">
+                        <button type="button" class="btn btn-outline-warning waves-effect waves-light mb-2 me-2 btn-sm btn-action" id="btn-editProfile" data-view="detail">
                             <i class="align-middle mdi mdi-pencil-box font-size-18"></i> <span>Edit</span>
                         </button>
                     </div>
