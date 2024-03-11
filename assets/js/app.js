@@ -207,7 +207,7 @@ function parseJwt(token) {
 function decrypt(param) {
 	
 	var decodeToken	= parseJwt(localStorage.getItem('token'));
-	console.log('decodeToken '+decodeToken);
+	console.log('decodeToken',decodeToken);
 	var DataKey		= CryptoJS.enc.Hex.parse(decodeToken.apikey);
 	console.log('DataKey '+DataKey);
 	var byteArray	= CryptoJS.enc.Hex.parse(decodeToken.session_hash);
@@ -215,6 +215,7 @@ function decrypt(param) {
 	var DataVector	= CryptoJS.lib.WordArray.create(byteArray.words.slice(0, 16/4));
 	console.log('DataVector '+DataVector);
 	var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
+	console.log('DataEncrypt '+DataEncrypt);
 	var decrypted	= CryptoJS.AES.decrypt(DataEncrypt, DataKey, { iv: DataVector });        
 	var decrypted	= CryptoJS.enc.Utf8.stringify(decrypted);
 	console.log('decrypted '+decrypted);
