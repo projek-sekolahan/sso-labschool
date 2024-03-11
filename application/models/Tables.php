@@ -41,7 +41,7 @@ class Tables extends CI_Model {
 					// Dapatkan array dari objek
 					$valArray = (array) $val;
 					// Buat array baru untuk menyimpan data yang sudah dimodifikasi
-					$response['data'][]= array();
+    				$modifiedArray = [];
 					// Iterasi melalui setiap elemen array
 					foreach ($valArray as $key => $value) {
 						// Ubah kunci menjadi capitalize
@@ -51,11 +51,12 @@ class Tables extends CI_Model {
 						$modifiedValue = ucwords($value?? '---');
 
 						// Tambahkan ke array baru
-						$response['data'][$modifiedKey] = $modifiedValue;
+						$modifiedArray[$modifiedKey] = $modifiedValue;
 					}
 
 					// Menambahkan kunci dan nilai baru
-					$response['data']['Action'] = $btn;
+					$modifiedArray['Action'] = $btn;
+					$response['data'][] = $modifiedArray;
 					/* if ($access=='calendars_month') {
 						$btn	=	$this->buttonTables($val->idtab,$access,null);
         			    $response['data'][] = array(
