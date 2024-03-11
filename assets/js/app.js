@@ -208,23 +208,14 @@ function decrypt(param) {
 	
 	var decodeToken	= parseJwt(localStorage.getItem('token'));
 	console.log('decodeToken',decodeToken);
-	var DataKey		= CryptoJS.enc.Hex.parse(decodeToken.apikey);
-	console.log('DataKey '+DataKey);
-	
-	var DataVector	= CryptoJS.enc.Hex.parse(decodeToken.session_hash.substr(0, 32));
-	// var byteArray	= CryptoJS.enc.Hex.parse(decodeToken.session_hash);
-	// console.log('byteArray '+byteArray);
-	// var DataVector	= CryptoJS.lib.WordArray.create(byteArray.words.slice(0, 16/4));
-	console.log('DataVector '+DataVector);
-	// var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
-	var DataEncrypt	= atob(param.data);
-	console.log('DataEncrypt '+DataEncrypt);
-	// var decrypted	= CryptoJS.enc.Utf8.stringify(DataEncrypt);
-	// console.log('decrypted '+decrypted);
-	var decryptedData	= CryptoJS.AES.decrypt(DataEncrypt, DataKey, { iv: DataVector,  mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });        
-	console.log('decryptedData '+decryptedData);
-	// var decryptedText	= decryptedData.toString(CryptoJS.enc.Utf8);
-	// console.log('decrypted '+decryptedText);
+	const keyHex	= CryptoJS.SHA256(decodeToken.apikey).toString().substring(0,32);
+	const ivHex		= CryptoJS.SHA256(decodeToken.session_hash).toString().substring(0, 16);
+	const key		= CryptoJS.enc.Utf8.parse(keyHex);
+	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
+	console.log('keyHex '+keyHex);
+	console.log('ivHex '+ivHex);
+	console.log('key '+key);
+	console.log('iv '+iv);
 }
 
 function hashPass() {
