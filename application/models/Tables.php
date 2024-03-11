@@ -5,7 +5,7 @@ class Tables extends CI_Model {
 	function detailTables($select,$tabID,$limit,$like,$order,$join,$where,$where2,$group_by,$key) {
  		$columns = array();
 		if ($tabID=='pengguna') {
-			$access = 'pengguna';
+			$access = '/api/client/user/profile_pengguna';
 			$table	= 'users_details a';
 		}
 		if ($tabID=='pages') {
@@ -30,13 +30,6 @@ class Tables extends CI_Model {
 					// data
 					if ($access=='pengguna') {
 						$btn	=	$this->buttonTables($val->email,$access,null);
-        			    /* $response['data'][] = array(
-                            '#'             =>  $no++,
-							'Nomor Induk'	=>  ucwords($val->nomor_induk ?? '---'),
-							'Nama'          =>  ucwords($val->nama_lengkap ?? '---'),
-							'Bidang'		=>  ucwords($val->bagian_divisi ?? '---'),
-							'Action'		=>	$btn
-        				); */
 					}
 					// Dapatkan array dari objek
 					$valArray = (array) $val;
@@ -46,14 +39,11 @@ class Tables extends CI_Model {
 					foreach ($valArray as $key => $value) {
 						// Ubah kunci menjadi capitalize
 						$modifiedKey = ucwords(str_replace('_',' ',$key)?? '---');
-
 						// Ubah nilai menjadi capitalize
 						$modifiedValue = ucwords($value?? '---');
-
 						// Tambahkan ke array baru
 						$modifiedArray[$modifiedKey] = $modifiedValue;
 					}
-
 					// Menambahkan kunci dan nilai baru
 					$modifiedArray['Action'] = $btn;
 					$response['data'][] = $modifiedArray;
@@ -122,33 +112,11 @@ class Tables extends CI_Model {
 	function buttonTables($paramID,$action,$status) {
 		if ($action=='pengguna') {
 			$btndet = '
-			<a type="button" tabindex="0" class="dropdown-item text-info btn-action" data-view="detail" data-action="/api/client/user/profile_'.$action.'" data-param="'.$paramID.'">
+			<a type="button" tabindex="0" class="dropdown-item text-info btn-action" data-view="detail" data-action="'.$action.'" data-param="'.$paramID.'">
 				<i class="align-middle mdi mdi-account-details font-size-18"></i> <span>Detail</span>
 			</a>';
 			$btn1	= $btndet;
 			$btn2 = '';
-		}
-		if ($action=='splash_screen') {
-			$btndet = '
-			<a type="button" tabindex="0" class="dropdown-item text-warning btn-action" data-view="detail" data-action="/api/client/calendar/layar_kalender" data-ket="edit" data-param="'.$paramID.'">
-				<i class="align-middle mdi mdi-pencil-box font-size-18"></i> <span>Edit</span>
-			</a>';
-			$btn1	= $btndet;
-			$btn2 = '
-			<a type="button" tabindex="0" class="dropdown-item text-danger btn-action" data-view="delete" data-action="/api/client/calendar/layar_kalender" data-ket="delete" data-param="'.$paramID.'">
-				<i class="align-middle mdi mdi-delete-forever font-size-18"></i> <span>Delete</span>
-			</a>';
-		}
-		if ($action=='calendars_month') {
-			$btndet = '
-			<a type="button" tabindex="0" class="dropdown-item text-warning btn-action" data-view="detail" data-action="/api/client/calendar/bulan_kalender" data-ket="edit" data-param="'.$paramID.'">
-				<i class="align-middle mdi mdi-pencil-box font-size-18"></i> <span>Edit</span>
-			</a>';
-			$btn1	= $btndet;
-			$btn2 = '
-			<a type="button" tabindex="0" class="dropdown-item text-danger btn-action" data-view="delete" data-action="/api/client/calendar/bulan_kalender" data-ket="delete" data-param="'.$paramID.'">
-				<i class="align-middle mdi mdi-delete-forever font-size-18"></i> <span>Delete</span>
-			</a>';
 		}
 		$button = 
 		'<div class="btn-group" role="group">
