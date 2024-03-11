@@ -217,9 +217,10 @@ function decrypt(param) {
 	console.log('DataVector '+DataVector);
 	// var DataEncrypt	= CryptoJS.enc.Base64.parse(param.data);
 	// console.log('DataEncrypt '+DataEncrypt);
-	var decrypted	= CryptoJS.AES.decrypt(param.data, DataKey, { iv: DataVector,  mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });        
+	var decryptedData	= CryptoJS.AES.decrypt(param.data, DataKey, { iv: DataVector,  mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });        
 	// var decrypted	= CryptoJS.enc.Utf8.stringify(decrypted);
-	console.log('decrypted '+decrypted);
+	var decryptedText	= decryptedData.toString(CryptoJS.enc.Utf8);
+	console.log('decrypted '+decryptedText);
 }
 
 function hashPass() {
