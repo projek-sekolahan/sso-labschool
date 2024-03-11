@@ -45,8 +45,9 @@ class Tables extends CI_Model {
 						// Tambahkan ke array baru
 						$modifiedArray[$modifiedKey] = $modifiedValue;
 					}
-					// Menambahkan kunci dan nilai baru
-					array_unshift($modifiedArray, array('No'=>$no++));
+					// Menambahkan kunci dan nilai baru di awal array
+    				$modifiedArray = array_merge(['No' => $no++], $modifiedArray);
+					// Menambahkan kunci dan nilai baru di akhir array
 					$modifiedArray['Action'] = $btn;
 					$response['data'][] = $modifiedArray;
 					if ($response['data']!="" || $response['data']!=null) {
