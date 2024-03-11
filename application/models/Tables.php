@@ -45,7 +45,7 @@ class Tables extends CI_Model {
 					// Iterasi melalui setiap elemen array
 					foreach ($valArray as $key => $value) {
 						// Ubah kunci menjadi capitalize
-						$modifiedKey = ucwords(str_replace('_', ' ', $key));
+						$modifiedKey = ucwords(str_replace('_',' ',$key)?? '---');
 
 						// Ubah nilai menjadi capitalize
 						$modifiedValue = ucwords($value);
