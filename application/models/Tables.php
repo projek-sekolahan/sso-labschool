@@ -46,10 +46,9 @@ class Tables extends CI_Model {
 						$modifiedArray[$modifiedKey] = $modifiedValue;
 					}
 					// Menambahkan kunci dan nilai baru
-					$modifiedArray['No'] = $no++;
+					array_unshift($modifiedArray, ['No' => $no++]);
 					$modifiedArray['Action'] = $btn;
-					array_unshift($response['data'], $modifiedArray);
-					// $response['data'][] = $modifiedArray;
+					$response['data'][] = $modifiedArray;
 					if ($response['data']!="" || $response['data']!=null) {
 					// coloumn
 						foreach($response['data'][0] as $column=>$relativeValue) {
