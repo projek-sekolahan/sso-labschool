@@ -28,8 +28,20 @@ class Pages extends RestController {
             $http   = RestController::HTTP_BAD_REQUEST;
             $output = $dtAPI['data'];
         } else {
-            $http       = RestController::HTTP_CREATED;
-            $output = $this->_AuthToken->generateToken($dtAPI['data'],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
+			$decode = $this->_AuthToken->validateTimestamp($this->_paramToken['token'],$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]]);
+			if (is_object($decode)) {
+				if ($decode != false && (now() > $decode->expired)) {
+					$encrypted	= $this->_AuthToken->encrypt(json_encode($dtAPI['data']),hash('sha256', $decode->apikey),substr(hash('sha256', $decode->session_hash), 0, 16));
+					$http       = RestController::HTTP_CREATED;
+					$output = $this->_AuthToken->generateToken(['data'=>$encrypted],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
+				}
+				else {
+					return $this->eResponse();
+				}
+			}
+			else {
+				return $this->eResponse();
+			}
         }
         return $this->response($this->_AuthCheck->response($output),$http);
     }
