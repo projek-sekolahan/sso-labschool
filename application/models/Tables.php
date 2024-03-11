@@ -25,6 +25,7 @@ class Tables extends CI_Model {
 		$query        = $this->Master->select($select,$table,$limit,$like,$order,$join,$where,$where2,$group_by);
 		if ($query<>false) {
 			$no		= $limit['start']+1;
+			$response['data'] = [];
 		    foreach ($query->result() as $val) {
 		        if ($query_total->num_rows()>0) {
 					// data
@@ -45,35 +46,10 @@ class Tables extends CI_Model {
 						$modifiedArray[$modifiedKey] = $modifiedValue;
 					}
 					// Menambahkan kunci dan nilai baru
+					$modifiedArray['No'] = $no++;
 					$modifiedArray['Action'] = $btn;
-					$response['data'][] = $modifiedArray;
-					/* if ($access=='calendars_month') {
-						$btn	=	$this->buttonTables($val->idtab,$access,null);
-        			    $response['data'][] = array(
-                            '#'				=>  $no++,
-							'Foto'			=>  '<img src="'.$val->img.'" alt="" class="rounded float-start" width="50%">',
-							'Bulan'			=>	$val->month_name,
-							'Judul Cerita'	=>	ucwords($val->article),
-							'Download QR'	=>  '<a href="'.$val->link_qr.'" class="link-info" download>Download link</a>',
-							'Action'		=>	$btn
-        				);
-					}
-					if ($access=='splash_screen') {
-						$btn	=	$this->buttonTables($val->idtab,$access,null);
-						if($val->is_active==1) {
-							$ket = 'Activated';
-							$txt = 'text-success';
-						} else {
-							$ket = 'Not Activated';
-							$txt = 'text-danger';
-						}
-        			    $response['data'][] = array(
-                            '#'				=>  $no++,
-							'Foto'			=>  '<img src="'.$val->img.'" alt="" class="rounded" width="30%">',
-							'Aktif'			=>	'<h5 class="'.$txt.'">'.$ket.'</h5>',
-							'Action'		=>	$btn
-        				);
-					} */
+					array_unshift($response['data'], $modifiedArray);
+					// $response['data'][] = $modifiedArray;
 					if ($response['data']!="" || $response['data']!=null) {
 					// coloumn
 						foreach($response['data'][0] as $column=>$relativeValue) {
@@ -103,7 +79,6 @@ class Tables extends CI_Model {
 		if ($query_filter<>false) {
 			$response['recordsFiltered']= $query_filter->num_rows();
 		}
-		// $response['check_query']		= $this->db->last_query();
 		$response['csrfHash']           = $this->security->get_csrf_hash();
 		$response['message']            = 'Success Created Data';
 	    return $response;
