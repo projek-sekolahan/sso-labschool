@@ -59,8 +59,7 @@
 									class="form-check-input"
 									type="checkbox"
 									id="isChild"
-									name="isChild"
-									checked="checked">
+									name="isChild">
 									<label class="form-check-label" for="isChild">isChildMenu</label>
 							</div>
 						</div>
@@ -80,8 +79,7 @@
 									class="form-check-input"
 									type="checkbox"
 									id="is_execute"
-									name="is_execute"
-									checked="checked">
+									name="is_execute">
 									<label class="form-check-label" for="is_execute">isActive</label>
 							</div>
 						</div>
