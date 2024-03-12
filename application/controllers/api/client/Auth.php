@@ -15,6 +15,7 @@ class Auth extends RestController {
     function __construct() {
         parent::__construct();
         $this->load->library(['api_auth']);
+		$this->load->helper('cookie');
         $this->_clientAPI	= new ClientAPI();
         $this->_AuthToken	= new AuthToken();
         $this->_AuthCheck	= new AuthCheck();
