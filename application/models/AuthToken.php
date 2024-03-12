@@ -12,7 +12,7 @@ class AuthToken extends CI_Model {
             $token	= $this->validateToken($token,$key);
             return $token;
         } else {
-			var_dump($token,$key);
+			// var_dump($token,$key);
             $token = $this->validateToken($token,$key);
 			var_dump(is_object($token));
             if (is_object($token)) {
