@@ -7,7 +7,7 @@ Contact: themesbrand@gmail.com
 File: Main Js File
 */
 
-var url,path,urloc,action,dataParam,param,auth,key,configmsg,title,message,icon,detail,csrf_token,page,pageUrl,calendar,
+var url,path,urloc,action,dataParam,param,auth,key,keyEnkrip,ivEnkrip,configmsg,title,message,icon,detail,csrf_token,page,pageUrl,calendar,
 interval,authkey,tokenkey,options,button,keyname = window.location.host.split(".")[0],lebarDevice = $(window).width();
 
 Dropzone.autoDiscover = false;
@@ -196,20 +196,17 @@ function initActiveMenu(pageUrl) {
 }
 
 function parseJwt(token) {
-	console.log(localStorage.getItem('token')==token); return false;
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-	// return JSON.parse(jsonPayload);
-	return decrypt(JSON.parse(jsonPayload).data);
-	/* if (token==localStorage.getItem('token')) { 
-		return decrypt(JSON.parse(jsonPayload).data);
+	if (token==localStorage.getItem('token')) { 
+		return decrypt(JSON.parse(jsonPayload),'fromToken');
 	} else {
 		return JSON.parse(jsonPayload);
 	}
-	const keyHex	= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0,32);
+	/* const keyHex	= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0,32);
 	const ivHex		= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0, 16);
 	const key		= CryptoJS.enc.Utf8.parse(keyHex);
 	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
@@ -224,11 +221,17 @@ function parseJwt(token) {
     
 };
 
-function decrypt(param) {
-	console.log(param); return false;
-	var decodeToken	= parseJwt(localStorage.getItem('token'));
-	const keyHex	= CryptoJS.SHA256(decodeToken.apikey).toString().substring(0,32);
-	const ivHex		= CryptoJS.SHA256(decodeToken.session_hash).toString().substring(0, 16);
+function decrypt(param,from) {
+	if (from=="fromToken") {
+		keyEnkrip	= window.location.host.split(".")[1];
+		ivEnkrip	= window.location.host.split(".")[1];
+	} else {
+		var decodeToken	= parseJwt(localStorage.getItem('token'));
+		keyEnkrip	= decodeToken.apikey;
+		ivEnkrip	= decodeToken.session_hash;
+	}
+	const keyHex	= CryptoJS.SHA256(keyEnkrip).toString().substring(0,32);
+	const ivHex		= CryptoJS.SHA256(ivEnkrip).toString().substring(0, 16);
 	const key		= CryptoJS.enc.Utf8.parse(keyHex);
 	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
 	let cipher = CryptoJS.AES.decrypt(atob(param.data), key, {
@@ -237,6 +240,7 @@ function decrypt(param) {
         padding: CryptoJS.pad.Pkcs7
     });
 	var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
+	console.log("cipher decryptedText",decryptedText); return false;
 	return JSON.parse(decryptedText);
 }
 
