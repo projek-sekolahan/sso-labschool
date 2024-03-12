@@ -17,12 +17,6 @@ class AuthToken extends CI_Model {
                 if ($token != false && (now() < isset($token->expired))) {
                     return $token;
                 } else {
-					var_dump(
-						$this->decrypt(
-							$token->data,
-							hash('sha256',explode('.',$_SERVER['HTTP_HOST'])[1]),
-							substr(hash('sha256',explode('.',$_SERVER['HTTP_HOST'])[1]), 0, 16)
-						));
 					return $this->generateToken(
 						$this->decrypt(
 							$token->data,
