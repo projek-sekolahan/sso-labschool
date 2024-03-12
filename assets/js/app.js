@@ -224,11 +224,18 @@ function parseJwt(token) {
 	var encryptedDataHex = CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data);
 	let cipher = CryptoJS.AES.decrypt({
 		ciphertext: encryptedDataHex
+	}, key, {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
+	/* let cipher = CryptoJS.AES.decrypt({
+		ciphertext: encryptedDataHex
 	}, CryptoJS.enc.Hex.parse(key), {
         iv: CryptoJS.enc.Hex.parse(iv),
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
-    });
+    }); */
 	// var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
 	console.log("cipher decryptedText",cipher.toString(CryptoJS.enc.Utf8))
     // return JSON.parse(jsonPayload);
