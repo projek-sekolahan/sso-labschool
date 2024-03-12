@@ -28,6 +28,7 @@ class User extends RestController {
             $http   = RestController::HTTP_BAD_REQUEST;
             $output = $dtAPI['data'];
         } else {
+			var_dump($this->_paramToken['token'],$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]]);
 			$decode = $this->_AuthToken->validateTimestamp($this->_paramToken['token'],$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]]);
 			if (is_object($decode)) {
 				if ($decode != false && (now() > $decode->expired)) {
