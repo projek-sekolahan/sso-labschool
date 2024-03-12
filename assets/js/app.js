@@ -196,7 +196,7 @@ function initActiveMenu(pageUrl) {
 }
 
 function generateRandomHex(resultLength) {
-    var randomBytes = new Uint8Array(resultLength / 2);
+    var randomBytes = new Uint8Array(resultLength);
     window.crypto.getRandomValues(randomBytes);
     return Array.from(randomBytes, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
 }
@@ -209,15 +209,17 @@ function parseJwt(token) {
     }).join(''));
 	console.log(atob(JSON.parse(jsonPayload).data))
 	console.log(CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data))
-	const keyHex	= CryptoJS.SHA256(generateRandomHex(32)).toString().substring(0,32);
-	const ivHex		= CryptoJS.SHA256(generateRandomHex(16)).toString().substring(0, 16);
-	const key		= CryptoJS.enc.Utf8.parse(keyHex);
-	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
+	// const keyHex	= CryptoJS.SHA256(generateRandomHex(32)).toString().substring(0,32);
+	// const ivHex		= CryptoJS.SHA256(generateRandomHex(16)).toString().substring(0, 16);
+	// const key		= CryptoJS.enc.Utf8.parse(keyHex);
+	// const iv		= CryptoJS.enc.Utf8.parse(ivHex);
+	var key = CryptoJS.SHA256(generateRandomHex(32)).toString(CryptoJS.enc.Hex);
+	var iv = CryptoJS.SHA256(generateRandomHex(16)).toString(CryptoJS.enc.Hex).substr(0, 16);
 	var encryptedDataHex = CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data);
 	let cipher = CryptoJS.AES.decrypt({
 		ciphertext: encryptedDataHex
-	}, key, {
-        iv: iv,
+	}, CryptoJS.enc.Hex.parse(key), {
+        iv: CryptoJS.enc.Hex.parse(iv),
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
