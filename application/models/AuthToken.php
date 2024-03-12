@@ -16,7 +16,7 @@ class AuthToken extends CI_Model {
             $token = $this->validateToken($token,$key);
 			var_dump($token);
             if (is_object($token)) {
-				var_dump($token != false && (now() < isset($token->expired)));
+				var_dump(isset($token->expired));
                 if ($token != false && (now() < isset($token->expired))) {
                     return $token;
                 } else {
