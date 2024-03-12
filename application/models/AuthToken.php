@@ -7,12 +7,13 @@ class AuthToken extends CI_Model {
     public function validateTimestamp($token,$key)
     {
         if ($token==null) {
-            $data = array("apikey"=>$key);
-            $token = $this->generateToken($data,$key);
-            $token = $this->validateToken($token,$key);
+            $data	= array("apikey"=>$key);
+            $token	= $this->generateToken($data,$key);
+            $token	= $this->validateToken($token,$key);
             return $token;
         } else {
             $token = $this->validateToken($token,$key);
+			var_dump(is_object($token)); return false;
             if (is_object($token)) {
                 if ($token != false && (now() < $token->expired)) {
                     return $token;
