@@ -217,8 +217,8 @@ function parseJwt(token) {
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
-	var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
-	console.log(getCookie("ci_sso_csrf_cookie"),JSON.parse(decryptedText))
+	// var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
+	console.log(getCookie("ci_sso_csrf_cookie"),cipher)
     // return JSON.parse(jsonPayload);
 };
 
