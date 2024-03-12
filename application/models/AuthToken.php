@@ -12,14 +12,15 @@ class AuthToken extends CI_Model {
             $token	= $this->validateToken($token,$key);
             return $token;
         } else {
-			// var_dump($token,$key);
             $token = $this->validateToken($token,$key);
-			var_dump($token);
             if (is_object($token)) {
-				var_dump(isset($token->expired));
-                if ($token != false && (now() < isset($token->expired))) {
-                    return $token;
-                } else {
+				if (isset($token->expired)) {
+					if (now() < $token->expired) {
+						return $token;
+					}
+					return false;;
+				}
+				else {
 					return $this->generateToken(
 						$this->decrypt(
 							$token->data,
@@ -27,7 +28,7 @@ class AuthToken extends CI_Model {
 							substr(hash('sha256',explode('.',$_SERVER['HTTP_HOST'])[1]), 0, 16)
 						),$key
 					);
-                }
+				}
             } else {
                 return $token;
             }
