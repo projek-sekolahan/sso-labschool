@@ -202,7 +202,7 @@ function parseJwt(token) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
-	console.log(JSON.parse(jsonPayload).data)
+	console.log(getCookie("ci_sso_csrf_cookie"),JSON.parse(jsonPayload).data)
     // return JSON.parse(jsonPayload);
 };
 
