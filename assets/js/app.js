@@ -209,16 +209,16 @@ function parseJwt(token) {
     }).join(''));
 	// console.log(atob(JSON.parse(jsonPayload).data))
 	// console.log(CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data))
-	console.log(getCookie("ci_sso_csrf_cookie"))
-	console.log(generateRandomHex(getCookie("ci_sso_csrf_cookie")))
-	const keyHex	= CryptoJS.SHA256(generateRandomHex(getCookie("ci_sso_csrf_cookie"))).toString().substring(0,32);
-	const ivHex		= CryptoJS.SHA256(generateRandomHex(getCookie("ci_sso_csrf_cookie"))).toString().substring(0, 16);
+	console.log(window.location.host.split(".")[1])
+	console.log(generateRandomHex(window.location.host.split(".")[1]))
+	const keyHex	= CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString().substring(0,32);
+	const ivHex		= CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString().substring(0, 16);
 	console.log('keyHex',keyHex)
 	console.log('ivHex',ivHex)
 	// const key		= CryptoJS.enc.Utf8.parse(keyHex);
 	// const iv		= CryptoJS.enc.Utf8.parse(ivHex);
-	var key = CryptoJS.SHA256(generateRandomHex(getCookie("ci_sso_csrf_cookie"))).toString(CryptoJS.enc.Hex).substring(0,32);
-	var iv = CryptoJS.SHA256(generateRandomHex(getCookie("ci_sso_csrf_cookie"))).toString(CryptoJS.enc.Hex).substr(0, 16);
+	var key = CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString(CryptoJS.enc.Hex).substring(0,32);
+	var iv = CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString(CryptoJS.enc.Hex).substr(0, 16);
 	console.log(key)
 	console.log(iv)
 	var encryptedDataHex = CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data);
