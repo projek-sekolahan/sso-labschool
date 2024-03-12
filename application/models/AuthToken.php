@@ -20,6 +20,7 @@ class AuthToken extends CI_Model {
                     return $token;
                 }
             } else {
+				var_dump($token); return false;
                 return $token;
             }
         }
@@ -28,8 +29,7 @@ class AuthToken extends CI_Model {
     public function validateToken($token,$key)
     {
         try {
-			var_dump(JWT::decode($token, new Key($key, 'HS256'))); return false;
-            // return JWT::decode($token, new Key($key, 'HS256'));
+            return JWT::decode($token, new Key($key, 'HS256'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
