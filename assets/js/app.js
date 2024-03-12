@@ -196,6 +196,7 @@ function initActiveMenu(pageUrl) {
 }
 
 function parseJwt(token) {
+	console.log(localStorage.getItem('token')==token); return false;
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
@@ -224,7 +225,7 @@ function parseJwt(token) {
 };
 
 function decrypt(param) {
-	console.log(localStorage.getItem('token'),param); return false;
+	console.log(param); return false;
 	var decodeToken	= parseJwt(localStorage.getItem('token'));
 	const keyHex	= CryptoJS.SHA256(decodeToken.apikey).toString().substring(0,32);
 	const ivHex		= CryptoJS.SHA256(decodeToken.session_hash).toString().substring(0, 16);
