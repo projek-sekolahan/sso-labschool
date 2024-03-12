@@ -46,7 +46,7 @@ $(document).ready(function() {
 	call_ajax_page(path);
 	interval    = setInterval(function () {
         if (path=='login' || path=='register' || path=='verify' || path=='recover' || path=='setPassword') { return false; } 
-        // else { checkSession('/api/client/auth/sessTime'); }
+        else { checkSession('/api/client/auth/sessTime'); }
     }, 5000);
 });
 
