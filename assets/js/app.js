@@ -213,18 +213,16 @@ function parseJwt(token) {
 	console.log(generateRandomHex(window.location.host.split(".")[1]))
 	const keyHex	= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0,32);
 	const ivHex		= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0, 16);
-	const key1		= CryptoJS.enc.Utf8.parse(keyHex);
-	const iv1		= CryptoJS.enc.Utf8.parse(ivHex);
-	console.log('keyHex',key1)
-	console.log('ivHex',iv1)
-	var key = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substring(0,32);
-	var iv = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substr(0, 16);
+	const key		= CryptoJS.enc.Utf8.parse(keyHex);
+	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
+	/* console.log('keyHex',key1)
+	console.log('ivHex',iv1) */
+	/* var key = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substring(0,32);
+	var iv = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substr(0, 16); */
 	console.log(key)
 	console.log(iv)
 	var encryptedDataHex = CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data);
-	let cipher = CryptoJS.AES.decrypt({
-		ciphertext: encryptedDataHex
-	}, key, {
+	let cipher = CryptoJS.AES.decrypt(atob(JSON.parse(jsonPayload).data), key, {
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
