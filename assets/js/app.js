@@ -211,12 +211,12 @@ function parseJwt(token) {
 	// console.log(CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data))
 	console.log(window.location.host.split(".")[1])
 	console.log(generateRandomHex(window.location.host.split(".")[1]))
-	const keyHex	= CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString().substring(0,32);
-	const ivHex		= CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString().substring(0, 16);
-	console.log('keyHex',keyHex)
-	console.log('ivHex',ivHex)
-	// const key		= CryptoJS.enc.Utf8.parse(keyHex);
-	// const iv		= CryptoJS.enc.Utf8.parse(ivHex);
+	const keyHex	= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0,32);
+	const ivHex		= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0, 16);
+	const key1		= CryptoJS.enc.Utf8.parse(keyHex);
+	const iv1		= CryptoJS.enc.Utf8.parse(ivHex);
+	console.log('keyHex',key1)
+	console.log('ivHex',iv1)
 	var key = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substring(0,32);
 	var iv = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substr(0, 16);
 	console.log(key)
