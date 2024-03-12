@@ -13,7 +13,6 @@ class AuthToken extends CI_Model {
             return $token;
         } else {
             $token = $this->validateToken($token,$key);
-			var_dump($token); return false;
             if (is_object($token)) {
                 if ($token != false && (now() < $token->expired)) {
                     return $token;
@@ -29,7 +28,8 @@ class AuthToken extends CI_Model {
     public function validateToken($token,$key)
     {
         try {
-            return JWT::decode($token, new Key($key, 'HS256'));
+			var_dump(JWT::decode($token, new Key($key, 'HS256'))); return false;
+            // return JWT::decode($token, new Key($key, 'HS256'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
