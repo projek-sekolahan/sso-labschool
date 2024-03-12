@@ -47,9 +47,9 @@ class Auth extends RestController {
                                 'session_hash'  => $decode->session_hash,
                                 'expired'       => $decode->expired,
                             );
-							$encrypted	= $this->_AuthToken->encrypt(json_encode($token_data),hash('sha256', $decode->apikey),substr(hash('sha256', $decode->session_hash), 0, 16));
-                            // $tokenJWT	= $this->_AuthToken->generateToken(['data'=>$encrypted],$decode->apikey);
-							$tokenJWT	= $this->_AuthToken->generateToken($token_data,$decode->apikey);
+							$encrypted	= $this->_AuthToken->encrypt(json_encode($token_data),hash('sha256', bin2hex(openssl_random_pseudo_bytes(32))),substr(hash('sha256', bin2hex(openssl_random_pseudo_bytes(16))), 0, 16));
+                            $tokenJWT	= $this->_AuthToken->generateToken(['data'=>$encrypted],$decode->apikey);
+							// $tokenJWT	= $this->_AuthToken->generateToken($token_data,$decode->apikey);
                             $identity_data = array(
                                 'user_id'       => $decode->user_id,
                                 'identity'      => $decode->identity,

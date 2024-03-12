@@ -195,14 +195,29 @@ function initActiveMenu(pageUrl) {
     });
 }
 
+function generateRandomHex(resultLength) {
+    var randomBytes = new Uint8Array(resultLength / 2);
+    window.crypto.getRandomValues(randomBytes);
+    return Array.from(randomBytes, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
+}
+
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-
-	console.log(getCookie("ci_sso_csrf_cookie"),JSON.parse(jsonPayload).data)
+	const keyHex	= CryptoJS.SHA256(generateRandomHex(32)).toString().substring(0,32);
+	const ivHex		= CryptoJS.SHA256(generateRandomHex(16)).toString().substring(0, 16);
+	const key		= CryptoJS.enc.Utf8.parse(keyHex);
+	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
+	let cipher = CryptoJS.AES.decrypt(atob(JSON.parse(jsonPayload).data), key, {
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+    });
+	var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
+	console.log(getCookie("ci_sso_csrf_cookie"),JSON.parse(decryptedText))
     // return JSON.parse(jsonPayload);
 };
 
