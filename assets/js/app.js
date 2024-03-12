@@ -213,7 +213,10 @@ function parseJwt(token) {
 	const ivHex		= CryptoJS.SHA256(generateRandomHex(16)).toString().substring(0, 16);
 	const key		= CryptoJS.enc.Utf8.parse(keyHex);
 	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
-	let cipher = CryptoJS.AES.decrypt(atob(JSON.parse(jsonPayload).data), key, {
+	var encryptedDataHex = CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data);
+	let cipher = CryptoJS.AES.decrypt({
+		ciphertext: encryptedDataHex
+	}, key, {
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
