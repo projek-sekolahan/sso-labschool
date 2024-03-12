@@ -217,8 +217,8 @@ function parseJwt(token) {
 	console.log('ivHex',ivHex)
 	// const key		= CryptoJS.enc.Utf8.parse(keyHex);
 	// const iv		= CryptoJS.enc.Utf8.parse(ivHex);
-	var key = CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString(CryptoJS.enc.Hex).substring(0,32);
-	var iv = CryptoJS.SHA256(generateRandomHex(window.location.host.split(".")[1])).toString(CryptoJS.enc.Hex).substr(0, 16);
+	var key = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substring(0,32);
+	var iv = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substr(0, 16);
 	console.log(key)
 	console.log(iv)
 	var encryptedDataHex = CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data);
