@@ -240,7 +240,7 @@ function decrypt(param,from) {
         padding: CryptoJS.pad.Pkcs7
     });
 	var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
-	console.log("cipher decryptedText",decryptedText); return false;
+	// console.log("cipher decryptedText",decryptedText); return false;
 	return JSON.parse(decryptedText);
 }
 
