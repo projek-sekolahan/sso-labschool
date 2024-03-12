@@ -195,51 +195,36 @@ function initActiveMenu(pageUrl) {
     });
 }
 
-function generateRandomHex(resultLength) {
-    var randomBytes = new Uint8Array(resultLength);
-    window.crypto.getRandomValues(randomBytes);
-    return Array.from(randomBytes, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
-}
-
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-	// console.log(atob(JSON.parse(jsonPayload).data))
-	// console.log(CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data))
-	console.log(window.location.host.split(".")[1])
-	console.log(generateRandomHex(window.location.host.split(".")[1]))
+	// return JSON.parse(jsonPayload);
+	return decrypt(JSON.parse(jsonPayload).data);
+	/* if (token==localStorage.getItem('token')) { 
+		return decrypt(JSON.parse(jsonPayload).data);
+	} else {
+		return JSON.parse(jsonPayload);
+	}
 	const keyHex	= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0,32);
 	const ivHex		= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0, 16);
 	const key		= CryptoJS.enc.Utf8.parse(keyHex);
 	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
-	/* console.log('keyHex',key1)
-	console.log('ivHex',iv1) */
-	/* var key = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substring(0,32);
-	var iv = CryptoJS.SHA256(window.location.host.split(".")[1]).toString(CryptoJS.enc.Hex).substr(0, 16); */
-	console.log(key)
-	console.log(iv)
-	var encryptedDataHex = CryptoJS.enc.Base64.parse(JSON.parse(jsonPayload).data);
 	let cipher = CryptoJS.AES.decrypt(atob(JSON.parse(jsonPayload).data), key, {
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
-    });
-	/* let cipher = CryptoJS.AES.decrypt({
-		ciphertext: encryptedDataHex
-	}, CryptoJS.enc.Hex.parse(key), {
-        iv: CryptoJS.enc.Hex.parse(iv),
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
     }); */
+	
 	// var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
-	console.log("cipher decryptedText",cipher.toString(CryptoJS.enc.Utf8))
-    // return JSON.parse(jsonPayload);
+	// console.log("cipher decryptedText",cipher.toString(CryptoJS.enc.Utf8))
+    
 };
 
 function decrypt(param) {
+	console.log(localStorage.getItem('token'),param); return false;
 	var decodeToken	= parseJwt(localStorage.getItem('token'));
 	const keyHex	= CryptoJS.SHA256(decodeToken.apikey).toString().substring(0,32);
 	const ivHex		= CryptoJS.SHA256(decodeToken.session_hash).toString().substring(0, 16);

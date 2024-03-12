@@ -136,8 +136,8 @@ File: Calendar init js
                                 },
                                 success : function(t) {
                                     var hasil = parseJwt(t.data);
-									hasil = decrypt(hasil);
-                                    hasil = hasil.data;
+									// hasil = decrypt(hasil);
+                                    // hasil = hasil.data;
                                     calendar.addEventSource(hasil);
                                 }
                             });
