@@ -218,7 +218,7 @@ function parseJwt(token) {
         padding: CryptoJS.pad.Pkcs7
     });
 	// var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
-	console.log(getCookie("ci_sso_csrf_cookie"),cipher)
+	console.log(getCookie("ci_sso_csrf_cookie"),cipher.toString())
     // return JSON.parse(jsonPayload);
 };
 
