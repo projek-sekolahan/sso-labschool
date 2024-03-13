@@ -17,9 +17,10 @@ class User extends RestController {
 		$this->_master      = new Master();
 		$this->_AuthToken   = new AuthToken();
         $this->_AuthCheck   = new AuthCheck();
-        $this->_TokenKey    = $this->input->post('token'); var_dump($this->_TokenKey);
+        $this->_TokenKey    = $this->input->post('token');
         $this->_ApiKey      = $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
         $this->_RsToken     = $this->_AuthToken->validateTimestamp($this->_TokenKey,$this->_ApiKey);
+		// var_dump($this->_RsToken);
     }
 
 	public function index_get() {
