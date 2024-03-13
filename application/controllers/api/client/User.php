@@ -69,6 +69,7 @@ class User extends RestController {
 						'param' => $param,
 					);
 					$dataparam = array_merge($paramdata,$this->_paramToken);
+					var_dump($dataparam); return false;
 				}
 				else {
 					$this->eResponse();
