@@ -20,7 +20,6 @@ class User extends RestController {
         $this->_TokenKey    = $this->input->post('token');
         $this->_ApiKey      = $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
         $this->_RsToken     = $this->_AuthToken->validateTimestamp($this->_TokenKey,$this->_ApiKey);
-		var_dump($this->_RsToken); return false;
     }
 
 	public function index_get() {
@@ -43,6 +42,7 @@ class User extends RestController {
     }
 
     public function index_post($keterangan) {
+		// var_dump($this->_RsToken); return false;
         if (is_object($this->_RsToken)) {
             if ($keterangan=='create_update') {
 				$hasil_img = NULL;
