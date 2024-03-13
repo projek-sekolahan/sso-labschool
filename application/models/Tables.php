@@ -46,9 +46,9 @@ class Tables extends CI_Model {
 						// Ubah nilai menjadi capitalize
 						$modifiedValue = ucwords($value?? '---');
 						// Cek apakah $key mengandung kata "id" atau "_id"
-						if (strpos($modifiedKey, 'Id')) {
-							// Jika kunci mengandung "id" atau "_id", hapus kunci dan nilainya dari $valArray
-							unset($modifiedArray[$modifiedKey]);
+						if (strpos($modifiedKey, 'Id') !== false) {
+							// Jika kunci mengandung "Id", lanjut ke iterasi berikutnya
+							continue;
 						}
 						// Tambahkan ke array baru
 						$modifiedArray[$modifiedKey] = $modifiedValue;
