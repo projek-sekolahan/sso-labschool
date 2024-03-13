@@ -110,6 +110,7 @@ class Auth extends RestController {
                                 'location'	=> 'login',
                             );
                         }
+					} else {
 						$http   = RestController::HTTP_OK;
 						$output = array(
 							'title'     => 'Your Session OK',
@@ -117,7 +118,7 @@ class Auth extends RestController {
 							'info'		=> 'success',
 							'location'	=> 'dashboard',
 						);
-                    }
+					}
             }            
         } else {
             $http   = RestController::HTTP_BAD_REQUEST;
