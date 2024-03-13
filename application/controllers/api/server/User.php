@@ -42,7 +42,6 @@ class User extends RestController {
     }
 
     public function index_post($keterangan) {
-		// var_dump($this->_RsToken); return false;
         if (is_object($this->_RsToken)) {
             if ($keterangan=='create_update') {
 				$hasil_img = NULL;

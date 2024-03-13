@@ -69,7 +69,6 @@ class User extends RestController {
 						'param' => $param,
 					);
 					$dataparam = array_merge($paramdata,$this->_paramToken);
-					// var_dump($dataparam); return false;
 				}
 				else {
 					$this->eResponse();
@@ -86,7 +85,6 @@ class User extends RestController {
             }
 			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
             $dtAPI	= json_decode($result->getBody()->getContents(),true);
-			var_dump($dtAPI); return false;
             $this->responsejson($result,$dtAPI);
         } else {
             $this->eResponse();
