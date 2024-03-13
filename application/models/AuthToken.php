@@ -6,33 +6,27 @@ class AuthToken extends CI_Model {
 
     public function validateTimestamp($token,$key)
     {
-        if ($token==null) {
-            $data	= array("apikey"=>$key);
-            $token	= $this->generateToken($data,$key);
-            $token	= $this->validateToken($token,$key);
-            return $token;
-        } else {
-            $token = $this->validateToken($token,$key);
-            if (is_object($token)) {
-				if (isset($token->expired)) {
-					if (now() < $token->expired) {
-						return $token;
-					}
-					return false;;
+		$token = $this->validateToken($token,$key);
+		if (is_object($token)) {
+			if (isset($token->expired)) {
+				if (now() < $token->expired) {
+					return $token;
 				}
-				else {
-					return $this->generateToken(
-						$this->decrypt(
-							$token->data,
-							hash('sha256',explode('.',$_SERVER['HTTP_HOST'])[1]),
-							substr(hash('sha256',explode('.',$_SERVER['HTTP_HOST'])[1]), 0, 16)
-						),$key
+				return false;
+			}
+			else {
+				return $this->generateToken(
+					$this->decrypt(
+						$token->data, 
+						hash('sha256',explode('.',$_SERVER['HTTP_HOST'])[1]), 
+						substr(hash('sha256',explode('.',$_SERVER['HTTP_HOST'])[1]), 0, 16)),
+						$key
 					);
-				}
-            } else {
-                return $token;
-            }
-        }
+			}
+		}
+		else {
+			return $token;
+		}
     }
 
     public function validateToken($token,$key)
