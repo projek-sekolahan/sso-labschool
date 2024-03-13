@@ -206,19 +206,6 @@ function parseJwt(token) {
 	} else {
 		return JSON.parse(jsonPayload);
 	}
-	/* const keyHex	= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0,32);
-	const ivHex		= CryptoJS.SHA256(window.location.host.split(".")[1]).toString().substring(0, 16);
-	const key		= CryptoJS.enc.Utf8.parse(keyHex);
-	const iv		= CryptoJS.enc.Utf8.parse(ivHex);
-	let cipher = CryptoJS.AES.decrypt(atob(JSON.parse(jsonPayload).data), key, {
-        iv: iv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-    }); */
-	
-	// var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
-	// console.log("cipher decryptedText",cipher.toString(CryptoJS.enc.Utf8))
-    
 };
 
 function decrypt(param,from) {
@@ -240,7 +227,6 @@ function decrypt(param,from) {
         padding: CryptoJS.pad.Pkcs7
     });
 	var decryptedText = cipher.toString(CryptoJS.enc.Utf8);
-	// console.log("cipher decryptedText",decryptedText); return false;
 	return JSON.parse(decryptedText);
 }
 

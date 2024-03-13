@@ -16,7 +16,7 @@ function loadTable(e, a, b, t) {
 		}}).done(
 			function (t) {
 				var hasil = parseJwt(t.data);
-				// hasil = decrypt(hasil);
+				hasil = decrypt(hasil,'fromResponse');
 				if (0 == hasil.recordsTotal || hasil.columns == 0) {
 					$("#" + e)
 						.parent()
