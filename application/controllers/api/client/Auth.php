@@ -30,6 +30,7 @@ class Auth extends RestController {
             'AUTH_KEY'  => $this->input->post('AUTH_KEY') ? $this->input->post('AUTH_KEY') : $this->_dtAuth,
             'csrf_token'=> $this->_csrfToken,
         );
+		var_dump($this->_paramToken); return false;
     }
     public function index_post($keterangan) {
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),$this->input->post('AUTH_KEY'))) {
