@@ -32,7 +32,6 @@ class Auth extends RestController {
         );
     }
     public function index_post($keterangan) {
-		var_dump($this->_AuthCheck->checkTokenApi($keterangan,$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]],$this->_paramToken['AUTH_KEY'])); return false;
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]],$this->_paramToken['AUTH_KEY'])) {
             if ($keterangan=='login') {
                 if (filter_var($this->input->post('username'), FILTER_VALIDATE_EMAIL)) {
@@ -42,7 +41,7 @@ class Auth extends RestController {
                         $http   = RestController::HTTP_BAD_REQUEST;
                         $output = $dtAPI['data'];
                     } else {
-                        $decode = $this->_AuthToken->validateTimestamp($dtAPI['data']['token'],$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
+                        $decode = $this->_AuthToken->validateTimestamp($dtAPI['data']['token'],$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]]);
                         if (is_object($decode)) {
                             $token_data = array(
                                 'authkey'       => $decode->authkey,
@@ -89,7 +88,7 @@ class Auth extends RestController {
                 }
             }
             if ($keterangan=='logout') {
-                $result	= $this->_clientAPI->postContent($this->_urlAPI.'/logout',$this->input->post('AUTH_KEY'),$this->_paramToken);
+                $result	= $this->_clientAPI->postContent($this->_urlAPI.'/logout',$this->_paramToken['AUTH_KEY'],$this->_paramToken);
                 $dtAPI	= json_decode($result->getBody()->getContents(),true);
                 $this->session->sess_destroy();
                 $http   = RestController::HTTP_CREATED;
@@ -100,7 +99,7 @@ class Auth extends RestController {
                 $current_time   = time();
                 ($timesesi == null) ? $sessiontime = 0:$sessiontime=$timesesi;
                     if($current_time > $sessiontime) {
-                        $validtime = $this->_AuthToken->validateTimestamp($this->_RsToken,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
+                        $validtime = $this->_AuthToken->validateTimestamp($this->_RsToken,$this->_paramToken[explode('.',$_SERVER['HTTP_HOST'])[0]]);
                         if (!is_object($validtime)) {
                             $this->session->sess_destroy();
                             $http   = RestController::HTTP_CREATED;
