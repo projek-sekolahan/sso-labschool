@@ -75,9 +75,9 @@ function ajaxData(dataParam,action,decodeToken,event) {
 				dataLoad(response,event);
 			} 
         },
-        /* error: function(xhr, status, error) {
+        error: function(xhr, status, error) {
 			errmsg(xhr, status, error);
-        } */
+        }
     });
 }
 
