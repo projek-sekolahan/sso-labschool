@@ -41,15 +41,15 @@ class Tables extends CI_Model {
     				$modifiedArray = [];
 					// Iterasi melalui setiap elemen array
 					foreach ($valArray as $key => $value) {
-						// Cek apakah $key mengandung kata "id" atau "_id"
-						if (strpos($key, 'id') !== false || strpos($key, '_id') !== false) {
-							// Jika kunci mengandung "id" atau "_id", hapus kunci dan nilainya dari $valArray
-							unset($valArray[$key]);
-						}
 						// Ubah kunci menjadi capitalize
 						$modifiedKey = ucwords(str_replace('_',' ',$key)?? '---');
 						// Ubah nilai menjadi capitalize
 						$modifiedValue = ucwords($value?? '---');
+						// Cek apakah $key mengandung kata "id" atau "_id"
+						if (strpos($modifiedKey, 'id') !== false || strpos($modifiedKey, '_id') !== false) {
+							// Jika kunci mengandung "id" atau "_id", hapus kunci dan nilainya dari $valArray
+							unset($modifiedArray[$modifiedKey]);
+						}
 						// Tambahkan ke array baru
 						$modifiedArray[$modifiedKey] = $modifiedValue;
 					}
