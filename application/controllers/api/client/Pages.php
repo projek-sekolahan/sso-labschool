@@ -9,14 +9,16 @@ class Pages extends RestController {
     private $_AuthCheck;
     private $_csrfToken;
     private $_paramToken;
+	private $_RsToken;
     function __construct() {
         parent::__construct();
         $this->_clientAPI   = new ClientAPI();
         $this->_AuthToken   = new AuthToken();
         $this->_AuthCheck   = new AuthCheck();
         $this->_csrfToken   = $this->_clientAPI->crToken('pages',$this->input->post('AUTH_KEY'));
+		$this->_RsToken     = $this->_AuthToken->validateTimestamp((empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
         $this->_paramToken  = array(
-            'token'     => (empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),
+            'token'     => $this->_RsToken,
             explode('.',$_SERVER['HTTP_HOST'])[0] => $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),
             'AUTH_KEY'  => $this->input->post('AUTH_KEY'),
             'csrf_token'=> $this->_csrfToken,
