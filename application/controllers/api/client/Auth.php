@@ -10,6 +10,7 @@ class Auth extends RestController {
     private $_AuthCheck;
 	private $_csrfToken;
 	private $_paramToken;
+	private $_RsToken;
 	private $_dtAuth;
 	private $_urlAPI;
     function __construct() {
@@ -22,8 +23,9 @@ class Auth extends RestController {
 		$this->_urlAPI	= 'auth';
 		$this->_dtAuth	= ($this->input->post('username') && $this->input->post('password')) ? base64_encode($this->api_auth->login($this->input->post('username'),$this->input->post('password'))) : null;
 		$this->_csrfToken	= $this->_clientAPI->crToken($this->_urlAPI,$this->input->post('AUTH_KEY') ? $this->input->post('AUTH_KEY') : $this->_dtAuth);
+		$this->_RsToken     = $this->_AuthToken->validateTimestamp((empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
 		$this->_paramToken	= array(
-            'token'     => (empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),
+            'token'     => $this->_RsToken,
             explode('.',$_SERVER['HTTP_HOST'])[0] => $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),
             'AUTH_KEY'  => $this->input->post('AUTH_KEY') ? $this->input->post('AUTH_KEY') : $this->_dtAuth,
             'csrf_token'=> $this->_csrfToken,
@@ -97,7 +99,7 @@ class Auth extends RestController {
                 $current_time   = time();
                 ($timesesi == null) ? $sessiontime = 0:$sessiontime=$timesesi;
                     if($current_time > $sessiontime) {
-                        $validtime = $this->_AuthToken->validateTimestamp($this->input->post('token'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
+                        $validtime = $this->_AuthToken->validateTimestamp($this->_RsToken,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
                         if (is_object($validtime)) {
                             $http   = RestController::HTTP_OK;
                             $output = array(
