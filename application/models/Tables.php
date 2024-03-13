@@ -50,6 +50,11 @@ class Tables extends CI_Model {
 							// Jika kunci mengandung "Id", lanjut ke iterasi berikutnya
 							continue;
 						}
+						// Ubah nilai untuk key 'tipe_site'
+						if ($modifiedKey == 'Tipe Site') {
+							// Jika nilai adalah '1', ubah menjadi 'dashboard', jika tidak biarkan nilai yang sama
+							$modifiedValue = ($modifiedValue == '1') ? 'Dashboard' : $modifiedValue;
+						}
 						// Tambahkan ke array baru
 						$modifiedArray[$modifiedKey] = $modifiedValue;
 					}

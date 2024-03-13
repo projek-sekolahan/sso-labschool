@@ -92,8 +92,8 @@ class Pages extends RestController {
 				$output     = $output;
             }
             if ($keterangan=='menu_akses') {
-                $sqluser    = "SELECT a.* from pages a WHERE a.pages_id='".$this->input->post('param')."'";
-				$result     = $this->_master->get_custom_query($sqluser)->row();
+                $sqlpages   = "SELECT a.* from pages a WHERE a.id='".$this->input->post('param')."'";
+				$result     = $this->_master->get_custom_query($sqlpages)->row();
                 if ($result==null) {
                     $http   = RestController::HTTP_CREATED;
                     $output = array(
