@@ -100,16 +100,7 @@ class Auth extends RestController {
                 ($timesesi == null) ? $sessiontime = 0:$sessiontime=$timesesi;
                     if($current_time > $sessiontime) {
                         $validtime = $this->_AuthToken->validateTimestamp($this->_RsToken,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
-                        if (is_object($validtime)) {
-                            $http   = RestController::HTTP_OK;
-                            $output = array(
-                                'title'     => 'Your Session OK',
-                                'message'   => 'Thank You!',
-                                'info'		=> 'success',
-                                'location'	=> 'dashboard',
-                            );
-                        }
-                        else {
+                        if (!is_object($validtime)) {
                             $this->session->sess_destroy();
                             $http   = RestController::HTTP_CREATED;
                             $output = array(
@@ -119,15 +110,14 @@ class Auth extends RestController {
                                 'location'	=> 'login',
                             );
                         }
-                    } else {
-                        $http   = RestController::HTTP_OK;
-                        $output = array(
-                            'title'     => 'Your Session OK',
-                            'message'   => 'Thank You!',
-                            'info'		=> 'success',
-                            'location'	=> 'dashboard',
-                        );
                     }
+					$http   = RestController::HTTP_OK;
+					$output = array(
+						'title'     => 'Your Session OK',
+						'message'   => 'Thank You!',
+						'info'		=> 'success',
+						'location'	=> 'dashboard',
+					);
             }            
         } else {
             $http   = RestController::HTTP_BAD_REQUEST;
