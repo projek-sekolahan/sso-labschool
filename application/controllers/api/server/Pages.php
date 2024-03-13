@@ -110,7 +110,7 @@ class Pages extends RestController {
             if ($keterangan=='table') {
                 $key	= $this->input->post('key');
                 $table	= $this->input->post('table');
-				$select = "a.pages_id,a.nama_menu,a.title,a.url,a.tipe_site";
+				$select = "a.id,a.nama_menu,a.title,a.url,a.tipe_site";
 				$column = "a.nama_menu,a.title";
                     //WHERE
                     $where	= null;

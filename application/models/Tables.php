@@ -33,7 +33,7 @@ class Tables extends CI_Model {
 						$btn	=	$this->buttonTables($val->email,$access,null);
 					}
 					if ($tabID=='pages') {
-						$btn	=	$this->buttonTables($val->pages_id,$access,null);
+						$btn	=	$this->buttonTables($val->id,$access,null);
 					}
 					// Dapatkan array dari objek
 					$valArray = (array) $val;
