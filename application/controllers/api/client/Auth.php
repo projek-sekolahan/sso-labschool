@@ -110,14 +110,14 @@ class Auth extends RestController {
                                 'location'	=> 'login',
                             );
                         }
+						$http   = RestController::HTTP_OK;
+						$output = array(
+							'title'     => 'Your Session OK',
+							'message'   => 'Thank You!',
+							'info'		=> 'success',
+							'location'	=> 'dashboard',
+						);
                     }
-					$http   = RestController::HTTP_OK;
-					$output = array(
-						'title'     => 'Your Session OK',
-						'message'   => 'Thank You!',
-						'info'		=> 'success',
-						'location'	=> 'dashboard',
-					);
             }            
         } else {
             $http   = RestController::HTTP_BAD_REQUEST;
