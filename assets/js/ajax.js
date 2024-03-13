@@ -56,9 +56,10 @@ function menu(action) {
 function ajaxData(dataParam,action,decodeToken,event) {
 	$.ajax({
         url     :   url+action,
-        data    :   dataParam,
+        data    :   JSON.stringify(dataParam),
         method: "post",
 		dataType: "json",
+		contentType: "application/json",
 		headers: {
 			"Authorization": "Basic " + decodeToken.authkey,
 		},
