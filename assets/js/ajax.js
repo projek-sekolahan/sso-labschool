@@ -59,7 +59,6 @@ function ajaxData(dataParam,action,decodeToken,event) {
         data    :   dataParam,
         method: "post",
 		dataType: "json",
-		contentType: "application/json",
 		headers: {
 			"Authorization": "Basic " + decodeToken.authkey,
 		},
