@@ -58,29 +58,19 @@
 								<input
 									class="form-check-input"
 									type="checkbox"
-									id="is_child"
-									name="is_child">
-									<label class="form-check-label" for="isChild">isChildMenu</label>
+									id="is_execute"
+									name="is_execute">
+									<label class="form-check-label" for="is_execute">isActive</label>
 							</div>
-						</div>
-						<div class="col-6">
-							<select
-								name="menu_groupid"
-								id="menu_groupid"
-								class="form-control"
-								required="required">
-								<option value="">Pilih Pages Parent</option>
-								<option value="1">Dashboard</option>
-							</select>
 						</div>
 						<div class="col-6">
 							<div class="form-check form-switch form-switch-lg mb-3">
 								<input
 									class="form-check-input"
 									type="checkbox"
-									id="is_execute"
-									name="is_execute">
-									<label class="form-check-label" for="is_execute">isActive</label>
+									id="is_child"
+									name="is_child">
+									<label class="form-check-label" for="isChild">isChildMenu</label>
 							</div>
 						</div>
 						<div class="col-6">
@@ -89,6 +79,17 @@
 								<input id="icon" name="icon" type="text" class="form-control" placeholder="icon Input" required>
 								<div class="invalid-feedback">icon Input Tidak Boleh Kosong.</div>
 							</div>
+						</div>
+						<div class="col-6">
+							<label for="menu_groupid" class="control-label">Pages Parent</label>
+							<select
+								name="menu_groupid"
+								id="menu_groupid"
+								class="form-control"
+								required="required">
+								<option value="">Pilih Pages Parent</option>
+								<option value="1">Dashboard</option>
+							</select>
 						</div>
 					</div>
 				</div>
