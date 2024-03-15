@@ -13,13 +13,12 @@ function dataLoad(t,s) {
 		if (s[3]=="menu_akses") {
 			options = void 0 === $("#menu_groupid").val() ? '<option value="" class="opt-val-category">Pilih Pages Parent</option>': "";
 			console.log(hasil);
-			$("#menu_groupid option").val(function (s, t) {
+			/* $("#menu_groupid option").val(function (s, t) {
 				$(this)
 					.siblings("[value='" + t + "']")
 					.remove();
 			}),
-			$("#menu_groupid").val() == hasil.id
-					? (options +=
+			$("#menu_groupid").val() == hasil.id ? (options +=
 							'<option value="' +
 							hasil.id +
 							'" class="opt-val-category" selected>' +
@@ -30,11 +29,27 @@ function dataLoad(t,s) {
 							hasil.id +
 							'" class="opt-val-category">' +
 							hasil.nama_menu +
-							"</option>");
+							"</option>"); */
+			// Bersihkan elemen select sebelum menambahkan opsi
+			$('#menu_groupid').empty();
+
+			// Loop melalui data yang diterima
 			$.each(hasil, function (a, b) {
 				console.log(a,b);
+				// Buat opsi untuk setiap elemen dalam data
+				options = $('<option>', {
+					value: b.id,  // Tentukan nilai dari opsi
+					text: b.nama_menu     // Tentukan teks dari opsi
+				});
+				
+				// Periksa jika opsi harus dipilih (selected option)
+				if (b.isSelected) {
+					options.attr('selected', 'selected');
+				}
+				// Tambahkan opsi ke dalam elemen select
+				$("#menu_groupid").append(options);
 			});
-			$("#menu_groupid").append(options);
+			
 		}
         if (s[3]=="profile_pengguna") {
             $(".username").text(hasil.nama_lengkap);
