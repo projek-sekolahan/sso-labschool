@@ -30,7 +30,7 @@ function dataLoad(t,s) {
 							hasil.nama_menu +
 							"</option>"); */
 			// Bersihkan elemen select sebelum menambahkan opsi
-			$('#menu_groupid').empty();
+			// $('#menu_groupid').empty();
 			// Buat opsi untuk setiap elemen dalam data
 			options = void 0 === $("#menu_groupid").val() ? '<option value="" class="opt-val-category">Pilih Pages Parent</option>': "";
 			options = $('<option>', {
