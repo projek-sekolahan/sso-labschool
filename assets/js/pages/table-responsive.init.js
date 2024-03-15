@@ -11,7 +11,7 @@ function dataLoad(t,s) {
         var hasil = parseJwt(t.data);
 		hasil = decrypt(hasil,'fromResponse');
 		if (s[3]=="menu_akses") {
-			console.log(JSON.stringify(hasil));
+			console.log(hasil.result);
 			// Loop melalui data yang diterima
 			options = $('<option>', {
 				value: hasil.id,  // Tentukan nilai dari opsi
@@ -20,7 +20,7 @@ function dataLoad(t,s) {
 			// Tambahkan opsi ke dalam elemen select
 			$("#menu_groupid").append(options);
 			// Loop melalui data yang diterima
-			$.each(hasil, function (a, b) {
+			$.each(hasil.result, function (a, b) {
 				$("#"+a).val(b);
 			});
 			

@@ -44,44 +44,6 @@ class Pages extends RestController {
     public function index_post($keterangan) {
         if (is_object($this->_RsToken)) {
             if ($keterangan=='create_update') {
-				$hasil_img = NULL;
-				$jsonimg = json_decode($this->input->post('img'),true);
-                    if (count($jsonimg)!=0) {
-                        for ($i=0; $i < count($jsonimg); $i++) {
-                            $hasil_img = $this->UploadFile->photo('img','users',['nomor_induk'=>$this->input->post('nomor_induk'),'img'=>$jsonimg[$i],'table'=>'users_img']);
-                        }
-                    }
-					$hasil_img == NULL ? $userimg = NULL: 
-					$userimg = array(
-						'nomor_induk'	=> $this->input->post('nomor_induk'),
-						'img_location'  => $hasil_img,
-					);
-					$datasosmed = array(
-						'user_id'       => $this->input->post('user_id'),
-						'link_facebook' => $this->input->post('link_facebook'),
-						'link_instagram'=> $this->input->post('link_instagram'),
-						'link_twitter'	=> $this->input->post('link_twitter'),
-					);
-					$userdetail = array(
-						'nomor_induk'	=> $this->input->post('nomor_induk'),
-						'phone'			=> $this->input->post('phone'),
-						'nama_lengkap'	=> $this->input->post('nama_lengkap'),
-						'jabatan'		=> $this->input->post('jabatan'),
-						'pangkat_golongan'	=> $this->input->post('pangkat_golongan'),
-						'bagian_divisi'	=> $this->input->post('bagian_divisi'),
-					);
-                $users	= $this->_master->get_row('users_sosmed',['user_id'=>$this->input->post('user_id')])->row();
-                if ($users) {
-					// update data
-					$hasil_img==NULL ? '' : $this->_master->update_data('users_img',['nomor_induk'=>$this->input->post('nomor_induk')],$userimg);
-					$this->_master->update_data('users_sosmed',['user_id'=>$users->user_id],$datasosmed);
-					$this->_master->update_data('users_details',['user_id'=>$users->user_id],$userdetail);
-                } else {
-					// create data
-					$hasil_img==NULL ? '' : $this->_master->save_data('users_img' , $userimg);
-					$this->_master->save_data('users_sosmed' , $datasosmed);
-					$this->_master->update_data('users_details',['user_id'=>$users->user_id],$userdetail);
-                }
 				$output = array(
 					'title'     => 'Data Updated',
 					'message'   => 'Success Updated',
@@ -97,15 +59,6 @@ class Pages extends RestController {
 				$rsrow		= $this->_master->get_row('pages',['is_child'=>0])->result();
 				$http		= RestController::HTTP_CREATED;
 				$output		= array('result'=>$result,'menu'=>$rsrow);
-				// $output     = $result==null ? array_merge(get_object_vars($rsrow),[]) : array_merge(get_object_vars($result),get_object_vars($rsrow));
-                /* if ($result==null) {
-					$rsrow  = $this->Master->get_row('pages',['is_child'=>0])->result();
-                    $http   = RestController::HTTP_CREATED;
-                    $output = get_object_vars($rsrow);
-                } else {
-                    $http       = RestController::HTTP_CREATED;
-                    $output     = get_object_vars($result);
-                } */
             }
             if ($keterangan=='table') {
                 $key	= $this->input->post('key');
