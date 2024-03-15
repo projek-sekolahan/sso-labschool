@@ -10,7 +10,7 @@ function dataLoad(t,s) {
     if (s[1]=="view") {
         var hasil = parseJwt(t.data);
 		hasil = decrypt(hasil,'fromResponse');
-		if (s[3]=="profile_pengguna") {
+		if (s[3]=="menu_akses") {
 			$.each(hasil, function (a, b) {
 				console.log(a,b);
 			})
