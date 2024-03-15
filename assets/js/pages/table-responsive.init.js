@@ -21,6 +21,7 @@ function dataLoad(t,s) {
 			$("#menu_groupid").append(options);
 			// Loop melalui data yang diterima
 			$.each(hasil.result, function (a, b) {
+				console.log(a,b);
 				$("#"+a).val(b);
 			});
 			
