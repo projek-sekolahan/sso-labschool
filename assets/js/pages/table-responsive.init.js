@@ -11,7 +11,7 @@ function dataLoad(t,s) {
         var hasil = parseJwt(t.data);
 		hasil = decrypt(hasil,'fromResponse');
 		if (s[3]=="menu_akses") {
-			options = void 0 === $("#menu_groupid").val() ? '<option value="" class="opt-val-category">Pilih Pages Parent</option>': "";
+			// options = void 0 === $("#menu_groupid").val() ? '<option value="" class="opt-val-category">Pilih Pages Parent</option>': "";
 			console.log(hasil);
 			/* $("#menu_groupid option").val(function (s, t) {
 				$(this)
@@ -34,16 +34,16 @@ function dataLoad(t,s) {
 			$('#menu_groupid').empty();
 
 			// Loop melalui data yang diterima
-			$.each(hasil, function (a, b) {
-				console.log(a,b);
+			$.each(hasil, function (index, item) {
+				console.log(index, item);
 				// Buat opsi untuk setiap elemen dalam data
 				options = $('<option>', {
-					value: b.id,  // Tentukan nilai dari opsi
-					text: b.nama_menu     // Tentukan teks dari opsi
+					value: item.id,  // Tentukan nilai dari opsi
+					text: item.nama_menu     // Tentukan teks dari opsi
 				});
 				
 				// Periksa jika opsi harus dipilih (selected option)
-				if (b.isSelected) {
+				if (item.isSelected) {
 					options.attr('selected', 'selected');
 				}
 				// Tambahkan opsi ke dalam elemen select
