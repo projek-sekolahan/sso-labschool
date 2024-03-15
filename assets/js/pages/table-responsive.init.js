@@ -12,7 +12,7 @@ function dataLoad(t,s) {
 		hasil = decrypt(hasil,'fromResponse');
 		if (s[3]=="menu_akses") {
 			options = void 0 === $("#menu_groupid").val() ? '<option value="" class="opt-val-category">Pilih Pages Parent</option>': "";
-			console.log(a,b);
+			console.log(hasil);
 			$.each(hasil, function (a, b) {
 				console.log(a,b);
 				$("#menu_groupid option").val(function (s, t) {
