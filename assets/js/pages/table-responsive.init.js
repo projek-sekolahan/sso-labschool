@@ -32,22 +32,20 @@ function dataLoad(t,s) {
 							"</option>"); */
 			// Bersihkan elemen select sebelum menambahkan opsi
 			$('#menu_groupid').empty();
-
+			// Buat opsi untuk setiap elemen dalam data
+			options = $('<option>', {
+				value: hasil.id,  // Tentukan nilai dari opsi
+				text: hasil.nama_menu     // Tentukan teks dari opsi
+			});
+			// Tambahkan opsi ke dalam elemen select
+			$("#menu_groupid").append(options);
 			// Loop melalui data yang diterima
 			$.each(hasil, function (index, item) {
 				console.log(index, item);
-				// Buat opsi untuk setiap elemen dalam data
-				options = $('<option>', {
-					value: hasil.id,  // Tentukan nilai dari opsi
-					text: hasil.nama_menu     // Tentukan teks dari opsi
-				});
-				
 				// Periksa jika opsi harus dipilih (selected option)
 				/* if (item.isSelected) {
 					options.attr('selected', 'selected');
 				} */
-				// Tambahkan opsi ke dalam elemen select
-				$("#menu_groupid").append(options);
 			});
 			
 		}
