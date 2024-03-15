@@ -13,27 +13,26 @@ function dataLoad(t,s) {
 		if (s[3]=="menu_akses") {
 			options = void 0 === $("#menu_groupid").val() ? '<option value="" class="opt-val-category">Pilih Pages Parent</option>': "";
 			console.log(hasil);
+			$("#menu_groupid option").val(function (s, t) {
+				$(this)
+					.siblings("[value='" + t + "']")
+					.remove();
+			}),
+			$("#menu_groupid").val() == hasil.id
+					? (options +=
+							'<option value="' +
+							hasil.id +
+							'" class="opt-val-category" selected>' +
+							hasil.nama_menu +
+							"</option>")
+					: (options +=
+							'<option value="' +
+							hasil.id +
+							'" class="opt-val-category">' +
+							hasil.nama_menu +
+							"</option>");
 			$.each(hasil, function (a, b) {
 				console.log(a,b);
-				$("#menu_groupid option").val(function (s, t) {
-					$(this)
-						.siblings("[value='" + t + "']")
-						.remove();
-				}),
-				$("#menu_groupid").val() == hasil.id
-						? (options +=
-								'<option value="' +
-								hasil.id +
-								'" class="opt-val-category" selected>' +
-								hasil.name +
-								"</option>")
-						: (options +=
-								'<option value="' +
-								hasil.id +
-								'" class="opt-val-category">' +
-								hasil.name +
-								"</option>");
-
 			});
 			$("#menu_groupid").append(options);
 		}
