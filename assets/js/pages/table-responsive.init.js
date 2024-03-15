@@ -11,7 +11,7 @@ function dataLoad(t,s) {
         var hasil = parseJwt(t.data);
 		hasil = decrypt(hasil,'fromResponse');
 		if (s[3]=="menu_akses") {
-			console.log(hasil.result);
+			console.log(JSON.stringify(hasil.result),hasil);
 			// Loop melalui data yang diterima
 			options = $('<option>', {
 				value: hasil.id,  // Tentukan nilai dari opsi
