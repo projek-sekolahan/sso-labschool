@@ -11,9 +11,30 @@ function dataLoad(t,s) {
         var hasil = parseJwt(t.data);
 		hasil = decrypt(hasil,'fromResponse');
 		if (s[3]=="menu_akses") {
+			options = void 0 === $("#menu_groupid").val() ? '<option value="" class="opt-val-category">Pilih Pages Parent</option>': "";
 			$.each(hasil, function (a, b) {
 				console.log(a,b);
-			})
+				$("#menu_groupid option").val(function (s, t) {
+					$(this)
+						.siblings("[value='" + t + "']")
+						.remove();
+				}),
+					a == b.id
+						? (options +=
+								'<option value="' +
+								b.id +
+								'" class="opt-val-category" selected>' +
+								b.name +
+								"</option>")
+						: (options +=
+								'<option value="' +
+								b.id +
+								'" class="opt-val-category">' +
+								b.name +
+								"</option>");
+
+			});
+			$("#menu_groupid").append(options);
 		}
         if (s[3]=="profile_pengguna") {
             $(".username").text(hasil.nama_lengkap);
