@@ -10,6 +10,11 @@ function dataLoad(t,s) {
     if (s[1]=="view") {
         var hasil = parseJwt(t.data);
 		hasil = decrypt(hasil,'fromResponse');
+		if (s[3]=="profile_pengguna") {
+			$.each(hasil, function (a, b) {
+				console.log(a,b);
+			})
+		}
         if (s[3]=="profile_pengguna") {
             $(".username").text(hasil.nama_lengkap);
             $(".jabatan").text((hasil.jabatan==null) ? 'Belum Punya Jabatan':hasil.jabatan);

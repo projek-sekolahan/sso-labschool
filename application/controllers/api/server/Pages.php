@@ -95,13 +95,9 @@ class Pages extends RestController {
                 $sqlpages   = "SELECT a.* from pages a WHERE a.id='".$this->input->post('param')."'";
 				$result     = $this->_master->get_custom_query($sqlpages)->row();
                 if ($result==null) {
+					$rsrow  = $this->Master->get_row('pages',['is_child'=>1])->row();
                     $http   = RestController::HTTP_CREATED;
-                    $output = array(
-                        'title'     => 'New Pages Menu',
-                        'message'   => 'Pages Menu Created',
-                        'info'		=> 'success',
-                        'location'	=> 'dashboard',
-                    );
+                    $output = get_object_vars($rsrow);
                 } else {
                     $http       = RestController::HTTP_CREATED;
                     $output     = get_object_vars($result);
