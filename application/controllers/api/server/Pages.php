@@ -94,14 +94,17 @@ class Pages extends RestController {
             if ($keterangan=='menu_akses') {
                 $sqlpages   = "SELECT a.* from pages a WHERE a.id='".$this->input->post('param')."'";
 				$result     = $this->_master->get_custom_query($sqlpages)->row();
-                if ($result==null) {
+				$rsrow		= $this->_master->get_row('pages',['is_child'=>0])->result();
+				$http		= RestController::HTTP_CREATED;
+				$output     = $result==null ? array_merge(get_object_vars($rsrow),[]) : array_merge(get_object_vars($result),get_object_vars($rsrow));
+                /* if ($result==null) {
 					$rsrow  = $this->Master->get_row('pages',['is_child'=>0])->result();
                     $http   = RestController::HTTP_CREATED;
                     $output = get_object_vars($rsrow);
                 } else {
                     $http       = RestController::HTTP_CREATED;
                     $output     = get_object_vars($result);
-                }
+                } */
             }
             if ($keterangan=='table') {
                 $key	= $this->input->post('key');
