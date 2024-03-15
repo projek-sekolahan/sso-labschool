@@ -38,14 +38,14 @@ function dataLoad(t,s) {
 				console.log(index, item);
 				// Buat opsi untuk setiap elemen dalam data
 				options = $('<option>', {
-					value: item.id,  // Tentukan nilai dari opsi
-					text: item.nama_menu     // Tentukan teks dari opsi
+					value: hasil.id,  // Tentukan nilai dari opsi
+					text: hasil.nama_menu     // Tentukan teks dari opsi
 				});
 				
 				// Periksa jika opsi harus dipilih (selected option)
-				if (item.isSelected) {
+				/* if (item.isSelected) {
 					options.attr('selected', 'selected');
-				}
+				} */
 				// Tambahkan opsi ke dalam elemen select
 				$("#menu_groupid").append(options);
 			});
