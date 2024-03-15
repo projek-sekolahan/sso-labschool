@@ -19,18 +19,18 @@ function dataLoad(t,s) {
 						.siblings("[value='" + t + "']")
 						.remove();
 				}),
-					a == b.id
+				$("#menu_groupid").val() == hasil.id
 						? (options +=
 								'<option value="' +
-								b.id +
+								hasil.id +
 								'" class="opt-val-category" selected>' +
-								b.name +
+								hasil.name +
 								"</option>")
 						: (options +=
 								'<option value="' +
-								b.id +
+								hasil.id +
 								'" class="opt-val-category">' +
-								b.name +
+								hasil.name +
 								"</option>");
 
 			});
