@@ -88,7 +88,6 @@
 								class="form-control"
 								required="required">
 								<option value="">Pilih Pages Parent</option>
-								<option value="1">Dashboard</option>
 							</select>
 						</div>
 					</div>
