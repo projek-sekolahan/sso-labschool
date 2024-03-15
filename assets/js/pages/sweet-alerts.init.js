@@ -7,15 +7,12 @@ File: Sweetalert Js File
 */
     function errmsg(xhr, status, error) {
         var t = xhr.responseJSON;
-        if (xhr.status=='403') {
+        if (xhr.status=='403' || xhr.status=='500' || xhr.status=='404' || xhr.status=='400') {
             if (typeof(t)=='object') {
                 swalMsg(t.data.title, t.data.message, t.data.info, t.data.location);
             } else {
                 toastAlert("warning", "Connection Loose");
             }
-        }
-        if (xhr.status=='400') {
-            swalMsg(t.data.title, t.data.message, t.data.info, t.data.location);
         }
     }
 
