@@ -96,7 +96,7 @@ class Pages extends RestController {
 				$result     = $this->_master->get_custom_query($sqlpages)->result();
 				$rsrow		= $this->_master->get_row('pages',['is_child'=>0])->result();
 				$http		= RestController::HTTP_CREATED;
-				$output		= $result;
+				$output		= array('result'=>$result,'menu'=>$rsrow);
 				// $output     = $result==null ? array_merge(get_object_vars($rsrow),[]) : array_merge(get_object_vars($result),get_object_vars($rsrow));
                 /* if ($result==null) {
 					$rsrow  = $this->Master->get_row('pages',['is_child'=>0])->result();
