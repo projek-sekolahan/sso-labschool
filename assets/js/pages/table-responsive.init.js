@@ -26,7 +26,7 @@ function dataLoad(t,s) {
 			});
 			// Loop melalui data rows yang diterima
 			$.each(hasil.result, function (index,item) {
-				1 != item.is_child && ($("#is_child").removeAttr("checked"), $(".select-child").show());
+				1 != item.is_child && ($("#is_child").removeAttr("checked"), $(".select-child").hide());
 				1 == item.is_execute ? $("#is_execute").attr("checked","checked") : $("#is_execute").removeAttr("checked");
 				$.each(item, function (a,b) {
 					$("#"+a).val(b);
