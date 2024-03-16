@@ -80,7 +80,7 @@
 								<div class="invalid-feedback">icon Input Tidak Boleh Kosong.</div>
 							</div>
 						</div>
-						<div class="col-6 select-child">
+						<div class="col-6 select-child" style="display:none">
 							<label for="menu_groupid" class="control-label">Pages Parent</label>
 							<select
 								name="menu_groupid"
