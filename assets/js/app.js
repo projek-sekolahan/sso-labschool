@@ -57,6 +57,13 @@ $(document).on("keyup", ".number-input", function (e) {
     $(this).val(numeral(a).format("0,0"));
 });
 
+$(document).on("click", "#is_child", function () {
+	e.preventDefault();
+	$(this).is(":checked")
+		? ($(".select-child").show())
+		: ($(".select-child").hide());
+}),
+
 $(document).on("click", ".adjust", function (e) {
 	e.preventDefault();
 	$(this).addClass('d-none');
