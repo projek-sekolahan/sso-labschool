@@ -12,17 +12,19 @@ function dataLoad(t,s) {
 		hasil = decrypt(hasil,'fromResponse');
 		if (s[3]=="menu_akses") {
 			console.log(JSON.stringify(hasil),hasil);
-			// Loop melalui data yang diterima
-			options = $('<option>', {
-				value: hasil.id,  // Tentukan nilai dari opsi
-				text: hasil.nama_menu     // Tentukan teks dari opsi
+			// Loop melalui data menu pages yang diterima
+			$.each(hasil.menu, function (index,item) {
+				options = $('<option>', {
+					value: item.id,  // Tentukan nilai dari opsi
+					text: item.nama_menu     // Tentukan teks dari opsi
+				});
+				// Tambahkan opsi ke dalam elemen select
+				$("#menu_groupid").append(options);
 			});
-			// Tambahkan opsi ke dalam elemen select
-			$("#menu_groupid").append(options);
-			// Loop melalui data yang diterima
-			$.each(hasil.result, function (a, b) {
-				console.log(a,b);
-				$("#"+a).val(b);
+			// Loop melalui data rows yang diterima
+			$.each(hasil.result, function (index,item) {
+				console.log(index,item);
+				// $("#"+a).val(b);
 			});
 			
 		}
