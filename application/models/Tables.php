@@ -53,7 +53,7 @@ class Tables extends CI_Model {
 						// Ubah nilai untuk key 'tipe_site'
 						if ($modifiedKey == 'Is Child') {
 							// Jika nilai adalah '1', ubah menjadi 'dashboard', jika tidak biarkan nilai yang sama
-							$modifiedValue = ($modifiedValue == '1') ? 'Child Pages' : 'Parent Pages';
+							$modifiedValue = ($modifiedValue == '1') ? 'Yes Child Pages' : 'No Parent Pages';
 						}
 						// Tambahkan ke array baru
 						$modifiedArray[$modifiedKey] = $modifiedValue;
