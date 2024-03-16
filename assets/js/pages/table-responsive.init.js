@@ -18,8 +18,10 @@ function dataLoad(t,s) {
 					text: item.nama_menu     // Tentukan teks dari opsi
 				});
 				// Periksa jika opsi harus dipilih (selected option)
-				if (item.menu_groupid === hasil.result[0].menu_groupid) {
-					options.attr('selected', 'selected');
+				if (hasil.result && hasil.result.length > 0) {
+					if (item.menu_groupid === hasil.result[0].menu_groupid) {
+						options.attr('selected', 'selected');
+					}
 				}
 				// Tambahkan opsi ke dalam elemen select
 				$("#menu_groupid").append(options);
