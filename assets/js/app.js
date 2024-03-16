@@ -57,7 +57,7 @@ $(document).on("keyup", ".number-input", function (e) {
     $(this).val(numeral(a).format("0,0"));
 });
 
-$(document).on("click", "#is_child", function () {
+$(document).on("click", "#is_child", function (e) {
 	e.preventDefault();
 	$(this).is(":checked")
 		? ($(".select-child").show())
