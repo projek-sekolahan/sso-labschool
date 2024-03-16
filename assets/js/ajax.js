@@ -26,6 +26,7 @@ function call_ajax_page(page) {
 	})
 	.fail(function(xhr, status, error) {
 		// Penanganan kesalahan
+		localStorage.clear();
 		errmsg(xhr, status, error);
 	});
 }
