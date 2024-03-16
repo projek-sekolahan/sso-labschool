@@ -11,22 +11,25 @@ function dataLoad(t,s) {
         var hasil = parseJwt(t.data);
 		hasil = decrypt(hasil,'fromResponse');
 		if (s[3]=="menu_akses") {
-			console.log(JSON.stringify(hasil),hasil);
 			// Loop melalui data menu pages yang diterima
 			$.each(hasil.menu, function (index,item) {
 				options = $('<option>', {
 					value: item.id,  // Tentukan nilai dari opsi
 					text: item.nama_menu     // Tentukan teks dari opsi
 				});
+				// Periksa jika opsi harus dipilih (selected option)
+				if (item.menu_groupid === hasil.result[0].menu_groupid) {
+					option.attr('selected', 'selected');
+				}
 				// Tambahkan opsi ke dalam elemen select
 				$("#menu_groupid").append(options);
 			});
 			// Loop melalui data rows yang diterima
 			$.each(hasil.result, function (index,item) {
-				console.log(index,item);
-				// $("#"+a).val(b);
+				item.forEach(function (a,b) {
+					$("#"+a).val(b);
+				});
 			});
-			
 		}
         if (s[3]=="profile_pengguna") {
             $(".username").text(hasil.nama_lengkap);
