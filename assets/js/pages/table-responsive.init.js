@@ -19,7 +19,7 @@ function dataLoad(t,s) {
 				});
 				// Periksa jika opsi harus dipilih (selected option)
 				if (item.menu_groupid === hasil.result[0].menu_groupid) {
-					option.attr('selected', 'selected');
+					options.attr('selected', 'selected');
 				}
 				// Tambahkan opsi ke dalam elemen select
 				$("#menu_groupid").append(options);
