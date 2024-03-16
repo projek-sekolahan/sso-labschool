@@ -23,12 +23,11 @@ function call_ajax_page(page) {
 			});
 		}
 		$("#content").html(e);
-	}).fail(function(jqXHR) {
-        if(jqXHR.status==500 || jqXHR.status==0) {
-			localStorage.clear();
-			location.reload();
-        }
-    });
+	})
+	.fail(function(xhr, status, error) {
+		// Penanganan kesalahan
+		errmsg(xhr, status, error);
+	});
 }
 
 function menu(action) {
