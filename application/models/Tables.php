@@ -51,9 +51,9 @@ class Tables extends CI_Model {
 							continue;
 						}
 						// Ubah nilai untuk key 'tipe_site'
-						if ($modifiedKey == 'Tipe Site') {
+						if ($modifiedKey == 'Is Child') {
 							// Jika nilai adalah '1', ubah menjadi 'dashboard', jika tidak biarkan nilai yang sama
-							$modifiedValue = ($modifiedValue == '1') ? 'Dashboard' : $modifiedValue;
+							$modifiedValue = ($modifiedValue == '1') ? 'Child Pages' : 'Parent Pages';
 						}
 						// Tambahkan ke array baru
 						$modifiedArray[$modifiedKey] = $modifiedValue;
