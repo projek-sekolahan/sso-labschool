@@ -68,4 +68,8 @@ function loadTable(e, a, b, t) {
 						});
                 }
             })
+			.fail(function(xhr, status, error) {
+				// Penanganan kesalahan
+				errmsg(xhr, status, error);
+			});
 }
