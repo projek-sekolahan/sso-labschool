@@ -26,7 +26,7 @@ function dataLoad(t,s) {
 			});
 			// Loop melalui data rows yang diterima
 			$.each(hasil.result, function (index,item) {
-				item.forEach(function (a,b) {
+				$.each(item, function (a,b) {
 					$("#"+a).val(b);
 				});
 			});
