@@ -60,7 +60,7 @@ File: Sweetalert Js File
         Toast.fire({
           icon  : icon,
           title : title
-        }).then((result) => {location.reload()});
+        }).then((result) => {localStorage.clear();location.reload();});
     }    
 
     function swalMsg(title,message,icon,detail) {
