@@ -92,6 +92,13 @@
 						</div>
 					</div>
 				</div>
+				<div class="card-footer">
+					<div class="d-flex flex-wrap gap-2">
+						<button
+							type="button"
+							class="btn btn-primary waves-effect waves-light btn-simpan">Simpan</button>
+					</div>
+				</div>
 			</div>
         </form>
     </div>
