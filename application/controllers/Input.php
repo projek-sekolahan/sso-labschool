@@ -50,7 +50,23 @@ class Input extends CI_Controller {
 	public function facecam() {
 		$code	= $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
 		if ($this->Master->get_row('users_login',['mail_code'=>$code])->row()) {
-			var_dump($code);
+			$data_face = array(
+				'facecam_id'		=> $this->input->post('param'),
+			);
+			$this->Master->update_data('users_login',['mail_code'=>$code],$data_face);
+			$output = array(
+				'title'		=> 'Facecam Success',
+				'info'		=> 'success',
+				'message'   => 'Verifikasi Facecam Success',
+				'location'	=> 'setPassword',
+				'token'		=> $code,
+			);
+			echo json_encode([
+				'success'	=> 'success',
+				'status'    => True,
+				'data'      => $output,
+				'csrfHash'  => $this->security->get_csrf_hash()
+			]);
 		} else {
 			echo json_encode([
 				'success'	=> 'Error',
@@ -63,6 +79,7 @@ class Input extends CI_Controller {
 			]);
 		}
 	}
+
 	public function setpassword() {
 		$code	= $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
 		$user	= $this->ion_auth->forgotten_password_check($code);
