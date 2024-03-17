@@ -228,7 +228,7 @@ class Ion_auth
 		$email_activation = $this->config->item('email_activation', 'ion_auth');
 		
 		$id = $this->ion_auth_model->register($identity, $email, $additional_data, $group_ids);
-		var_dump($id); return false;
+		
 		if (!$email_activation)
 		{
 			if ($id !== FALSE)
