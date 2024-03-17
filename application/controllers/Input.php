@@ -47,6 +47,22 @@ class Input extends CI_Controller {
 		}
 	}
 
+	public function facecam() {
+		$code	= $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
+		if ($this->Master->get_row('users_login',['mail_code'=>$code])->row()) {
+			var_dump($code);
+		} else {
+			echo json_encode([
+				'success'	=> 'Error',
+				'status'    => False,
+				'title'		=> 'Set Facecam Gagal',
+				'info'		=> 'error',
+				'message'   => $this->ion_auth->errors(),
+				'location'	=> 'facecam',
+				'csrfHash'  => $this->security->get_csrf_hash()
+			]);
+		}
+	}
 	public function setpassword() {
 		$code	= $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
 		$user	= $this->ion_auth->forgotten_password_check($code);
