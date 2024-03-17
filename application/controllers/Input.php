@@ -51,7 +51,7 @@ class Input extends CI_Controller {
 		$code	= $this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]);
 		if ($this->Master->get_row('users_login',['mail_code'=>$code])->row()) {
 			$data_face = array(
-				'facecam_id'		=> $this->input->post('param'),
+				'facecam_id'=> $this->input->post('param'),
 			);
 			$this->Master->update_data('users_login',['mail_code'=>$code],$data_face);
 			$output = array(
