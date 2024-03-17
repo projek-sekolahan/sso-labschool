@@ -584,17 +584,19 @@ class Ion_auth_model extends CI_Model
 	public function phone_check($data = '')
 	{
 		$this->trigger_events('phone_check');
-
 		if (empty($data))
 		{
 			return FALSE;
 		}
-
-		$this->trigger_events('extra_where');
-
-		return $this->db->where('phone',$data['phone'])
+		// Mengecek apakah nomor telepon dimulai dengan angka 0
+		if (mb_substr($data['phone'], 0, 1) === "0") {
+			$this->trigger_events('extra_where');
+			return $this->db->where('phone',$data['phone'])
 						->limit(1)
 						->count_all_results($this->tables['users_details']) > 0;
+		} else {
+			return FALSE;
+		}
 	}	
 
 	/**
@@ -767,7 +769,7 @@ class Ion_auth_model extends CI_Model
 		}
 		else if ($this->username_check(explode('@',$email)[0]))
 		{
-			$this->set_error('account_creation_duplicate_email');
+			$this->set_error('account_creation_duplicate_username');
 			return FALSE;
 		}
 		else if ($this->phone_check($additional_data))
