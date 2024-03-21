@@ -59,6 +59,7 @@ class Pages extends RestController {
             $urlAPI	= 'pages/'.$keterangan;
             if ($keterangan=='create_update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
+				var_dump($dataparam); return false;
             }
             if ($keterangan=='menu_akses') {
 				$dataparam = array_merge($this->input->post(),$this->_paramToken);
