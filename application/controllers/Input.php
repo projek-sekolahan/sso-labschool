@@ -85,8 +85,8 @@ class Input extends CI_Controller {
 		$user	= $this->ion_auth->forgotten_password_check($code);
 		if ($user) {
 			$tokenkey	= hash('sha1',base64_encode($user->email.':'.$this->input->post('password')));
-			$user_group = $this->ion_auth_model->get_users_groups($user->id)->row();
-			$change		= $this->ion_auth_model->reset_password($user->email,$this->input->post('password'));
+			$user_group = $this->ion_auth->get_users_groups($user->id)->row();
+			$change		= $this->ion_auth->reset_password($user->email,$this->input->post('password'));
 			if ($change) {
 				$data_token = array(
 					'user_id'		=> $user->id,
@@ -221,20 +221,20 @@ class Input extends CI_Controller {
     }
 
 	public function sendOTP() {
-		$email			= $this->input->post('email');
-		$checkidentity	= $this->ion_auth->get_user_id_from_identity($email);
-			if (!$checkidentity) {
+		$email	= $this->input->post('email');
+		$otp	= $this->ion_auth->activOtp($email);
+			if (!$otp) {
 				echo json_encode([
 					'success'	=> 'Error',
 					'status'    => False,
-					'title'		=> 'Register Gagal',
+					'title'		=> 'Send OTP Gagal',
 					'info'		=> 'error',
 					'message'   => $this->ion_auth->errors(),
-					'location'	=> 'register',
+					'location'	=> 'verify',
 					'csrfHash'  => $this->security->get_csrf_hash()
 				]);
 			} else {
-				var_dump($checkidentity); return false;
+				var_dump($otp); return false;
 				$otp = $this->ion_auth->activOtp($checkidentity->id);
 			}
 		// $otp		= $this->Master->get_row('users_login',['mail_code'=>$email])->row();

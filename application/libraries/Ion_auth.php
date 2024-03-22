@@ -475,8 +475,10 @@ class Ion_auth
 	public function activOtp($id)
 	{
 		$this->ion_auth_model->trigger_events('pre_account_creation');
+		
+		$email_activation	= $this->config->item('email_activation', 'ion_auth');
 
-		$email_activation = $this->config->item('email_activation', 'ion_auth');
+		$checkidentity		= $this->ion_auth_model->get_user_id_from_identity($id);
 		var_dump($email_activation);
 	}
 
