@@ -477,9 +477,56 @@ class Ion_auth
 		$this->ion_auth_model->trigger_events('pre_account_creation');
 		
 		$email_activation	= $this->config->item('email_activation', 'ion_auth');
+		if ($email_activation === FALSE)
+		{
+			return false;
+		}
+		$checkidentity	= $this->ion_auth_model->get_user_id_from_identity($id);
+		$identity	= $this->config->item('identity', 'ion_auth');
+		$user		= $this->ion_auth_model->user($checkidentity)->row();
+		$token		= $this->ion_auth_model->_generate_selector_validator_couple(20, 80);
+		$user_id	= $user->id;
+		$email		= $user->email;
 
-		$checkidentity		= $this->ion_auth_model->get_user_id_from_identity($id);
-		var_dump($email_activation);
+		$update = [
+			'activation_selector'	=> $token->selector,
+			'activation_code'		=> $token->validator_hashed,
+			'mail_code'				=> $token->user_code.'.'.$token->mail_code,
+		];
+		
+		$data = [
+			'identity'   => $user->{$identity},
+			'id'         => $user->id,
+			'email'      => $user->email,
+			'activation' => $token->mail_code,
+		];
+		
+		if(!$this->config->item('use_ci_email', 'ion_auth'))
+		{
+			$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_successful', 'activation_email_successful']);
+			$this->set_message('activation_email_successful');
+			return $data;
+		}
+		else
+		{
+			$keterangan	=   'Activated Password Account';
+			$subject	=   $this->config->item('site_title', 'ion_auth').' - '. $this->lang->line('email_activation_subject').' '.strtotime(date('d-m-Y H:m:s'));
+			$from		=	$this->config->item('admin_email', 'ion_auth');
+			$message	=	$this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item('email_activate', 'ion_auth'), $data, true);
+			$email_config	= $this->config->item('email_config', 'ion_auth');
+
+			$sendmail = $this->LinkMail->sendmail($keterangan,$subject,$email,$from,$message,$email_config,$user_id);
+			
+			if ($sendmail === TRUE)
+			{
+				$this->trigger_events('extra_where');
+				$this->db->update('users_login', $update, ['id' => $user_id]);
+				$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_successful', 'activation_email_successful']);
+				$this->set_message('activation_email_successful');
+				return $id;
+			}
+
+		}
 	}
 
 	public function deactivate($id = NULL)
