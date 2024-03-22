@@ -219,4 +219,22 @@ class Input extends CI_Controller {
 				]);
 			}
     }
+
+	public function sendOTP() {
+		$email		= $this->input->post('email');
+		$checkidentity	= $this->ion_auth->email_check($email);
+			if (!$checkidentity) {
+				echo json_encode([
+					'success'	=> 'Error',
+					'status'    => False,
+					'title'		=> 'Register Gagal',
+					'info'		=> 'error',
+					'message'   => $this->ion_auth->errors(),
+					'location'	=> 'register',
+					'csrfHash'  => $this->security->get_csrf_hash()
+				]);
+			}
+		// $otp		= $this->Master->get_row('users_login',['mail_code'=>$email])->row();
+		var_dump($checkidentity); return false;
+	}
 }
