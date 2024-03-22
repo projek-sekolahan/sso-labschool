@@ -223,6 +223,7 @@ class Input extends CI_Controller {
 	public function sendOTP() {
 		$email		= $this->input->post('email');
 		$checkidentity	= $this->ion_auth->email_check($email);
+		var_dump($checkidentity); return false;
 			if (!$checkidentity) {
 				echo json_encode([
 					'success'	=> 'Error',
