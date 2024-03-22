@@ -221,9 +221,8 @@ class Input extends CI_Controller {
     }
 
 	public function sendOTP() {
-		$email		= $this->input->post('email');
+		$email			= $this->input->post('email');
 		$checkidentity	= $this->ion_auth->email_check($email);
-		var_dump($checkidentity); return false;
 			if (!$checkidentity) {
 				echo json_encode([
 					'success'	=> 'Error',
@@ -234,6 +233,9 @@ class Input extends CI_Controller {
 					'location'	=> 'register',
 					'csrfHash'  => $this->security->get_csrf_hash()
 				]);
+			} else {
+				var_dump($checkidentity); return false;
+				$otp = $this->ion_auth->activOtp($checkidentity->id);
 			}
 		// $otp		= $this->Master->get_row('users_login',['mail_code'=>$email])->row();
 		var_dump($checkidentity); return false;

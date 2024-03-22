@@ -472,6 +472,14 @@ class Ion_auth
 		}
 	}
 
+	public function activOtp($id)
+	{
+		$this->ion_auth_model->trigger_events('pre_account_creation');
+
+		$email_activation = $this->config->item('email_activation', 'ion_auth');
+		var_dump($email_activation);
+	}
+
 	public function deactivate($id = NULL)
 	{
 		$this->trigger_events('deactivate');
