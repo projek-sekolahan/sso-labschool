@@ -58,8 +58,8 @@ class Pages extends RestController {
         if ($this->_AuthCheck->checkTokenApi($keterangan,$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]),$this->input->post('AUTH_KEY'))) {
             $urlAPI	= 'pages/'.$keterangan;
             if ($keterangan=='create_update') {
+                var_dump($dataparam); return false;
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
-				var_dump($dataparam); return false;
             }
             if ($keterangan=='menu_akses') {
 				$dataparam = array_merge($this->input->post(),$this->_paramToken);
