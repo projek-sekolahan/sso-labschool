@@ -13,23 +13,6 @@
                     <span key="t-dashboards">Dashboards</span>
                 </a>
             </li>
-
-			<li>
-                                <a href="#" class="has-arrow waves-effect">
-                                    <i class="bx bx-store"></i>
-                                    <span key="t-ecommerce">Ecommerce</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="ecommerce-products.html" key="t-products">Products</a></li>
-                                    <li><a href="ecommerce-product-detail.html" key="t-product-detail">Product Detail</a></li>
-                                    <li><a href="ecommerce-orders.html" key="t-orders">Orders</a></li>
-                                    <li><a href="ecommerce-customers.html" key="t-customers">Customers</a></li>
-                                    <li><a href="ecommerce-cart.html" key="t-cart">Cart</a></li>
-                                    <li><a href="ecommerce-checkout.html" key="t-checkout">Checkout</a></li>
-                                    <li><a href="ecommerce-shops.html" key="t-shops">Shops</a></li>
-                                    <li><a href="ecommerce-add-product.html" key="t-add-product">Add Product</a></li>
-                                </ul>
-                            </li>
 			
 <!-- <li class="menu-title" key="t-setting">Menu Pengaturan Kalender</li>
 
@@ -56,8 +39,8 @@
 if ($this->ion_auth->is_admin()) {
 ?>
 <li>
-    <a href="#" class="has-arrow waves-effect">
-        <i class="bx bx-database"></i>
+    <a href="#" data-action="#" class="has-arrow waves-effect">
+        <i class="bx bx-data"></i>
         <span key="t-master">Menu Master</span>
     </a>
 	<ul class="sub-menu" aria-expanded="false">

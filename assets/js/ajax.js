@@ -35,6 +35,9 @@ function menu(action) {
 	if (action==null) {
 		action = "overview";
 	}
+	if (action=="#") {
+		return false;
+	}
 		$("#content").find('#status').fadeOut();
         $("#content").find('#preloader').delay(500).fadeOut('slow');
 		$("#content").find("#result").load(url + "/view/menu/" + action, function (e) {

@@ -90,8 +90,8 @@ $(document).on("click", ".btn-action", function (e) {
     action  = $(this).data("action");
     urloc   = "/view/modal/" + path[4];
     param   = $(this).data("param");
-    var decodeToken = parseJwt(localStorage.getItem('token'));
-    /* if($(this).data("view")=="activated") {
+    /* var decodeToken = parseJwt(localStorage.getItem('token'));
+    if($(this).data("view")=="activated") {
         var keycode     = CryptoJS.enc.Hex.parse(CryptoJS.SHA1(btoa(param)).toString());
         var authcode    = CryptoJS.enc.Hex.parse(CryptoJS.SHA1(param).toString());
         var hash		= CryptoJS.AES.encrypt(param,keycode,{iv:authcode}).toString().replace(/[^\w\s]/gi,'');
@@ -178,8 +178,8 @@ $(document).on("click", ".metismenu li a, .navbar-nav  li a", function(e) {
 	e.preventDefault();
 	page = $(this).attr("href");
 	action = $(this).data("action");
-	if (page == "javascript: void(0);") return false;
-	if (action == null) {
+	if (page == "javascript: void(0);" || page == "#") return false;
+	if (action == null || action == "#") {
 		action = page;
 	}
 	$(".metismenu li, .metismenu li a").removeClass("active");
