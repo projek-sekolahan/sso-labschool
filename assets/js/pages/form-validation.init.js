@@ -119,7 +119,7 @@ function save(a, e, i) {
 		authkey		= decodeToken.authkey;
 		dataParam.append("AUTH_KEY", authkey);
 		if (a=='form-createUser' || a=='form-event' || a=='form-createMonth' || a=='form-createScreen') {
-			if (a=='form-createUser') {
+			/* if (a=='form-createUser') {
 				var keycode     = CryptoJS.enc.Hex.parse(CryptoJS.SHA1(btoa($("#nip").val())).toString());
 				var authcode    = CryptoJS.enc.Hex.parse(CryptoJS.SHA1($("#nip").val()).toString());
 				var hash		= CryptoJS.AES.encrypt($("#nip").val(),keycode,{iv:authcode}).toString().replace(/[^\w\s]/gi,'');
@@ -128,7 +128,7 @@ function save(a, e, i) {
 			if (a=='form-event' || a=='form-createMonth') {
 				tinymce.triggerSave();
 				dataParam.append("article-description", tinymce.activeEditor.getContent());
-			}
+			} */
 			img = new Array();
 			$(".dz-preview").each(function (e,a) {
 				img.push($(a).find('.dz-image>img').attr('src'),)

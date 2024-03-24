@@ -91,7 +91,7 @@ $(document).on("click", ".btn-action", function (e) {
     urloc   = "/view/modal/" + path[4];
     param   = $(this).data("param");
     var decodeToken = parseJwt(localStorage.getItem('token'));
-    if($(this).data("view")=="activated") {
+    /* if($(this).data("view")=="activated") {
         var keycode     = CryptoJS.enc.Hex.parse(CryptoJS.SHA1(btoa(param)).toString());
         var authcode    = CryptoJS.enc.Hex.parse(CryptoJS.SHA1(param).toString());
         var hash		= CryptoJS.AES.encrypt(param,keycode,{iv:authcode}).toString().replace(/[^\w\s]/gi,'');
@@ -103,8 +103,8 @@ $(document).on("click", ".btn-action", function (e) {
         };
         dataParam[keyname] = decodeToken.apikey;
         ajaxData(dataParam,action,decodeToken,$(this).data("view"));
-    } 
-    else if ($(this).data("view")=="delete") {
+    }  */
+    if ($(this).data("view")=="delete") {
         swalOption($(this),"Yakin Hapus Item?","Klik Yes Untuk OK!");
     }
     else {
@@ -112,6 +112,7 @@ $(document).on("click", ".btn-action", function (e) {
             detail  = "Data "+path[4].replace('_',' ').replace('_',' ').replace(/\b\w/g, l => l.toUpperCase());
         }
         if($(this).data("view")=="form") {
+			action
             detail  = "Form "+path[4].replace('_',' ').replace('_',' ').replace(/\b\w/g, l => l.toUpperCase());
         }
         $(".staticmodal").find(".modal-body").load(url + urloc, function (e) {
@@ -120,8 +121,8 @@ $(document).on("click", ".btn-action", function (e) {
             $(".modal-body").html(e);
             editorArea();
             dropFile();
-            var form = $(".modal-body").find("form").attr("id");
-            $("#" + form).attr('action',action);
+            /* var form = $(".modal-body").find("form").attr("id");
+            $("#" + form).attr('action',action); */
             hari();
             jam();
             tanggal();
