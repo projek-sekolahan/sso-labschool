@@ -82,6 +82,7 @@ function ajaxData(dataParam,action,decodeToken,event) {
 }
 
 function ajaxSave(dataParam,action,authkey,event) {
+	console.log(dataParam,action,authkey,event);
 	$.ajax({
 		url: url + action,
 		data: dataParam,
