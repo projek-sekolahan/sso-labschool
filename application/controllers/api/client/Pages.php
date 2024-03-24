@@ -59,7 +59,6 @@ class Pages extends RestController {
             $urlAPI	= 'pages/'.$keterangan;
             if ($keterangan=='create_update') {
                 $dataparam = array_merge($this->input->post(),$this->_paramToken);
-				var_dump($dataparam); return false;
             }
             if ($keterangan=='menu_akses') {
 				$dataparam = array_merge($this->input->post(),$this->_paramToken);
@@ -73,9 +72,10 @@ class Pages extends RestController {
                 );
                 $dataparam = array_merge($paramdata,$this->_paramToken);
             }
-			/* $result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
+			// var_dump($dataparam); return false;
+			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
             $dtAPI	= json_decode($result->getBody()->getContents(),true);
-            $this->responsejson($result,$dtAPI); */
+            $this->responsejson($result,$dtAPI);
         } else {
             $this->eResponse();
         }
