@@ -44,6 +44,25 @@ class Pages extends RestController {
     public function index_post($keterangan) {
         if (is_object($this->_RsToken)) {
             if ($keterangan=='create_update') {
+				$menus = array(
+					'id'		=> $this->input->post('id'),
+					'nama_menu'	=> $this->input->post('nama_menu'),
+					'title'		=> $this->input->post('title'),
+					'url'		=> $this->input->post('url'),
+					'tipe_site'	=> $this->input->post('tipe_site'),
+					'is_execute'=> ($this->input->post('is_execute')=='on') ? 1:0,
+					'icon'		=> $this->input->post('icon'),
+					'menu_groupid'	=> $this->input->post('menu_groupid'),
+					'is_child'		=> ($this->input->post('is_child')=='on') ? 1:0,
+				);
+				$pages	= $this->_master->get_row('pages',['id'=>$this->input->post('id')])->row();
+				if ($pages) {
+					// update data
+					$this->_master->update_data('pages',['id'=>$pages->id],$menus);
+                } else {
+					// create data
+					$this->_master->save_data('pages' , $menus);
+                }
 				$output = array(
 					'title'     => 'Data Updated',
 					'message'   => 'Success Updated',
