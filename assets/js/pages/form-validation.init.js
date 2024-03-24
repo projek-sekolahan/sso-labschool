@@ -93,7 +93,7 @@ function validateForm(a, t, i) {
 
 function save(a, e, i) {
 	e.preventDefault()
-	console.log(a, e, i);
+	console.log($("#" + a).attr("action"));
 	if (a=='form-login') {
 		var hash = hashPass();
 		key			= btoa($("#username").val() + ":" + hash);
