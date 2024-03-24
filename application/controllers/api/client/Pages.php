@@ -72,7 +72,7 @@ class Pages extends RestController {
                 );
                 $dataparam = array_merge($paramdata,$this->_paramToken);
             }
-			var_dump($dataparam); //return false;
+			// var_dump($dataparam); return false;
 			$result	= $this->_clientAPI->postContent($urlAPI,$this->input->post('AUTH_KEY'),$dataparam);
             $dtAPI	= json_decode($result->getBody()->getContents(),true);
             $this->responsejson($result,$dtAPI);
