@@ -221,7 +221,7 @@ class Input extends CI_Controller {
     }
 
 	public function sendOTP() {
-		$otp	= $this->ion_auth->activOtp($this->input->post('email'));
+		$otp	= ($this->input->post('email')==='null' || $this->input->post('email')===null) ? FALSE:$this->ion_auth->activOtp($this->input->post('email'));
 			if ($otp === FALSE) {
 				echo json_encode([
 					'success'	=> 'Error',
