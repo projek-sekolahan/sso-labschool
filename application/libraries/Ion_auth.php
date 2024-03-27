@@ -151,21 +151,7 @@ class Ion_auth
 				}
 				else
 				{
-					$keterangan	=   'Recovery Password Account';
-					$user_id	=	$user->id;
-					$email		=	$user->email;
-					$subject	=   $this->config->item('site_title', 'ion_auth').' - '. $this->lang->line('email_forgotten_password_subject').' '.strtotime(date('d-m-Y H:m:s'));
-					$from		=	$this->config->item('admin_email', 'ion_auth');
-					$message	=	$this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item('email_forgot_password', 'ion_auth'), $data, true);
-					$email_config	= $this->config->item('email_config', 'ion_auth');
-
-					$sendmail = $this->LinkMail->sendmail($keterangan,$subject,$email,$from,$message,$email_config,$user_id);
-					
-					if ($sendmail === TRUE)
-					{
-						$this->set_message('forgot_password_successful');
-						return TRUE;
-					}
+					$this->sendEmail('email_forgotten_password_subject',$user->email,$from,'forgot_password_successful','email_forgot_password',$user->id,'null',$data);					
 				}
 			}
 		}
@@ -284,23 +270,7 @@ class Ion_auth
 			}
 			else
 			{
-				$keterangan	=   'Activated Password Account';
-				$subject	=   $this->config->item('site_title', 'ion_auth').' - '. $this->lang->line('email_activation_subject').' '.strtotime(date('d-m-Y H:m:s'));
-				$from		=	$this->config->item('admin_email', 'ion_auth');
-				$message	=	$this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item('email_activate', 'ion_auth'), $data, true);
-				$email_config	= $this->config->item('email_config', 'ion_auth');
-
-				$sendmail = $this->LinkMail->sendmail($keterangan,$subject,$email,$from,$message,$email_config,$user_id);
-				
-				if ($sendmail === TRUE)
-				{
-					$this->trigger_events('extra_where');
-					$this->db->update('users_login', $update, ['id' => $user_id]);
-					$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_successful', 'activation_email_successful']);
-					$this->set_message('activation_email_successful');
-					return $id;
-				}
-
+				$this->sendEmail('email_activation_subject',$user->email,'activation_email_successful','email_activate',$user->id,$update,$data);
 			}
 		}
 	}
@@ -509,24 +479,33 @@ class Ion_auth
 		}
 		else
 		{
-			$keterangan	=   'Activated Password Account';
-			$subject	=   $this->config->item('site_title', 'ion_auth').' - '. $this->lang->line('email_activation_subject').' '.strtotime(date('d-m-Y H:m:s'));
-			$from		=	$this->config->item('admin_email', 'ion_auth');
-			$message	=	$this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item('email_activate', 'ion_auth'), $data, true);
-			$email_config	= $this->config->item('email_config', 'ion_auth');
-
-			$sendmail = $this->LinkMail->sendmail($keterangan,$subject,$email,$from,$message,$email_config,$user_id);
-			
-			if ($sendmail === TRUE)
-			{
-				$this->trigger_events('extra_where');
-				$this->db->update('users_login', $update, ['id' => $user_id]);
-				$this->ion_auth_model->trigger_events(['post_account_creation', 'post_account_creation_successful', 'activation_email_successful']);
-				$this->set_message('activation_email_successful');
-				return $id;
-			}
-
+			$this->sendEmail('email_activation_subject',$user->email,'activation_email_successful','email_activate',$user->id,$update,$data);
 		}
+	}
+
+	public function sendEmail($langmsg,$email,$set_message,$configtmp,$userid,$update,$data) 
+	{
+		($langmsg=='email_forgotten_password_subject') ? $keterangan = 'Recovery Password Account' : $keterangan = 'Activated Password Account';
+		$subject	=   $this->config->item('site_title', 'ion_auth').' - '. $this->lang->line($langmsg).' '.strtotime(date('d-m-Y H:m:s'));
+		$from		=	$this->config->item('admin_email', 'ion_auth');
+		$message	=	$this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item($configtmp, 'ion_auth'), $data, true);
+		$email_config	= $this->config->item('email_config', 'ion_auth');
+
+		$sendmail = $this->LinkMail->sendmail($keterangan,$subject,$email,$from,$message,$email_config,$userid);
+		
+		if ($sendmail === TRUE)
+		{
+			$this->trigger_events('extra_where');
+			if($langmsg=='email_forgotten_password_subject') {
+				$this->set_message($set_message);
+				return TRUE;
+			} else {
+				$this->set_message($set_message);
+				$this->db->update('users_login', $update, ['id' => $userid]);
+				return $userid;
+			}
+		}
+		
 	}
 
 	public function deactivate($id = NULL)

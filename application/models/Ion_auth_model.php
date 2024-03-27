@@ -699,6 +699,7 @@ class Ion_auth_model extends CI_Model
 			'forgotten_password_selector'	=> $token->selector,
 			'forgotten_password_code'		=> $token->validator_hashed,
 			'mail_code'						=> $token->user_code.'.'.$token->mail_code,
+			'reset_code'					=> $token->mail_code,
 			'forgotten_password_time'		=> time()-7200
 		];
 
@@ -708,7 +709,7 @@ class Ion_auth_model extends CI_Model
 		if ($this->db->affected_rows() === 1)
 		{
 			$this->trigger_events(['post_forgotten_password', 'post_forgotten_password_successful']);
-			return $update['mail_code'];
+			return $update['reset_code'];
 		}
 		else
 		{
