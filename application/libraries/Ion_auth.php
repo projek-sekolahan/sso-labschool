@@ -151,7 +151,7 @@ class Ion_auth
 				}
 				else
 				{
-					$this->sendEmail('email_forgotten_password_subject',$user->email,'forgot_password_successful','email_forgot_password',$user->id,'null',$data);					
+					return $this->sendEmail('email_forgotten_password_subject',$user->email,'forgot_password_successful','email_forgot_password',$user->id,'null',$data);					
 				}
 			}
 		}
@@ -270,7 +270,7 @@ class Ion_auth
 			}
 			else
 			{
-				$this->sendEmail('email_activation_subject',$user->email,'activation_email_successful','email_activate',$user->id,$update,$data);
+				return $this->sendEmail('email_activation_subject',$user->email,'activation_email_successful','email_activate',$user->id,$update,$data);
 			}
 		}
 	}
@@ -479,7 +479,7 @@ class Ion_auth
 		}
 		else
 		{
-			$this->sendEmail('email_activation_subject',$user->email,'activation_email_successful','email_activate',$user->id,$update,$data);
+			return $this->sendEmail('email_activation_subject',$user->email,'activation_email_successful','email_activate',$user->id,$update,$data);
 		}
 	}
 
