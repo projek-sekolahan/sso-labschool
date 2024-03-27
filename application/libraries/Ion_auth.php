@@ -151,7 +151,7 @@ class Ion_auth
 				}
 				else
 				{
-					$this->sendEmail('email_forgotten_password_subject',$user->email,$from,'forgot_password_successful','email_forgot_password',$user->id,'null',$data);					
+					$this->sendEmail('email_forgotten_password_subject',$user->email,'forgot_password_successful','email_forgot_password',$user->id,'null',$data);					
 				}
 			}
 		}
