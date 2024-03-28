@@ -101,6 +101,7 @@ class View extends CI_Controller {
     }
 
     public function menu($pages) {
+		var_dump($pages); return false;
         $this->load->view('content/'.$pages,$this->data);
     }
 
