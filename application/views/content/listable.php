@@ -4,11 +4,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">List Tables</h4>
+                    <h4 class="mb-sm-0 font-size-18">List Menu <?=ucwords($url)?></h4>
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Master</a></li>
-                            <li class="breadcrumb-item active">Menu Akses</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">
+								<?php
+									$result	=	$this->Master->get_row('pages',['menu_groupid'=>$menu_groupid,'is_child'=>0])->row();
+									echo ucwords($result->nama_menu);
+								?>
+							</a></li>
+                            <li class="breadcrumb-item active">Menu <?=ucwords($url)?></li>
                         </ol>
                     </div>
                 </div>
