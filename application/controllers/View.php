@@ -106,9 +106,10 @@ class View extends CI_Controller {
 		} else {
 			if($pages=='overview') {
 				$this->load->view('content/'.$pages,$this->data);
+			} else {
+				var_dump($pages); return false;
+				$this->load->view('content/'.$pages,$this->data);
 			}
-			var_dump($pages); return false;
-			$this->load->view('content/'.$pages,$this->data);
 		}
     }
 
