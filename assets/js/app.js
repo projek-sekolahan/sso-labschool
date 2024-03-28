@@ -178,7 +178,7 @@ $(document).on("click", ".metismenu li a, .navbar-nav  li a", function(e) {
 	e.preventDefault();
 	page = $(this).attr("href");
 	action = $(this).data("action");
-	if (page == "javascript: void(0);" || page == "#") return false;
+	if (page == "javascript: void(0);") return false;
 	if (action == null || action == "#") {
 		action = page;
 	}
