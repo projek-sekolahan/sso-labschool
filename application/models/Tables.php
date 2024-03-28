@@ -5,7 +5,7 @@ class Tables extends CI_Model {
 	function detailTables($select,$tabID,$limit,$like,$order,$join,$where,$where2,$group_by,$key) {
  		$columns = array();
 		if ($tabID=='pengguna') {
-			$access = '/api/client/user/profile_pengguna';
+			$access = '/api/client/users/profile_pengguna';
 			$table	= 'users_details a';
 		}
 		if ($tabID=='pages') {
