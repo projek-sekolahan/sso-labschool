@@ -101,8 +101,15 @@ class View extends CI_Controller {
     }
 
     public function menu($pages) {
-		var_dump($pages); return false;
-        $this->load->view('content/'.$pages,$this->data);
+		if($pages=='undefined') {
+			redirect('dashboard/404','location', 404);
+		} else {
+			if($pages=='overview') {
+				$this->load->view('content/'.$pages,$this->data);
+			}
+			var_dump($pages); return false;
+			$this->load->view('content/'.$pages,$this->data);
+		}
     }
 
     public function modal($pages) {
