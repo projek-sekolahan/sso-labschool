@@ -104,11 +104,12 @@ class View extends CI_Controller {
 		if($pages=='undefined') {
 			redirect('dashboard/404','location', 404);
 		} else {
-			if($pages=='overview') {
+			$this->load->view('content/'.$pages,$this->data);
+			/* if($pages=='overview') {
 				$this->load->view('content/'.$pages,$this->data);
 			} else {
 				$this->load->view('content/listable',$this->data);
-			}
+			} */
 		}
     }
 
