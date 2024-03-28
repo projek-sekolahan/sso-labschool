@@ -29,7 +29,7 @@
                             </div>
                         </div> -->
                         <div class="table-responsive">
-                            <table class="table align-middle table-nowrap table-check" id="tab-pengguna" data-action="/api/client/user/table" style="width: 100%;" ><thead class="table-light"><tr></tr></thead></table>
+                            <table class="table align-middle table-nowrap table-check" id="tab-pengguna" data-action="/api/client/users/table" style="width: 100%;" ><thead class="table-light"><tr></tr></thead></table>
                         </div>
                     </div>
                 </div>

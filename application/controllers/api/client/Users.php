@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 use chriskacerguis\RestServer\RestController;
-class User extends RestController {
+class Users extends RestController {
 
     private $_clientAPI;
     private $_AuthToken;
@@ -15,7 +15,7 @@ class User extends RestController {
         $this->_clientAPI   = new ClientAPI();
         $this->_AuthToken   = new AuthToken();
         $this->_AuthCheck   = new AuthCheck();
-        $this->_csrfToken   = $this->_clientAPI->crToken('user',$this->input->post('AUTH_KEY'));
+        $this->_csrfToken   = $this->_clientAPI->crToken('users',$this->input->post('AUTH_KEY'));
 		$this->_RsToken     = $this->_AuthToken->validateTimestamp((empty($this->session->userdata('token'))) ? $this->input->post('token'):$this->session->userdata('token'),$this->input->post(explode('.',$_SERVER['HTTP_HOST'])[0]));
         $this->_paramToken  = array(
             'token'     => $this->_RsToken,

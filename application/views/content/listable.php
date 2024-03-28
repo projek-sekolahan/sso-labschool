@@ -24,17 +24,23 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-sm-12">
-                                <div class="text-sm-end">
-                                    <a href="#" type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mb-2 me-2 btn-sm btn-action" data-view="form" data-action="/api/client/pages/menu_akses">
-                                        <i class="mdi mdi-plus me-1"></i> Tambah Data
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+<?php
+if($url != 'pengguna'){
+?>
+						<div class="row mb-2">
+							<div class="col-sm-12">
+								<div class="text-sm-end">
+									<a href="#" type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mb-2 me-2 btn-sm btn-action" data-view="form" data-action="/api/client/pages/menu_akses">
+										<i class="mdi mdi-plus me-1"></i> Tambah Data
+									</a>
+								</div>
+							</div>
+						</div>
+<?php
+}
+?>
                         <div class="table-responsive">
-                            <table class="table align-middle table-nowrap table-check" id="tab-pages" data-action="/api/client/pages/table" style="width: 100%;" ><thead class="table-light"><tr></tr></thead></table>
+                            <table class="table align-middle table-nowrap table-check" id="tab-<?=$url?>" data-action="/api/client/<?=$url?>/table" style="width: 100%;" ><thead class="table-light"><tr></tr></thead></table>
                         </div>
                     </div>
                 </div>
