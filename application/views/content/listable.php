@@ -40,7 +40,7 @@ if($url != 'pengguna'){
 }
 ?>
                         <div class="table-responsive">
-                            <table class="table align-middle table-nowrap table-check" id="tab-<?=$url?>" data-action="/api/client/<?=$url?>/table" style="width: 100%;" ><thead class="table-light"><tr></tr></thead></table>
+                            <table class="table align-middle table-nowrap table-check" id="tab-<?=$nama_menu?>" data-action="/api/client/<?=$nama_menu?>/table" style="width: 100%;" ><thead class="table-light"><tr></tr></thead></table>
                         </div>
                     </div>
                 </div>
